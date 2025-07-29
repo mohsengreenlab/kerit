@@ -56,9 +56,9 @@ export default function Services() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-red-50 border border-red-200 rounded-lg p-8">
             <i className="fas fa-exclamation-triangle text-red-500 text-4xl mb-4"></i>
-            <h2 className="text-2xl font-bold text-red-700 mb-2">Ошибка загрузки</h2>
+            <h2 className="text-2xl font-bold text-red-700 mb-2">{t('common.error')}</h2>
             <p className="text-red-600">
-              Не удалось загрузить информацию об услугах. Пожалуйста, попробуйте обновить страницу.
+              {t('services.custom_solution_desc')}
             </p>
           </div>
         </div>
@@ -100,7 +100,7 @@ export default function Services() {
             className="bg-kerit-yellow hover:bg-yellow-400 text-kerit-dark font-semibold px-8 py-4 text-lg"
           >
             <i className="fas fa-calendar mr-2"></i>
-            Получить консультацию
+            {t('pricing.get_consultation')}
           </Button>
         </div>
       </section>
@@ -161,10 +161,10 @@ export default function Services() {
       <section className="py-20 bg-kerit-dark">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Не нашли подходящую услугу?
+            {t('services.custom_solution_title')}
           </h2>
           <p className="text-xl text-kerit-light mb-10">
-            Мы создаем индивидуальные решения под ваши задачи. Расскажите о вашем проекте, и мы предложим оптимальный подход.
+            {t('services.custom_solution_desc')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -172,7 +172,7 @@ export default function Services() {
               className="bg-kerit-yellow hover:bg-yellow-400 text-kerit-dark font-semibold px-8 py-4"
             >
               <i className="fas fa-comments mr-2"></i>
-              Обсудить проект
+              {t('services.custom_solution_button')}
             </Button>
             <Link href="/contact">
               <Button

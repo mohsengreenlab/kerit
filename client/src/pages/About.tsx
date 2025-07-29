@@ -16,20 +16,18 @@ export default function About() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-4xl lg:text-5xl font-bold text-kerit-dark mb-6">
-              О компании Kerit
+              {t('about.title')}
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Мы специализируемся на цифровой трансформации бизнеса через инновационные IT-решения
+              {t('footer.company_desc')}
             </p>
           </div>
 
           <div className="prose prose-lg max-w-none">
             <div className="bg-gray-50 rounded-2xl p-8 mb-12">
-              <h2 className="text-3xl font-bold text-kerit-dark mb-6">Наша миссия</h2>
+              <h2 className="text-3xl font-bold text-kerit-dark mb-6">{t('about.mission')}</h2>
               <p className="text-gray-700 text-lg leading-relaxed">
-                Kerit создана для того, чтобы помочь бизнесу максимально эффективно использовать возможности 
-                современных IT-технологий. Мы верим, что правильно настроенные цифровые процессы могут 
-                кардинально изменить результативность любой компании.
+                {t('about.mission_desc')}
               </p>
             </div>
 
@@ -38,9 +36,9 @@ export default function About() {
                 <div className="bg-kerit-light rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                   <i className="fas fa-lightbulb text-3xl text-kerit-dark"></i>
                 </div>
-                <h3 className="text-xl font-bold text-kerit-dark mb-2">Инновации</h3>
+                <h3 className="text-xl font-bold text-kerit-dark mb-2">{t('about.innovation')}</h3>
                 <p className="text-gray-600">
-                  Используем передовые технологии для решения бизнес-задач
+                  {t('about.innovation_desc')}
                 </p>
               </div>
               
@@ -48,9 +46,9 @@ export default function About() {
                 <div className="bg-kerit-light rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                   <i className="fas fa-users text-3xl text-kerit-dark"></i>
                 </div>
-                <h3 className="text-xl font-bold text-kerit-dark mb-2">Команда</h3>
+                <h3 className="text-xl font-bold text-kerit-dark mb-2">{t('about.team')}</h3>
                 <p className="text-gray-600">
-                  Опытные специалисты с глубокой экспертизой в IT
+                  {t('about.team_desc')}
                 </p>
               </div>
               
@@ -58,15 +56,15 @@ export default function About() {
                 <div className="bg-kerit-light rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                   <i className="fas fa-chart-line text-3xl text-kerit-dark"></i>
                 </div>
-                <h3 className="text-xl font-bold text-kerit-dark mb-2">Результат</h3>
+                <h3 className="text-xl font-bold text-kerit-dark mb-2">{t('about.results')}</h3>
                 <p className="text-gray-600">
-                  Фокусируемся на измеримых бизнес-показателях
+                  {t('about.results_desc')}
                 </p>
               </div>
             </div>
 
             <div className="bg-white border border-gray-200 rounded-2xl p-8 mb-12">
-              <h2 className="text-3xl font-bold text-kerit-dark mb-6">Почему выбирают нас</h2>
+              <h2 className="text-3xl font-bold text-kerit-dark mb-6">{t('about.why_choose')}</h2>
               
               <div className="space-y-6">
                 <div className="flex items-start">

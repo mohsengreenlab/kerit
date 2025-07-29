@@ -89,9 +89,9 @@ export default function CaseStudies() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-red-50 border border-red-200 rounded-lg p-8">
             <i className="fas fa-exclamation-triangle text-red-500 text-4xl mb-4"></i>
-            <h2 className="text-2xl font-bold text-red-700 mb-2">Ошибка загрузки</h2>
+            <h2 className="text-2xl font-bold text-red-700 mb-2">{t('common.error')}</h2>
             <p className="text-red-600">
-              Не удалось загрузить кейсы. Пожалуйста, попробуйте обновить страницу.
+              {t('cases.no_cases_desc')}
             </p>
           </div>
         </div>

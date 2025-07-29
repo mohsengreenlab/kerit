@@ -123,6 +123,72 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'services.it_strategy': 'Консультация по IT-стратегии',
     'services.other': 'Другое',
 
+    // Footer
+    'footer.company_desc': 'Kerit - ведущая консалтинговая компания, специализирующаяся на цифровой трансформации бизнеса через инновационные IT-решения.',
+    'footer.company_section': 'Компания',
+    'footer.rights_reserved': 'Все права защищены.',
+    'footer.privacy_policy': 'Политика конфиденциальности',
+    'footer.terms_of_use': 'Условия использования',
+
+    // Header/Auth
+    'auth.login': 'Войти',
+    'auth.logout': 'Выйти',
+
+    // Cookie Notice
+    'cookies.message': 'Мы используем cookies для улучшения работы сайта и анализа посещаемости.',
+    'cookies.learn_more': 'Подробнее',
+    'cookies.accept': 'Принять',
+    'cookies.decline': 'Отклонить',
+
+    // Pricing page
+    'pricing.title': 'Тарифы',
+    'pricing.subtitle': 'Прозрачные тарифы на профессиональные IT-решения. Выберите подходящий пакет или получите персональное предложение',
+    'pricing.loading_error': 'Ошибка загрузки',
+    'pricing.loading_error_desc': 'Не удалось загрузить информацию о тарифах. Пожалуйста, попробуйте обновить страницу.',
+    'pricing.basic': 'Базовый',
+    'pricing.pro': 'Профессиональный',
+    'pricing.enterprise': 'Корпоративный',
+    'pricing.choose_plan': 'Выбрать план',
+    'pricing.get_consultation': 'Получить консультацию',
+    'pricing.popular': 'Популярный',
+    'pricing.faq_title': 'Часто задаваемые вопросы',
+
+    // Blog page extensions
+    'blog.search_placeholder': 'Поиск статей...',
+    'blog.no_posts': 'Статьи не найдены',
+    'blog.no_posts_desc': 'В данной категории пока нет опубликованных статей.',
+
+    // Case Studies page extensions
+    'cases.no_cases': 'Кейсы не найдены',
+    'cases.no_cases_desc': 'В данной категории пока нет опубликованных кейсов.',
+
+    // Services page extensions
+    'services.custom_solution_title': 'Не нашли подходящую услугу?',
+    'services.custom_solution_desc': 'Мы создаем индивидуальные решения под ваши задачи. Расскажите о вашем проекте, и мы предложим оптимальный подход.',
+    'services.custom_solution_button': 'Обсудить проект',
+
+    // About page
+    'about.title': 'О нас',
+    'about.mission': 'Наша миссия',
+    'about.mission_desc': 'Kerit создана для того, чтобы помочь бизнесу максимально эффективно использовать возможности современных IT-технологий. Мы верим, что правильно настроенные цифровые процессы могут кардинально изменить результативность любой компании.',
+    'about.innovation': 'Инновации',
+    'about.innovation_desc': 'Используем передовые технологии для решения бизнес-задач',
+    'about.team': 'Команда',
+    'about.team_desc': 'Опытные специалисты с глубокой экспертизой в IT',
+    'about.results': 'Результат',
+    'about.results_desc': 'Фокусируемся на измеримых бизнес-показателях',
+    'about.why_choose': 'Почему выбирают нас',
+
+    // Home page
+    'home.success_stories': 'Истории успеха',
+    'home.testimonials': 'Отзывы клиентов',
+    'home.welcome': 'Добро пожаловать',
+    'home.dashboard_subtitle': 'Ваша панель управления Kerit',
+    'home.admin_panel': 'Админ-панель',
+    'home.admin_desc': 'Управление контентом, аналитикой и пользователями',
+    'home.customer_panel': 'Клиентская панель',
+    'home.customer_desc': 'Просмотр ваших проектов и статусов',
+
     // Common
     'common.read_more': 'Подробнее',
     'common.loading': 'Загрузка...',
@@ -250,6 +316,72 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'services.performance_opt': 'Performance Optimization',
     'services.it_strategy': 'IT Strategy Consulting',
     'services.other': 'Other',
+
+    // Footer
+    'footer.company_desc': 'Kerit - a leading consulting company specializing in business digital transformation through innovative IT solutions.',
+    'footer.company_section': 'Company',
+    'footer.rights_reserved': 'All rights reserved.',
+    'footer.privacy_policy': 'Privacy Policy',
+    'footer.terms_of_use': 'Terms of Use',
+
+    // Header/Auth
+    'auth.login': 'Login',
+    'auth.logout': 'Logout',
+
+    // Cookie Notice
+    'cookies.message': 'We use cookies to improve site performance and analyze traffic.',
+    'cookies.learn_more': 'Learn more',
+    'cookies.accept': 'Accept',
+    'cookies.decline': 'Decline',
+
+    // Pricing page
+    'pricing.title': 'Pricing',
+    'pricing.subtitle': 'Transparent pricing for professional IT solutions. Choose a suitable package or get a personalized offer',
+    'pricing.loading_error': 'Loading Error',
+    'pricing.loading_error_desc': 'Failed to load pricing information. Please try refreshing the page.',
+    'pricing.basic': 'Basic',
+    'pricing.pro': 'Professional',
+    'pricing.enterprise': 'Enterprise',
+    'pricing.choose_plan': 'Choose Plan',
+    'pricing.get_consultation': 'Get Consultation',
+    'pricing.popular': 'Popular',
+    'pricing.faq_title': 'Frequently Asked Questions',
+
+    // Blog page extensions
+    'blog.search_placeholder': 'Search articles...',
+    'blog.no_posts': 'No articles found',
+    'blog.no_posts_desc': 'No published articles in this category yet.',
+
+    // Case Studies page extensions
+    'cases.no_cases': 'No cases found',
+    'cases.no_cases_desc': 'No published cases in this category yet.',
+
+    // Services page extensions
+    'services.custom_solution_title': 'Didn\'t find a suitable service?',
+    'services.custom_solution_desc': 'We create custom solutions for your needs. Tell us about your project, and we\'ll suggest the optimal approach.',
+    'services.custom_solution_button': 'Discuss Project',
+
+    // About page
+    'about.title': 'About Us',
+    'about.mission': 'Our Mission',
+    'about.mission_desc': 'Kerit was created to help businesses maximize the potential of modern IT technologies. We believe that properly configured digital processes can dramatically change the effectiveness of any company.',
+    'about.innovation': 'Innovation',
+    'about.innovation_desc': 'We use cutting-edge technologies to solve business challenges',
+    'about.team': 'Team',
+    'about.team_desc': 'Experienced specialists with deep IT expertise',
+    'about.results': 'Results',
+    'about.results_desc': 'We focus on measurable business metrics',
+    'about.why_choose': 'Why Choose Us',
+
+    // Home page
+    'home.success_stories': 'Success Stories',
+    'home.testimonials': 'Client Testimonials',
+    'home.welcome': 'Welcome',
+    'home.dashboard_subtitle': 'Your Kerit dashboard',
+    'home.admin_panel': 'Admin Panel',
+    'home.admin_desc': 'Manage content, analytics, and users',
+    'home.customer_panel': 'Customer Panel',
+    'home.customer_desc': 'View your projects and statuses',
 
     // Common
     'common.read_more': 'Read More',

@@ -13,7 +13,7 @@ export function Footer() {
           <div className="md:col-span-2">
             <img src={logoPath} alt="Kerit Logo" className="h-8 w-auto mb-4 filter brightness-0 invert" />
             <p className="text-gray-300 mb-6 max-w-md">
-              Kerit - ведущая консалтинговая компания, специализирующаяся на цифровой трансформации бизнеса через инновационные IT-решения.
+              {t('footer.company_desc')}
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-kerit-yellow transition-colors">
@@ -57,7 +57,7 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Компания</h3>
+            <h3 className="font-semibold text-lg mb-4">{t('footer.company_section')}</h3>
             <ul className="space-y-2 text-gray-300">
               <li>
                 <Link href="/about">
@@ -85,14 +85,14 @@ export function Footer() {
 
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-400 text-sm mb-4 md:mb-0">
-            © 2024 Kerit. Все права защищены.
+            © 2024 Kerit. {t('footer.rights_reserved')}
           </div>
           <div className="flex space-x-6 text-sm text-gray-400">
             <Link href="/privacy">
-              <a className="hover:text-kerit-yellow transition-colors">Политика конфиденциальности</a>
+              <a className="hover:text-kerit-yellow transition-colors">{t('footer.privacy_policy')}</a>
             </Link>
             <Link href="/terms">
-              <a className="hover:text-kerit-yellow transition-colors">Условия использования</a>
+              <a className="hover:text-kerit-yellow transition-colors">{t('footer.terms_of_use')}</a>
             </Link>
           </div>
         </div>

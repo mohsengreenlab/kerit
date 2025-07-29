@@ -18,10 +18,10 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-kerit-dark mb-4">
-              Добро пожаловать, {user?.firstName || user?.email}!
+              {t('home.welcome')}, {user?.firstName || user?.email}!
             </h1>
             <p className="text-xl text-gray-600">
-              Ваша панель управления Kerit
+              {t('home.dashboard_subtitle')}
             </p>
           </div>
 
@@ -33,8 +33,8 @@ export default function Home() {
                     <div className="bg-kerit-dark rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                       <i className="fas fa-cog text-2xl text-white"></i>
                     </div>
-                    <h3 className="text-2xl font-bold text-kerit-dark mb-2">Админ-панель</h3>
-                    <p className="text-gray-600">Управление контентом, аналитикой и пользователями</p>
+                    <h3 className="text-2xl font-bold text-kerit-dark mb-2">{t('home.admin_panel')}</h3>
+                    <p className="text-gray-600">{t('home.admin_desc')}</p>
                   </div>
                 </a>
               </Link>
@@ -47,8 +47,8 @@ export default function Home() {
                     <div className="bg-kerit-sage rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                       <i className="fas fa-user text-2xl text-white"></i>
                     </div>
-                    <h3 className="text-2xl font-bold text-kerit-dark mb-2">Клиентская панель</h3>
-                    <p className="text-gray-600">Просмотр ваших проектов и статусов</p>
+                    <h3 className="text-2xl font-bold text-kerit-dark mb-2">{t('home.customer_panel')}</h3>
+                    <p className="text-gray-600">{t('home.customer_desc')}</p>
                   </div>
                 </a>
               </Link>

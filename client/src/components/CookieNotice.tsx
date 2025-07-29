@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
+import { useLanguage } from '@/hooks/useLanguage';
 
 export function CookieNotice() {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -31,9 +33,9 @@ export function CookieNotice() {
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between">
         <div className="mb-4 sm:mb-0">
           <p className="text-sm">
-            Мы используем cookies для улучшения работы сайта и анализа посещаемости.{' '}
+            {t('cookies.message')}{' '}
             <Link href="/privacy">
-              <a className="text-kerit-yellow hover:underline">Подробнее</a>
+              <a className="text-kerit-yellow hover:underline">{t('cookies.learn_more')}</a>
             </Link>
           </p>
         </div>
@@ -42,14 +44,14 @@ export function CookieNotice() {
             onClick={handleAccept}
             className="bg-kerit-yellow text-kerit-dark px-4 py-2 text-sm font-medium hover:bg-yellow-400"
           >
-            Принять
+            {t('cookies.accept')}
           </Button>
           <Button
             onClick={handleDecline}
             variant="outline"
             className="border-kerit-light text-kerit-light px-4 py-2 text-sm hover:bg-kerit-light hover:text-kerit-dark"
           >
-            Отклонить
+            {t('cookies.decline')}
           </Button>
         </div>
       </div>

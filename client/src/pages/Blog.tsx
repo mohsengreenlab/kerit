@@ -92,9 +92,9 @@ export default function Blog() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-red-50 border border-red-200 rounded-lg p-8">
             <i className="fas fa-exclamation-triangle text-red-500 text-4xl mb-4"></i>
-            <h2 className="text-2xl font-bold text-red-700 mb-2">Ошибка загрузки</h2>
+            <h2 className="text-2xl font-bold text-red-700 mb-2">{t('common.error')}</h2>
             <p className="text-red-600">
-              Не удалось загрузить статьи блога. Пожалуйста, попробуйте обновить страницу.
+              {t('blog.no_posts_desc')}
             </p>
           </div>
         </div>
@@ -117,7 +117,7 @@ export default function Blog() {
             {t('nav.blog')}
           </h1>
           <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Экспертные статьи и практические советы по IT-консалтингу, цифровой трансформации и автоматизации бизнес-процессов
+            {t('blog.subtitle')}
           </p>
           
           {/* Search */}
@@ -125,7 +125,7 @@ export default function Blog() {
             <div className="relative">
               <Input
                 type="text"
-                placeholder="Поиск по статьям..."
+                placeholder={t('blog.search_placeholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 pr-4 py-3 text-lg"

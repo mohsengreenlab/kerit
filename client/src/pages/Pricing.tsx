@@ -102,9 +102,9 @@ export default function Pricing() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-red-50 border border-red-200 rounded-lg p-8">
             <i className="fas fa-exclamation-triangle text-red-500 text-4xl mb-4"></i>
-            <h2 className="text-2xl font-bold text-red-700 mb-2">Ошибка загрузки</h2>
+            <h2 className="text-2xl font-bold text-red-700 mb-2">{t('pricing.loading_error')}</h2>
             <p className="text-red-600">
-              Не удалось загрузить информацию о тарифах. Пожалуйста, попробуйте обновить страницу.
+              {t('pricing.loading_error_desc')}
             </p>
           </div>
         </div>
@@ -127,7 +127,7 @@ export default function Pricing() {
             {t('nav.pricing')}
           </h1>
           <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Прозрачные тарифы на профессиональные IT-решения. Выберите подходящий пакет или получите персональное предложение
+            {t('pricing.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -135,7 +135,7 @@ export default function Pricing() {
               className="bg-kerit-yellow hover:bg-yellow-400 text-kerit-dark font-semibold px-8 py-4"
             >
               <i className="fas fa-calculator mr-2"></i>
-              Рассчитать стоимость
+              {t('pricing.choose_plan')}
             </Button>
             <Button
               onClick={() => setIsAppointmentModalOpen(true)}
@@ -143,7 +143,7 @@ export default function Pricing() {
               className="border-2 border-kerit-sage text-kerit-sage hover:bg-kerit-sage hover:text-white font-semibold px-8 py-4"
             >
               <i className="fas fa-phone mr-2"></i>
-              Получить консультацию
+              {t('pricing.get_consultation')}
             </Button>
           </div>
         </div>
@@ -171,7 +171,7 @@ export default function Pricing() {
                           {pkg.type === 'pro' && (
                             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                               <div className="bg-kerit-yellow text-kerit-dark px-4 py-2 rounded-full text-sm font-semibold">
-                                Популярный
+                                {t('pricing.popular')}
                               </div>
                             </div>
                           )}

@@ -76,12 +76,12 @@ export function Header() {
                     </Link>
                   )}
                   <a href="/api/logout" className="text-kerit-sage hover:text-kerit-dark transition-colors">
-                    <i className="fas fa-sign-out-alt mr-1"></i>Выйти
+                    <i className="fas fa-sign-out-alt mr-1"></i>{t('auth.logout')}
                   </a>
                 </>
               ) : (
                 <a href="/api/login" className="text-kerit-sage hover:text-kerit-dark transition-colors">
-                  <i className="fas fa-sign-in-alt mr-1"></i>Войти
+                  <i className="fas fa-sign-in-alt mr-1"></i>{t('auth.login')}
                 </a>
               )}
             </div>
