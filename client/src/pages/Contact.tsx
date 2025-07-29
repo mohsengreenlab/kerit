@@ -330,16 +330,16 @@ export default function Contact() {
                 <h3 className="text-2xl font-bold text-kerit-dark mb-4">FAQ</h3>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold text-kerit-dark mb-2">Как быстро вы отвечаете?</h4>
-                    <p className="text-gray-600 text-sm">Мы отвечаем в течение 2-4 часов в рабочее время.</p>
+                    <h4 className="font-semibold text-kerit-dark mb-2">{t('contact.faq.q1')}</h4>
+                    <p className="text-gray-600 text-sm">{t('contact.faq.a1')}</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-kerit-dark mb-2">Сколько стоит консультация?</h4>
-                    <p className="text-gray-600 text-sm">Первичная консультация всегда бесплатна.</p>
+                    <h4 className="font-semibold text-kerit-dark mb-2">{t('contact.faq.q2')}</h4>
+                    <p className="text-gray-600 text-sm">{t('contact.faq.a2')}</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-kerit-dark mb-2">Работаете ли с небольшими проектами?</h4>
-                    <p className="text-gray-600 text-sm">Да, мы работаем с проектами любого масштаба.</p>
+                    <h4 className="font-semibold text-kerit-dark mb-2">{t('contact.faq.q3')}</h4>
+                    <p className="text-gray-600 text-sm">{t('contact.faq.a3')}</p>
                   </div>
                 </div>
               </div>

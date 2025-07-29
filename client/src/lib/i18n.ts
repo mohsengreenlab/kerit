@@ -249,6 +249,39 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'pricing.faq_a4': 'Мы принимаем оплату банковским переводом, картой и электронными кошельками. Возможна рассрочка.',
     'pricing.custom_title': 'Нужен индивидуальный расчет?',
     'pricing.custom_desc': 'Получите персональное предложение с учетом специфики вашего проекта и бюджета',
+    
+    // Additional testimonials
+    'testimonial.maria.name': 'Мария Сидорова',
+    'testimonial.maria.title': 'Маркетинг-директор, Fashion Plus',
+    'testimonial.maria.text': 'Чат-бот от Kerit полностью автоматизировал нашу работу с клиентами. Теперь мы работаем 24/7!',
+    'testimonial.dmitry.name': 'Дмитрий Козлов',
+    'testimonial.dmitry.title': 'IT-директор, LogiCorp', 
+    'testimonial.dmitry.text': 'Оптимизация от Kerit сэкономила нам тысячи долларов на инфраструктуре. Рекомендую!',
+    
+    // About page details
+    'about.approach_title': 'Комплексный подход',
+    'about.approach_desc': 'Анализируем все аспекты вашего бизнеса для создания целостной стратегии цифровизации',
+    'about.measurable_title': 'Измеримые результаты', 
+    'about.measurable_desc': 'Каждый проект имеет четкие KPI и метрики эффективности',
+    'about.partnership_title': 'Долгосрочное партнерство',
+    'about.partnership_desc': 'Поддерживаем клиентов на всех этапах развития их цифровой экосистемы',
+    
+    // Blog page
+    'blog.clear_search': 'Очистить поиск',
+    'blog.suggest_topic': 'Предложить тему',
+    'blog.email_placeholder': 'Ваш email',
+    'blog.subscribe': 'Подписаться',
+    'blog.no_posts_desc': 'По запросу ничего не найдено. Попробуйте изменить поисковый запрос.',
+    'blog.updating_title': 'Блог обновляется',
+    'blog.updating_desc': 'Мы работаем над добавлением новых экспертных статей. Следите за обновлениями!',
+    
+    // Contact FAQ
+    'contact.faq.q1': 'Как быстро вы отвечаете?',
+    'contact.faq.a1': 'Мы отвечаем в течение 2-4 часов в рабочее время.',
+    'contact.faq.q2': 'Сколько стоит консультация?',
+    'contact.faq.a2': 'Первичная консультация всегда бесплатна.',
+    'contact.faq.q3': 'Работаете ли с небольшими проектами?',
+    'contact.faq.a3': 'Да, мы работаем с проектами любого масштаба.',
 
     // Common
     'common.read_more': 'Подробнее',
@@ -503,7 +536,40 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'pricing.faq_q4': 'What payment methods are available?',
     'pricing.faq_a4': 'We accept payment by bank transfer, card and electronic wallets. Installment plans are possible.',
     'pricing.custom_title': 'Need a custom quote?',
-    'pricing.custom_desc': 'Get a personalized offer taking into account the specifics of your project and budget',
+    'pricing.custom_desc': 'Get a personalized offer considering your project specifics and budget',
+    
+    // Additional testimonials  
+    'testimonial.maria.name': 'Maria Sidorova',
+    'testimonial.maria.title': 'Marketing Director, Fashion Plus',
+    'testimonial.maria.text': 'Kerit\'s chatbot completely automated our customer service. Now we work 24/7!',
+    'testimonial.dmitry.name': 'Dmitry Kozlov', 
+    'testimonial.dmitry.title': 'IT Director, LogiCorp',
+    'testimonial.dmitry.text': 'Kerit\'s optimization saved us thousands of dollars on infrastructure. Highly recommend!',
+    
+    // About page details
+    'about.approach_title': 'Comprehensive Approach',
+    'about.approach_desc': 'We analyze all aspects of your business to create a holistic digitalization strategy',
+    'about.measurable_title': 'Measurable Results',
+    'about.measurable_desc': 'Every project has clear KPIs and efficiency metrics',
+    'about.partnership_title': 'Long-term Partnership',
+    'about.partnership_desc': 'We support clients at every stage of their digital ecosystem development',
+    
+    // Blog page
+    'blog.clear_search': 'Clear Search',
+    'blog.suggest_topic': 'Suggest Topic',
+    'blog.email_placeholder': 'Your email',
+    'blog.subscribe': 'Subscribe',
+    'blog.no_posts_desc': 'Nothing found for your query. Try changing the search term.',
+    'blog.updating_title': 'Blog is being updated',
+    'blog.updating_desc': 'We are working on adding new expert articles. Stay tuned for updates!',
+    
+    // Contact FAQ
+    'contact.faq.q1': 'How quickly do you respond?',
+    'contact.faq.a1': 'We respond within 2-4 hours during business hours.',
+    'contact.faq.q2': 'How much does consultation cost?',
+    'contact.faq.a2': 'Initial consultation is always free.',
+    'contact.faq.q3': 'Do you work with small projects?',
+    'contact.faq.a3': 'Yes, we work with projects of any scale.',
 
     // Common
     'common.read_more': 'Read More',

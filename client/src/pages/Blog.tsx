@@ -239,7 +239,7 @@ export default function Blog() {
                       onClick={() => setSearchQuery('')}
                       className="bg-kerit-sage hover:bg-opacity-90 text-white"
                     >
-                      Очистить поиск
+                      {t('blog.clear_search')}
                     </Button>
                   )}
                   <Link href="/contact">
@@ -247,7 +247,7 @@ export default function Blog() {
                       variant="outline"
                       className="border-kerit-sage text-kerit-sage hover:bg-kerit-sage hover:text-white"
                     >
-                      Предложить тему
+                      {t('blog.suggest_topic')}
                     </Button>
                   </Link>
                 </div>
@@ -269,11 +269,11 @@ export default function Blog() {
           <div className="max-w-md mx-auto flex gap-4">
             <Input
               type="email"
-              placeholder="Ваш email"
+              placeholder={t('blog.email_placeholder')}
               className="bg-white text-kerit-dark"
             />
             <Button className="bg-kerit-yellow hover:bg-yellow-400 text-kerit-dark font-semibold px-6">
-              Подписаться
+              {t('blog.subscribe')}
             </Button>
           </div>
           <p className="text-kerit-light text-sm mt-4">

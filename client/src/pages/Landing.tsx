@@ -65,16 +65,16 @@ export default function Landing() {
       text: t('testimonial.alexey.text'),
     },
     {
-      name: 'Мария Сидорова',
-      position: 'Маркетинг-директор, Fashion Plus',
+      name: t('testimonial.maria.name'),
+      position: t('testimonial.maria.title'),
       avatar: 'МС',
-      text: 'Чат-бот от Kerit полностью автоматизировал нашу работу с клиентами. Теперь мы работаем 24/7!',
+      text: t('testimonial.maria.text'),
     },
     {
-      name: 'Дмитрий Козлов',
-      position: 'IT-директор, LogiCorp',
+      name: t('testimonial.dmitry.name'),
+      position: t('testimonial.dmitry.title'),
       avatar: 'ДК',
-      text: 'Оптимизация от Kerit сэкономила нам тысячи долларов на инфраструктуре. Рекомендую!',
+      text: t('testimonial.dmitry.text'),
     },
   ];
 

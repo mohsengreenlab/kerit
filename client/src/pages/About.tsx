@@ -72,9 +72,9 @@ export default function About() {
                     <i className="fas fa-check text-kerit-dark"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-kerit-dark mb-2">Комплексный подход</h4>
+                    <h4 className="font-semibold text-kerit-dark mb-2">{t('about.approach_title')}</h4>
                     <p className="text-gray-700">
-                      Анализируем все аспекты вашего бизнеса для создания целостной стратегии цифровизации
+                      {t('about.approach_desc')}
                     </p>
                   </div>
                 </div>
@@ -84,9 +84,9 @@ export default function About() {
                     <i className="fas fa-check text-kerit-dark"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-kerit-dark mb-2">Измеримые результаты</h4>
+                    <h4 className="font-semibold text-kerit-dark mb-2">{t('about.measurable_title')}</h4>
                     <p className="text-gray-700">
-                      Каждый проект имеет четкие KPI и метрики эффективности
+                      {t('about.measurable_desc')}
                     </p>
                   </div>
                 </div>
@@ -96,9 +96,9 @@ export default function About() {
                     <i className="fas fa-check text-kerit-dark"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-kerit-dark mb-2">Долгосрочное партнерство</h4>
+                    <h4 className="font-semibold text-kerit-dark mb-2">{t('about.partnership_title')}</h4>
                     <p className="text-gray-700">
-                      Поддерживаем клиентов на всех этапах развития их цифровой экосистемы
+                      {t('about.partnership_desc')}
                     </p>
                   </div>
                 </div>
