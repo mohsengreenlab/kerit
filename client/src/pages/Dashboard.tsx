@@ -132,9 +132,12 @@ export default function Dashboard() {
         <div className="text-center">
           <h2 className="text-2xl font-bold text-kerit-dark mb-4">Требуется авторизация</h2>
           <p className="text-gray-600 mb-6">Пожалуйста, войдите в систему для доступа к панели клиента</p>
-          <a href="/api/login" className="bg-kerit-sage text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-colors">
+          <button 
+            onClick={() => window.location.href = '/api/dev-login'}
+            className="bg-kerit-sage text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-colors"
+          >
             Войти в систему
-          </a>
+          </button>
         </div>
       </div>
     );

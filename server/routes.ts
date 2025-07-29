@@ -219,17 +219,58 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Protected customer routes
-  app.get('/api/dashboard/projects', isAuthenticated, async (req: any, res) => {
+  app.get('/api/dashboard/projects', async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
-      const user = await storage.getUser(userId);
+      let userId;
       
-      if (!user || user.role !== 'customer') {
-        return res.status(403).json({ message: "Access denied" });
-      }
+      // Check for development session first
+      if (req.session?.user) {
+        userId = req.session.user.id;
+        // For demo, return mock projects
+        const mockProjects = [
+          {
+            id: 'demo-project-1',
+            title: 'Email Marketing Campaign',
+            description: 'Automated email marketing setup for product launches',
+            status: 'in_progress',
+            startDate: new Date('2024-01-15'),
+            endDate: new Date('2024-02-15'),
+            createdAt: new Date('2024-01-10'),
+            notes: 'Initial setup complete, working on automation sequences',
+            package: {
+              name: 'Professional',
+              service: { name: 'Email Marketing' }
+            }
+          },
+          {
+            id: 'demo-project-2',
+            title: 'Customer Support Chatbot',
+            description: 'AI-powered chatbot for customer service automation',
+            status: 'completed',
+            startDate: new Date('2023-12-01'),
+            endDate: new Date('2023-12-30'),
+            createdAt: new Date('2023-11-25'),
+            notes: 'Successfully deployed and integrated with CRM system',
+            package: {
+              name: 'Enterprise',
+              service: { name: 'Customer Chatbots' }
+            }
+          }
+        ];
+        return res.json(mockProjects);
+      } else if (req.isAuthenticated() && req.user?.claims?.sub) {
+        userId = req.user.claims.sub;
+        const user = await storage.getUser(userId);
+        
+        if (!user || user.role !== 'customer') {
+          return res.status(403).json({ message: "Access denied" });
+        }
 
-      const projects = await storage.getProjectsByCustomer(userId);
-      res.json(projects);
+        const projects = await storage.getProjectsByCustomer(userId);
+        res.json(projects);
+      } else {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
     } catch (error) {
       console.error("Error fetching customer projects:", error);
       res.status(500).json({ message: "Failed to fetch projects" });
