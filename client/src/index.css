@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(345, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(345, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(345, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(345, 14.3%, 4.1%);
+  --radius: 0.5rem;
+
+  /* Kerit brand colors */
+  --kerit-dark: hsl(345, 50%, 6%);
+  --kerit-light: hsl(58, 94%, 78%);
+  --kerit-sage: hsl(64, 7%, 51%);
+  --kerit-yellow: hsl(58, 94%, 65%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  /* Kerit custom utility classes */
+  .text-kerit-dark {
+    color: var(--kerit-dark);
+  }
+
+  .text-kerit-light {
+    color: var(--kerit-light);
+  }
+
+  .text-kerit-sage {
+    color: var(--kerit-sage);
+  }
+
+  .text-kerit-yellow {
+    color: var(--kerit-yellow);
+  }
+
+  .bg-kerit-dark {
+    background-color: var(--kerit-dark);
+  }
+
+  .bg-kerit-light {
+    background-color: var(--kerit-light);
+  }
+
+  .bg-kerit-sage {
+    background-color: var(--kerit-sage);
+  }
+
+  .bg-kerit-yellow {
+    background-color: var(--kerit-yellow);
+  }
+
+  .border-kerit-dark {
+    border-color: var(--kerit-dark);
+  }
+
+  .border-kerit-light {
+    border-color: var(--kerit-light);
+  }
+
+  .border-kerit-sage {
+    border-color: var(--kerit-sage);
+  }
+
+  .border-kerit-yellow {
+    border-color: var(--kerit-yellow);
+  }
+
+  .hover\:text-kerit-dark:hover {
+    color: var(--kerit-dark);
+  }
+
+  .hover\:text-kerit-sage:hover {
+    color: var(--kerit-sage);
+  }
+
+  .hover\:bg-kerit-sage:hover {
+    background-color: var(--kerit-sage);
+  }
+
+  .hover\:bg-kerit-yellow:hover {
+    background-color: var(--kerit-yellow);
+  }
+
+  .hover\:border-kerit-yellow:hover {
+    border-color: var(--kerit-yellow);
+  }
+}
+
+/* Additional animations and utilities */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out;
+}
+
+.kerit-gradient {
+  background: linear-gradient(135deg, var(--kerit-dark) 0%, var(--kerit-sage) 100%);
+}
+
+.kerit-card-hover {
+  transition: all 0.3s ease;
+}
+
+.kerit-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(35, 12, 15, 0.15);
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
