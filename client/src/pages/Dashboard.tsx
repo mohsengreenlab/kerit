@@ -40,8 +40,8 @@ export default function Dashboard() {
   useEffect(() => {
     if (!authLoading && !isAuthenticated) {
       toast({
-        title: "Требуется авторизация",
-        description: "Для доступа к панели клиента необходимо войти в систему.",
+        title: t('dashboard.auth_required'),
+        description: t('dashboard.auth_message'),
         variant: "destructive",
       });
       setTimeout(() => {
@@ -52,8 +52,8 @@ export default function Dashboard() {
 
     if (!authLoading && isAuthenticated && user?.role !== 'customer') {
       toast({
-        title: "Доступ запрещен",
-        description: "У вас нет прав доступа к клиентской панели.",
+        title: "Access Denied",
+        description: "You don't have permission to access the client dashboard.",
         variant: "destructive",
       });
       setTimeout(() => {
@@ -83,15 +83,15 @@ export default function Dashboard() {
   const getStatusText = (status: string) => {
     switch (status) {
       case 'planning':
-        return 'Планирование';
+        return t('dashboard.status.planning');
       case 'in_progress':
-        return 'В работе';
+        return t('dashboard.status.in_progress');
       case 'review':
-        return 'На проверке';
+        return t('dashboard.status.in_progress'); // Using in_progress for review
       case 'completed':
-        return 'Завершен';
+        return t('dashboard.status.completed');
       case 'cancelled':
-        return 'Отменен';
+        return t('dashboard.status.on_hold'); // Using on_hold for cancelled
       default:
         return status;
     }
@@ -130,13 +130,13 @@ export default function Dashboard() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-kerit-dark mb-4">Требуется авторизация</h2>
-          <p className="text-gray-600 mb-6">Пожалуйста, войдите в систему для доступа к панели клиента</p>
+          <h2 className="text-2xl font-bold text-kerit-dark mb-4">{t('dashboard.auth_required')}</h2>
+          <p className="text-gray-600 mb-6">{t('dashboard.auth_message')}</p>
           <button 
             onClick={() => window.location.href = '/api/dev-login'}
             className="bg-kerit-sage text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-colors"
           >
-            Войти в систему
+            {t('dashboard.login_button')}
           </button>
         </div>
       </div>
@@ -146,8 +146,8 @@ export default function Dashboard() {
   return (
     <>
       <SEOHead
-        title="Панель клиента - Kerit | Мои проекты"
-        description="Панель клиента Kerit: отслеживание статуса проектов, история заказов, документация."
+        title={`${t('dashboard.title')} - Kerit | ${t('dashboard.projects.title')}`}
+        description={t('dashboard.subtitle')}
       />
 
       <div className="min-h-screen bg-gray-50 py-12">
@@ -155,10 +155,10 @@ export default function Dashboard() {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-kerit-dark mb-2">
-              Добро пожаловать, {user?.firstName || user?.email}!
+              {t('dashboard.welcome')}, {user?.firstName || user?.email}!
             </h1>
             <p className="text-gray-600">
-              Здесь вы можете отслеживать статус ваших проектов и просматривать историю сотрудничества
+              {t('dashboard.subtitle')}
             </p>
           </div>
 
@@ -171,7 +171,7 @@ export default function Dashboard() {
                     <i className="fas fa-project-diagram text-blue-600 text-xl"></i>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Всего проектов</p>
+                    <p className="text-sm font-medium text-gray-600">{t('dashboard.stats.total_projects')}</p>
                     <p className="text-2xl font-bold text-kerit-dark">
                       {projects?.length || 0}
                     </p>
@@ -187,7 +187,7 @@ export default function Dashboard() {
                     <i className="fas fa-cogs text-yellow-600 text-xl"></i>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-600">В работе</p>
+                    <p className="text-sm font-medium text-gray-600">{t('dashboard.stats.in_progress')}</p>
                     <p className="text-2xl font-bold text-kerit-dark">
                       {projects?.filter(p => p.status === 'in_progress').length || 0}
                     </p>
@@ -203,7 +203,7 @@ export default function Dashboard() {
                     <i className="fas fa-check-circle text-green-600 text-xl"></i>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Завершено</p>
+                    <p className="text-sm font-medium text-gray-600">{t('dashboard.stats.completed')}</p>
                     <p className="text-2xl font-bold text-kerit-dark">
                       {projects?.filter(p => p.status === 'completed').length || 0}
                     </p>
@@ -219,7 +219,7 @@ export default function Dashboard() {
                     <i className="fas fa-star text-kerit-dark text-xl"></i>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Рейтинг</p>
+                    <p className="text-sm font-medium text-gray-600">{t('dashboard.stats.rating')}</p>
                     <p className="text-2xl font-bold text-kerit-dark">5.0</p>
                   </div>
                 </div>
@@ -232,7 +232,7 @@ export default function Dashboard() {
             <CardHeader>
               <CardTitle className="flex items-center">
                 <i className="fas fa-tasks mr-3 text-kerit-sage"></i>
-                Мои проекты
+                {t('dashboard.projects.title')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -263,7 +263,7 @@ export default function Dashboard() {
                           </div>
                           {project.package?.service && (
                             <p className="text-sm text-kerit-sage mb-2">
-                              Услуга: {project.package.service.name} ({project.package.name})
+                              {t('dashboard.projects.service')}: {project.package.service.name} ({project.package.name})
                             </p>
                           )}
                           <p className="text-gray-600 mb-3">{project.description}</p>
@@ -272,28 +272,28 @@ export default function Dashboard() {
 
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                         <div>
-                          <span className="font-medium text-gray-700">Дата начала:</span>
+                          <span className="font-medium text-gray-700">{t('dashboard.projects.start_date')}:</span>
                           <p className="text-gray-600">
-                            {project.startDate ? new Date(project.startDate).toLocaleDateString('ru-RU') : 'Не указана'}
+                            {project.startDate ? new Date(project.startDate).toLocaleDateString() : t('dashboard.projects.no_date')}
                           </p>
                         </div>
                         <div>
-                          <span className="font-medium text-gray-700">Планируемое завершение:</span>
+                          <span className="font-medium text-gray-700">{t('dashboard.projects.end_date')}:</span>
                           <p className="text-gray-600">
-                            {project.endDate ? new Date(project.endDate).toLocaleDateString('ru-RU') : 'Не указано'}
+                            {project.endDate ? new Date(project.endDate).toLocaleDateString() : t('dashboard.projects.no_end_date')}
                           </p>
                         </div>
                         <div>
-                          <span className="font-medium text-gray-700">Создан:</span>
+                          <span className="font-medium text-gray-700">{t('dashboard.projects.created')}:</span>
                           <p className="text-gray-600">
-                            {new Date(project.createdAt).toLocaleDateString('ru-RU')}
+                            {new Date(project.createdAt).toLocaleDateString()}
                           </p>
                         </div>
                       </div>
 
                       {project.notes && (
                         <div className="mt-4 bg-gray-50 rounded-lg p-4">
-                          <span className="font-medium text-gray-700 block mb-2">Заметки:</span>
+                          <span className="font-medium text-gray-700 block mb-2">{t('dashboard.projects.notes')}:</span>
                           <p className="text-gray-600">{project.notes}</p>
                         </div>
                       )}
@@ -303,16 +303,16 @@ export default function Dashboard() {
               ) : (
                 <div className="text-center py-12">
                   <i className="fas fa-folder-open text-6xl text-gray-300 mb-6"></i>
-                  <h3 className="text-xl font-semibold text-gray-700 mb-2">Проектов пока нет</h3>
+                  <h3 className="text-xl font-semibold text-gray-700 mb-2">{t('dashboard.projects.empty.title')}</h3>
                   <p className="text-gray-600 mb-6">
-                    У вас еще нет активных проектов. Свяжитесь с нами для обсуждения нового проекта.
+                    {t('dashboard.projects.empty.message')}
                   </p>
                   <a
                     href="/contact"
                     className="bg-kerit-sage hover:bg-opacity-90 text-white font-semibold px-6 py-3 rounded-lg transition-colors inline-block"
                   >
                     <i className="fas fa-plus mr-2"></i>
-                    Начать новый проект
+                    {t('dashboard.projects.empty.button')}
                   </a>
                 </div>
               )}
@@ -326,8 +326,8 @@ export default function Dashboard() {
                 <div className="bg-kerit-light rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <i className="fas fa-plus text-2xl text-kerit-dark"></i>
                 </div>
-                <h3 className="text-lg font-semibold text-kerit-dark mb-2">Новый проект</h3>
-                <p className="text-gray-600 text-sm">Обсудить новую задачу с нашей командой</p>
+                <h3 className="text-lg font-semibold text-kerit-dark mb-2">{t('dashboard.actions.new_project')}</h3>
+                <p className="text-gray-600 text-sm">{t('dashboard.actions.new_project_desc')}</p>
               </CardContent>
             </Card>
 
@@ -336,8 +336,8 @@ export default function Dashboard() {
                 <div className="bg-kerit-light rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <i className="fas fa-headset text-2xl text-kerit-dark"></i>
                 </div>
-                <h3 className="text-lg font-semibold text-kerit-dark mb-2">Поддержка</h3>
-                <p className="text-gray-600 text-sm">Связаться с технической поддержкой</p>
+                <h3 className="text-lg font-semibold text-kerit-dark mb-2">{t('dashboard.actions.support')}</h3>
+                <p className="text-gray-600 text-sm">{t('dashboard.actions.support_desc')}</p>
               </CardContent>
             </Card>
 
@@ -346,8 +346,8 @@ export default function Dashboard() {
                 <div className="bg-kerit-light rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <i className="fas fa-file-alt text-2xl text-kerit-dark"></i>
                 </div>
-                <h3 className="text-lg font-semibold text-kerit-dark mb-2">Документы</h3>
-                <p className="text-gray-600 text-sm">Договоры, отчеты и техническая документация</p>
+                <h3 className="text-lg font-semibold text-kerit-dark mb-2">{t('dashboard.actions.documents')}</h3>
+                <p className="text-gray-600 text-sm">{t('dashboard.actions.documents_desc')}</p>
               </CardContent>
             </Card>
           </div>
