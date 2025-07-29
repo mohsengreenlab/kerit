@@ -9,9 +9,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
   await setupAuth(app);
 
+  // Development login endpoint (temporary)
+  app.get('/api/dev-login', (req, res) => {
+    // Mock user session for development
+    (req as any).session.user = {
+      id: 'dev-user-123',
+      email: 'dev@kerit.com',
+      firstName: 'Development',
+      lastName: 'User',
+      role: 'customer'
+    };
+    res.redirect('/');
+  });
+
   // Auth routes - allow public access, return null if not authenticated
   app.get('/api/auth/user', async (req: any, res) => {
     try {
+      // Check for development session first
+      if (req.session?.user) {
+        return res.json(req.session.user);
+      }
+      
       if (!req.isAuthenticated() || !req.user?.claims?.sub) {
         return res.json(null);
       }

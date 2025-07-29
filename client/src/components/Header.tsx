@@ -80,9 +80,15 @@ export function Header() {
                   </a>
                 </>
               ) : (
-                <a href="/api/login" className="text-kerit-sage hover:text-kerit-dark transition-colors">
+                <button 
+                  onClick={() => {
+                    // Temporary development login - replace with proper Replit Auth
+                    window.location.href = '/api/dev-login';
+                  }}
+                  className="text-kerit-sage hover:text-kerit-dark transition-colors bg-transparent border-none cursor-pointer"
+                >
                   <i className="fas fa-sign-in-alt mr-1"></i>{t('auth.login')}
-                </a>
+                </button>
               )}
             </div>
 
@@ -135,9 +141,16 @@ export function Header() {
                   </a>
                 </>
               ) : (
-                <a href="/api/login" className="block py-2 px-3 text-kerit-sage">
+                <button 
+                  onClick={() => {
+                    // Temporary development login - replace with proper Replit Auth
+                    window.location.href = '/api/dev-login';
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="block py-2 px-3 text-kerit-sage w-full text-left bg-transparent border-none cursor-pointer"
+                >
                   <i className="fas fa-sign-in-alt mr-2"></i>{t('auth.login')}
-                </a>
+                </button>
               )}
             </div>
           </div>
