@@ -27,16 +27,16 @@ export default function Blog() {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const { data: blogPosts, isLoading, error } = useQuery<BlogPost[]>({
-    queryKey: ['/api/blog', selectedCategory !== 'all' ? { category: selectedCategory } : {}],
+    queryKey: selectedCategory !== 'all' ? [`/api/blog/${selectedCategory}`] : ['/api/blog'],
   });
 
   const categories = [
-    { value: 'all', label: 'Все статьи', icon: 'fas fa-th-large' },
-    { value: 'email-marketing', label: 'Email-маркетинг', icon: 'fas fa-envelope' },
-    { value: 'chatbots', label: 'Чат-боты', icon: 'fas fa-robot' },
-    { value: 'performance', label: 'Производительность', icon: 'fas fa-tachometer-alt' },
-    { value: 'analytics', label: 'Аналитика', icon: 'fas fa-chart-line' },
-    { value: 'trends', label: 'Тренды', icon: 'fas fa-trending-up' },
+    { value: 'all', label: t('blog.filter.all'), icon: 'fas fa-th-large' },
+    { value: 'email-marketing', label: t('blog.filter.email'), icon: 'fas fa-envelope' },
+    { value: 'chatbots', label: t('blog.filter.chatbots'), icon: 'fas fa-robot' },
+    { value: 'performance', label: t('blog.filter.performance'), icon: 'fas fa-tachometer-alt' },
+    { value: 'analytics', label: t('blog.filter.analytics'), icon: 'fas fa-chart-line' },
+    { value: 'trends', label: t('blog.filter.trends'), icon: 'fas fa-trending-up' },
   ];
 
   const filteredPosts = blogPosts?.filter(post => 

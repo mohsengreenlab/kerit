@@ -39,11 +39,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get('/api/blog', async (req, res) => {
+  app.get('/api/blog/:category?', async (req, res) => {
     try {
-      const { category } = req.query;
+      const { category } = req.params;
       let posts;
-      if (category) {
+      if (category && category !== 'undefined') {
         posts = await storage.getBlogPostsByCategory(category as string);
       } else {
         posts = await storage.getAllBlogPosts(true);
@@ -68,11 +68,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get('/api/case-studies', async (req, res) => {
+  app.get('/api/case-studies/:service?', async (req, res) => {
     try {
-      const { service } = req.query;
+      const { service } = req.params;
       let caseStudies;
-      if (service) {
+      if (service && service !== 'undefined') {
         caseStudies = await storage.getCaseStudiesByService(service as string);
       } else {
         caseStudies = await storage.getAllCaseStudies(true);

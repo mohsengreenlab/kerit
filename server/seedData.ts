@@ -5,8 +5,8 @@ export async function seedDatabase() {
     console.log("Starting database seeding...");
 
     // First check if data already exists to avoid duplicates
-    const existingServices = await storage.getAllServices();
-    if (existingServices.length > 0) {
+    const existingTranslations = await storage.getTranslationsByLocale('en');
+    if (existingTranslations.length > 10) {
       console.log("Database already seeded, skipping...");
       return;
     }
@@ -145,8 +145,8 @@ export async function seedDatabase() {
       { key: "nav.about", locale: "ru", value: "О нас" },
       { key: "nav.services", locale: "en", value: "Services" },
       { key: "nav.services", locale: "ru", value: "Услуги" },
-      { key: "nav.caseStudies", locale: "en", value: "Case Studies" },
-      { key: "nav.caseStudies", locale: "ru", value: "Кейсы" },
+      { key: "nav.cases", locale: "en", value: "Cases" },
+      { key: "nav.cases", locale: "ru", value: "Кейсы" },
       { key: "nav.blog", locale: "en", value: "Blog" },
       { key: "nav.blog", locale: "ru", value: "Блог" },
       { key: "nav.contact", locale: "en", value: "Contact" },
@@ -159,6 +159,30 @@ export async function seedDatabase() {
       { key: "hero.title", locale: "ru", value: "IT-решения для роста бизнеса" },
       { key: "hero.subtitle", locale: "en", value: "Expert email marketing, chatbots, and performance optimization" },
       { key: "hero.subtitle", locale: "ru", value: "Экспертные услуги по email-маркетингу, чат-ботам и оптимизации производительности" },
+      
+      // Cases filters
+      { key: "cases.filter.all", locale: "en", value: "All Cases" },
+      { key: "cases.filter.all", locale: "ru", value: "Все кейсы" },
+      { key: "cases.filter.email", locale: "en", value: "Email Marketing" },
+      { key: "cases.filter.email", locale: "ru", value: "Email-маркетинг" },
+      { key: "cases.filter.chatbot", locale: "en", value: "Chatbots" },
+      { key: "cases.filter.chatbot", locale: "ru", value: "Чат-боты" },
+      { key: "cases.filter.performance", locale: "en", value: "Performance" },
+      { key: "cases.filter.performance", locale: "ru", value: "Оптимизация" },
+      
+      // Blog filters
+      { key: "blog.filter.all", locale: "en", value: "All Articles" },
+      { key: "blog.filter.all", locale: "ru", value: "Все статьи" },
+      { key: "blog.filter.email", locale: "en", value: "Email Marketing" },
+      { key: "blog.filter.email", locale: "ru", value: "Email-маркетинг" },
+      { key: "blog.filter.chatbots", locale: "en", value: "Chatbots" },
+      { key: "blog.filter.chatbots", locale: "ru", value: "Чат-боты" },
+      { key: "blog.filter.performance", locale: "en", value: "Performance" },
+      { key: "blog.filter.performance", locale: "ru", value: "Производительность" },
+      { key: "blog.filter.analytics", locale: "en", value: "Analytics" },
+      { key: "blog.filter.analytics", locale: "ru", value: "Аналитика" },
+      { key: "blog.filter.trends", locale: "en", value: "Trends" },
+      { key: "blog.filter.trends", locale: "ru", value: "Тренды" },
       
       // Buttons
       { key: "button.getStarted", locale: "en", value: "Get Started" },

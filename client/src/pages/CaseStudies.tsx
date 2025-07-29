@@ -22,14 +22,14 @@ export default function CaseStudies() {
   const [selectedService, setSelectedService] = useState<string>('all');
 
   const { data: caseStudies, isLoading, error } = useQuery<CaseStudy[]>({
-    queryKey: ['/api/case-studies', selectedService !== 'all' ? { service: selectedService } : {}],
+    queryKey: selectedService !== 'all' ? [`/api/case-studies/${selectedService}`] : ['/api/case-studies'],
   });
 
   const serviceFilters = [
-    { value: 'all', label: 'Все кейсы', icon: 'fas fa-th-large' },
-    { value: 'email-marketing', label: 'Email-маркетинг', icon: 'fas fa-envelope' },
-    { value: 'customer-chatbot', label: 'Чат-боты', icon: 'fas fa-robot' },
-    { value: 'performance-improvement', label: 'Оптимизация', icon: 'fas fa-tachometer-alt' },
+    { value: 'all', label: t('cases.filter.all'), icon: 'fas fa-th-large' },
+    { value: 'email-marketing', label: t('cases.filter.email'), icon: 'fas fa-envelope' },
+    { value: 'customer-chatbot', label: t('cases.filter.chatbot'), icon: 'fas fa-robot' },
+    { value: 'performance-improvement', label: t('cases.filter.performance'), icon: 'fas fa-tachometer-alt' },
   ];
 
   const getServiceColor = (serviceType: string) => {

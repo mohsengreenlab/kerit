@@ -39,6 +39,20 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'cases.title': 'Успешные кейсы',
     'cases.subtitle': 'Реальные результаты наших клиентов',
     'cases.view_all': 'Посмотреть все кейсы',
+    'cases.filter.all': 'Все кейсы',
+    'cases.filter.email': 'Email-маркетинг',
+    'cases.filter.chatbot': 'Чат-боты',
+    'cases.filter.performance': 'Оптимизация',
+
+    // Blog
+    'blog.title': 'Блог',
+    'blog.subtitle': 'Полезные статьи и insights',
+    'blog.filter.all': 'Все статьи',
+    'blog.filter.email': 'Email-маркетинг',
+    'blog.filter.chatbots': 'Чат-боты',
+    'blog.filter.performance': 'Производительность',
+    'blog.filter.analytics': 'Аналитика',
+    'blog.filter.trends': 'Тренды',
 
     // Testimonials
     'testimonials.title': 'Отзывы клиентов',
@@ -94,6 +108,20 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'cases.title': 'Success Stories',
     'cases.subtitle': 'Real results from our clients',
     'cases.view_all': 'View All Cases',
+    'cases.filter.all': 'All Cases',
+    'cases.filter.email': 'Email Marketing',
+    'cases.filter.chatbot': 'Chatbots',
+    'cases.filter.performance': 'Performance',
+
+    // Blog
+    'blog.title': 'Blog',
+    'blog.subtitle': 'Useful articles and insights',
+    'blog.filter.all': 'All Articles',
+    'blog.filter.email': 'Email Marketing',
+    'blog.filter.chatbots': 'Chatbots',
+    'blog.filter.performance': 'Performance',
+    'blog.filter.analytics': 'Analytics',
+    'blog.filter.trends': 'Trends',
 
     // Testimonials
     'testimonials.title': 'Client Testimonials',
