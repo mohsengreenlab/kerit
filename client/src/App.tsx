@@ -20,6 +20,7 @@ import Contact from "@/pages/Contact";
 import Pricing from "@/pages/Pricing";
 import Dashboard from "@/pages/Dashboard";
 import Admin from "@/pages/Admin";
+import TestForms from "@/pages/TestForms";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -50,7 +51,10 @@ function Router() {
         
         {/* Protected routes */}
         <Route path="/dashboard" component={Dashboard} />
-        <Route path="/admin" component={Admin} />
+        <Route path="/admin24" component={Admin} />
+        
+        {/* Test route */}
+        <Route path="/test-forms" component={TestForms} />
         
         {/* Fallback to 404 */}
         <Route component={NotFound} />

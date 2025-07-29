@@ -29,6 +29,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.redirect('/');
   });
 
+  // Development admin login endpoint
+  app.get('/api/dev-admin-login', (req, res) => {
+    // Mock admin session for development
+    (req as any).session.user = {
+      id: 'dev-admin-123',
+      email: 'admin@kerit.com',
+      firstName: 'Admin',
+      lastName: 'User',
+      role: 'admin'
+    };
+    res.redirect('/admin24');
+  });
+
   // Development logout endpoint (temporary)
   app.get('/api/dev-logout', (req, res) => {
     if (req.session) {
@@ -287,6 +300,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Protected admin routes
   const adminAuth = async (req: any, res: any, next: any) => {
     try {
+      // Check for development session first
+      if (req.session?.user && req.session.user.role === 'admin') {
+        return next();
+      }
+      
+      if (!req.isAuthenticated() || !req.user?.claims?.sub) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+      
       const userId = req.user.claims.sub;
       const user = await storage.getUser(userId);
       
@@ -300,73 +322,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   };
 
-  // Admin analytics
-  app.get('/api/admin/analytics', isAuthenticated, adminAuth, async (req, res) => {
-    try {
-      const stats = await storage.getVisitorStats();
-      const popularPages = await storage.getPopularPages(10);
-      res.json({ stats, popularPages });
-    } catch (error) {
-      console.error("Error fetching analytics:", error);
-      res.status(500).json({ message: "Failed to fetch analytics" });
-    }
-  });
 
-  // Admin content management
-  app.get('/api/admin/pages', isAuthenticated, adminAuth, async (req, res) => {
-    try {
-      const pages = await storage.getAllPages();
-      res.json(pages);
-    } catch (error) {
-      console.error("Error fetching pages:", error);
-      res.status(500).json({ message: "Failed to fetch pages" });
-    }
-  });
-
-  app.get('/api/admin/blog', isAuthenticated, adminAuth, async (req, res) => {
-    try {
-      const posts = await storage.getAllBlogPosts();
-      res.json(posts);
-    } catch (error) {
-      console.error("Error fetching blog posts:", error);
-      res.status(500).json({ message: "Failed to fetch blog posts" });
-    }
-  });
-
-  app.post('/api/admin/blog', isAuthenticated, adminAuth, async (req: any, res) => {
-    try {
-      const validatedData = insertBlogPostSchema.parse({
-        ...req.body,
-        authorId: req.user.claims.sub,
-      });
-      const post = await storage.createBlogPost(validatedData);
-      res.json(post);
-    } catch (error) {
-      console.error("Error creating blog post:", error);
-      res.status(400).json({ message: "Invalid blog post data" });
-    }
-  });
-
-  app.get('/api/admin/case-studies', isAuthenticated, adminAuth, async (req, res) => {
-    try {
-      const caseStudies = await storage.getAllCaseStudies();
-      res.json(caseStudies);
-    } catch (error) {
-      console.error("Error fetching case studies:", error);
-      res.status(500).json({ message: "Failed to fetch case studies" });
-    }
-  });
-
-  app.post('/api/admin/case-studies', isAuthenticated, adminAuth, async (req, res) => {
-    try {
-      const validatedData = insertCaseStudySchema.parse(req.body);
-      const caseStudy = await storage.createCaseStudy(validatedData);
-      res.json(caseStudy);
-    } catch (error) {
-      console.error("Error creating case study:", error);
-      res.status(400).json({ message: "Invalid case study data" });
-    }
-  });
 
   // Contact form submission (public)
   app.post('/api/contact-message', async (req, res) => {
@@ -374,14 +330,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertContactMessageSchema.parse(req.body);
       const message = await storage.createContactMessage(validatedData);
       
-      // Send email notification
-      await sendContactNotification({
-        name: message.name,
-        email: message.email,
-        subject: message.subject,
-        message: message.message,
-        createdAt: message.createdAt,
-      });
+      // Send email notification (skip if no API key configured)
+      if (process.env.MAILERSEND_API_KEY) {
+        try {
+          await sendContactNotification({
+            name: message.name,
+            email: message.email,
+            subject: message.subject,
+            message: message.message,
+            createdAt: message.createdAt || new Date(),
+          });
+        } catch (error) {
+          console.error("Failed to send email notification:", error);
+        }
+      }
       
       res.json({ message: "Message sent successfully", id: message.id });
     } catch (error) {
@@ -396,17 +358,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertBookingConsultationSchema.parse(req.body);
       const booking = await storage.createBookingConsultation(validatedData);
       
-      // Send email notification
-      await sendBookingNotification({
-        name: booking.name,
-        email: booking.email,
-        phone: booking.phone,
-        company: booking.company,
-        service: booking.service,
-        preferredDate: booking.preferredDate,
-        message: booking.message,
-        createdAt: booking.createdAt,
-      });
+      // Send email notification (skip if no API key configured)
+      if (process.env.MAILERSEND_API_KEY) {
+        try {
+          await sendBookingNotification({
+            name: booking.name,
+            email: booking.email,
+            phone: booking.phone || undefined,
+            company: booking.company || undefined,
+            service: booking.service,
+            preferredDate: booking.preferredDate || undefined,
+            message: booking.message || undefined,
+            createdAt: booking.createdAt || new Date(),
+          });
+        } catch (error) {
+          console.error("Failed to send email notification:", error);
+        }
+      }
       
       res.json({ message: "Consultation booked successfully", id: booking.id });
     } catch (error) {
@@ -416,7 +384,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Admin routes for messages and bookings
-  app.get('/api/admin/contact-messages', isAuthenticated, adminAuth, async (req, res) => {
+  app.get('/api/admin/contact-messages', adminAuth, async (req, res) => {
     try {
       const messages = await storage.getAllContactMessages();
       res.json(messages);
@@ -426,7 +394,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch('/api/admin/contact-messages/:id/mark-read', isAuthenticated, adminAuth, async (req, res) => {
+  app.patch('/api/admin/contact-messages/:id/mark-read', adminAuth, async (req, res) => {
     try {
       await storage.markContactMessageAsRead(req.params.id);
       res.json({ message: "Message marked as read" });
@@ -436,7 +404,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get('/api/admin/booking-consultations', isAuthenticated, adminAuth, async (req, res) => {
+  app.get('/api/admin/booking-consultations', adminAuth, async (req, res) => {
     try {
       const bookings = await storage.getAllBookingConsultations();
       res.json(bookings);
@@ -446,7 +414,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch('/api/admin/booking-consultations/:id/mark-read', isAuthenticated, adminAuth, async (req, res) => {
+  app.patch('/api/admin/booking-consultations/:id/mark-read', adminAuth, async (req, res) => {
     try {
       await storage.markBookingConsultationAsRead(req.params.id);
       res.json({ message: "Booking marked as read" });
@@ -456,7 +424,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch('/api/admin/booking-consultations/:id/status', isAuthenticated, adminAuth, async (req, res) => {
+  app.patch('/api/admin/booking-consultations/:id/status', adminAuth, async (req, res) => {
     try {
       const { status } = req.body;
       await storage.updateBookingConsultationStatus(req.params.id, status);

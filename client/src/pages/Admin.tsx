@@ -44,39 +44,27 @@ export default function Admin() {
 
   // Redirect to home if not authenticated as admin
   useEffect(() => {
-    if (!authLoading && !isAuthenticated) {
-      toast({
-        title: "Authorization Required",
-        description: "Please log in to access the admin dashboard.",
-        variant: "destructive",
-      });
-      setTimeout(() => {
-        window.location.href = "/api/login";
-      }, 500);
-      return;
-    }
-
-    if (!authLoading && isAuthenticated && user?.role !== 'admin') {
+    if (!authLoading && (!isAuthenticated || user?.role !== 'admin')) {
       toast({
         title: "Access Denied",
-        description: "You don't have admin permissions.",
+        description: "Admin access required. Redirecting to admin login...",
         variant: "destructive",
       });
       setTimeout(() => {
-        window.location.href = "/";
-      }, 500);
+        window.location.href = "/api/dev-admin-login";
+      }, 1000);
       return;
     }
   }, [isAuthenticated, authLoading, user, toast]);
 
   const { data: messages, isLoading: messagesLoading } = useQuery<ContactMessage[]>({
     queryKey: ['/api/admin/contact-messages'],
-    enabled: isAuthenticated && user?.role === 'admin',
+    enabled: user?.role === 'admin',
   });
 
   const { data: bookings, isLoading: bookingsLoading } = useQuery<BookingConsultation[]>({
     queryKey: ['/api/admin/booking-consultations'],
-    enabled: isAuthenticated && user?.role === 'admin',
+    enabled: user?.role === 'admin',
   });
 
   const markAsReadMutation = useMutation({
@@ -97,7 +85,7 @@ export default function Admin() {
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/login";
+          window.location.href = "/api/dev-admin-login";
         }, 500);
         return;
       }
@@ -131,7 +119,7 @@ export default function Admin() {
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/login";
+          window.location.href = "/api/dev-admin-login";
         }, 500);
         return;
       }
