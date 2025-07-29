@@ -1,0 +1,48 @@
+I’d like you to generate a full‑stack, SEO‑friendly IT consultancy website for **Kerit**, using  **PostgreSQL**.  
+
+**1. Brand & Design**  
+- Color palette: `#230C0F`, `#FAF794`, `#82846D`, `#FAF257`  
+- Include the attached logo in the header of every page  
+- Mobile‑first, accessible (WCAG AA), fast‑loading  
+
+**2. Internationalization**  
+- Support English/Russian on every page the default language is Russian)  
+- Place a persistent language switcher in the header  
+
+**3. Pages & Routes**  
+- `/` Home  
+- `/about` About Us  
+- `/services` Services (landing)  
+  - `/services/email-marketing`  
+  - `/services/customer-chatbot`  
+  - `/services/performance-improvement`  
+- `/case-studies` Case Studies (with filter by service)  
+- `/blog` Blog (with categories/tags)  
+- `/contact` Contact  
+- `/pricing` Pricing (packages for each service)  
+- `/admin` Admin Panel (protected)  
+- `/dashboard` Customer Portal (protected)  
+
+**4. Authentication & Roles**  
+- Admins log in at `kerit.com/admin24` → manage all page content, images, blog posts, case studies, service packages & pricing, and customer/project statuses  
+- Customers log in at `kerit.com/dashboard` → view their project status and history  
+- Use NextAuth.js (or comparable) + PostgreSQL  
+
+**5. CMS & Database Schema**  
+- Tables/Models: Users (admin/customer), Pages, BlogPosts, CaseStudies, Services, Packages, Projects, Translations  
+- Seed initial content (you fill all page copy, sample blog posts, 3–4 case studies, service descriptions)  
+- Service packages: Basic, Pro, Enterprise for each service—include placeholder prices  
+
+**6. SEO & Performance**  
+- Server‑side rendering for all public pages  
+- Dynamic meta tags, Open Graph, sitemap.xml, robots.txt  
+- Lighthouse‑friendly (score ≥ 90)  
+
+**7. CTAs & Features**  
+- Prominent “Get a Free Audit” button on each service page  
+- “Book a Free Online Appointment” widget—collect name, email, preferred time  
+- Pricing tables on `/pricing` with CTA under each package  
+
+Please scaffold folder structure, configure Prisma schema, create Next.js pages/components layout, implement i18n, authentication flows, and sample API routes for content management. Fill in all copy and data yourself; the admin UI will allow later edits.
+
+Also, I want to check the website visitors and specific visitors of pages and other useful stats to have a stat on the admin page. For example, if a visitor visits the site more than once, I want to know. feel free to use cookie policies.
