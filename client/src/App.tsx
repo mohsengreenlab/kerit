@@ -38,7 +38,7 @@ function Router() {
     <Layout>
       <Switch>
         {/* Public routes */}
-        <Route path="/" component={isAuthenticated ? Home : Landing} />
+        <Route path="/" component={Landing} />
         <Route path="/about" component={About} />
         <Route path="/services" component={Services} />
         <Route path="/services/email-marketing" component={EmailMarketing} />
