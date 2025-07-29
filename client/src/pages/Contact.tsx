@@ -66,10 +66,7 @@ export default function Contact() {
 
   const contactMutation = useMutation({
     mutationFn: async (data: ContactForm) => {
-      await apiRequest('/api/contact-message', {
-        method: 'POST',
-        body: JSON.stringify(data),
-      });
+      await apiRequest('POST', '/api/contact-message', data);
     },
     onSuccess: () => {
       setIsContactSubmitted(true);
@@ -94,10 +91,7 @@ export default function Contact() {
         ...data,
         preferredDate: data.preferredDate ? new Date(data.preferredDate).toISOString() : null
       };
-      await apiRequest('/api/booking-consultation', {
-        method: 'POST',
-        body: JSON.stringify(submissionData),
-      });
+      await apiRequest('POST', '/api/booking-consultation', submissionData);
     },
     onSuccess: () => {
       setIsBookingSubmitted(true);
