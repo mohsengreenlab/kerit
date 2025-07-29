@@ -107,7 +107,7 @@ export default function About() {
 
             <div className="text-center bg-kerit-dark rounded-2xl p-12 text-white">
               <h2 className="text-3xl font-bold mb-6">{t('about.cta_title')}</h2>
-              <p className="text-kerit-light text-lg mb-8">
+              <p className="text-white text-lg mb-8">
                 {t('about.cta_desc')}
               </p>
               <a

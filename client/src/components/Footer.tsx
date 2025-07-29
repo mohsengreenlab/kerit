@@ -11,7 +11,7 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
-            <img src={logoPath} alt="Kerit Logo" className="h-8 w-auto mb-4 filter brightness-0 invert" />
+            <img src={logoPath} alt="Kerit Logo" className="h-6 w-auto mb-4" />
             <p className="text-gray-300 mb-6 max-w-md">
               {t('footer.company_desc')}
             </p>

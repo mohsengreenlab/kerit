@@ -228,7 +228,7 @@ export default function CaseStudies() {
                       onClick={() => setSelectedService('all')}
                       className="bg-kerit-sage hover:bg-opacity-90 text-white"
                     >
-                      Показать все кейсы
+                      {t('cases.show_all')}
                     </Button>
                   )}
                   <Link href="/contact">
@@ -236,7 +236,7 @@ export default function CaseStudies() {
                       variant="outline"
                       className="border-kerit-sage text-kerit-sage hover:bg-kerit-sage hover:text-white"
                     >
-                      Связаться с нами
+                      {t('common.contact_us')}
                     </Button>
                   </Link>
                 </div>
@@ -258,7 +258,7 @@ export default function CaseStudies() {
           <Link href="/contact">
             <Button className="bg-kerit-yellow hover:bg-yellow-400 text-kerit-dark font-semibold px-8 py-4">
               <i className="fas fa-comments mr-2"></i>
-              Обсудить проект
+              {t('cases.discuss_project')}
             </Button>
           </Link>
         </div>

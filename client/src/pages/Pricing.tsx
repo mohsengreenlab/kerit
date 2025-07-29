@@ -288,7 +288,7 @@ export default function Pricing() {
           <h2 className="text-4xl font-bold text-white mb-6">
             {t('pricing.custom_title')}
           </h2>
-          <p className="text-xl text-kerit-light mb-10">
+          <p className="text-xl text-white mb-10">
             {t('pricing.custom_desc')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -297,7 +297,7 @@ export default function Pricing() {
               className="bg-kerit-yellow hover:bg-yellow-400 text-kerit-dark font-semibold px-8 py-4"
             >
               <i className="fas fa-calculator mr-2"></i>
-              Рассчитать стоимость
+              {t('pricing.calculate_cost')}
             </Button>
             <Button
               onClick={() => setIsAppointmentModalOpen(true)}
@@ -305,7 +305,7 @@ export default function Pricing() {
               className="border-2 border-kerit-light text-kerit-light hover:bg-kerit-light hover:text-kerit-dark font-semibold px-8 py-4"
             >
               <i className="fas fa-comments mr-2"></i>
-              Обсудить проект
+              {t('pricing.discuss_project')}
             </Button>
           </div>
         </div>

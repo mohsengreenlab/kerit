@@ -48,8 +48,7 @@ export function CookieNotice() {
           </Button>
           <Button
             onClick={handleDecline}
-            variant="outline"
-            className="border-kerit-light text-kerit-light px-4 py-2 text-sm hover:bg-kerit-light hover:text-kerit-dark"
+            className="bg-kerit-yellow text-kerit-dark px-4 py-2 text-sm font-medium hover:bg-yellow-400"
           >
             {t('cookies.decline')}
           </Button>

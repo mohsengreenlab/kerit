@@ -180,7 +180,7 @@ export default function Services() {
                 className="border-2 border-kerit-light text-kerit-light hover:bg-kerit-light hover:text-kerit-dark font-semibold px-8 py-4"
               >
                 <i className="fas fa-envelope mr-2"></i>
-                Написать нам
+                {t('services.write_us')}
               </Button>
             </Link>
           </div>

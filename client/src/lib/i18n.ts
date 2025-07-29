@@ -283,8 +283,16 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'contact.faq.q3': 'Работаете ли с небольшими проектами?',
     'contact.faq.a3': 'Да, мы работаем с проектами любого масштаба.',
 
+    // Additional buttons and CTAs
+    'services.write_us': 'Написать нам',
+    'cases.show_all': 'Показать все кейсы',
+    'cases.discuss_project': 'Обсудить проект',
+    'pricing.calculate_cost': 'Рассчитать стоимость',
+    'pricing.discuss_project': 'Обсудить проект',
+
     // Common
     'common.read_more': 'Подробнее',
+    'common.contact_us': 'Связаться с нами',
     'common.loading': 'Загрузка...',
     'common.error': 'Произошла ошибка',
   },
@@ -571,8 +579,16 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'contact.faq.q3': 'Do you work with small projects?',
     'contact.faq.a3': 'Yes, we work with projects of any scale.',
 
+    // Additional buttons and CTAs
+    'services.write_us': 'Write to Us',
+    'cases.show_all': 'Show All Cases',
+    'cases.discuss_project': 'Discuss Project',
+    'pricing.calculate_cost': 'Calculate Cost',
+    'pricing.discuss_project': 'Discuss Project',
+
     // Common
     'common.read_more': 'Read More',
+    'common.contact_us': 'Contact Us',
     'common.loading': 'Loading...',
     'common.error': 'An error occurred',
   },

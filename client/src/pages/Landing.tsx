@@ -117,25 +117,12 @@ export default function Landing() {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-gradient-to-br from-kerit-sage to-kerit-dark rounded-2xl p-8 shadow-2xl">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-4 text-center">
-                    <i className="fas fa-envelope text-3xl text-kerit-light mb-2"></i>
-                    <div className="text-kerit-light font-semibold">Email Marketing</div>
-                  </div>
-                  <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-4 text-center">
-                    <i className="fas fa-robot text-3xl text-kerit-light mb-2"></i>
-                    <div className="text-kerit-light font-semibold">Chat Bots</div>
-                  </div>
-                  <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-4 text-center">
-                    <i className="fas fa-tachometer-alt text-3xl text-kerit-light mb-2"></i>
-                    <div className="text-kerit-light font-semibold">Performance</div>
-                  </div>
-                  <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-4 text-center">
-                    <i className="fas fa-chart-bar text-3xl text-kerit-light mb-2"></i>
-                    <div className="text-kerit-light font-semibold">Analytics</div>
-                  </div>
-                </div>
+              <div className="bg-gradient-to-br from-kerit-sage to-kerit-dark rounded-2xl p-12 shadow-2xl flex items-center justify-center">
+                <img 
+                  src="/attached_assets/Logo_1753783870877.jpg" 
+                  alt="Kerit Logo" 
+                  className="max-w-xs w-full h-auto"
+                />
               </div>
             </div>
           </div>
