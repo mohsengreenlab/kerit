@@ -198,7 +198,7 @@ export default function CaseStudies() {
                     <div className="flex justify-between items-center">
                       <Link href={`/case-studies/${caseStudy.slug}`}>
                         <a className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
-                          Читать кейс <i className="fas fa-arrow-right ml-1"></i>
+                          {t('landing.read_case')} <i className="fas fa-arrow-right ml-1"></i>
                         </a>
                       </Link>
                       <div className="text-sm text-gray-400">
@@ -214,12 +214,12 @@ export default function CaseStudies() {
               <div className="bg-white rounded-2xl shadow-lg p-12 max-w-2xl mx-auto">
                 <i className="fas fa-folder-open text-6xl text-gray-300 mb-6"></i>
                 <h3 className="text-2xl font-bold text-gray-700 mb-4">
-                  {selectedService === 'all' ? 'Кейсы обновляются' : 'Кейсы по данной услуге отсутствуют'}
+                  {selectedService === 'all' ? t('cases.updating_title') : t('cases.no_cases_desc')}
                 </h3>
                 <p className="text-gray-600 mb-8">
                   {selectedService === 'all' 
-                    ? 'Мы работаем над добавлением новых кейсов. Следите за обновлениями!'
-                    : 'Попробуйте выбрать другую категорию или посмотрите все кейсы.'
+                    ? t('cases.updating_desc')
+                    : t('cases.no_cases_desc')
                   }
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -250,10 +250,10 @@ export default function CaseStudies() {
       <section className="py-20 bg-kerit-dark">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Готовы создать свой успешный кейс?
+            {t('cases.cta_title')}
           </h2>
           <p className="text-xl text-kerit-light mb-10">
-            Обсудите ваш проект с нашими экспертами и получите персональную стратегию развития
+            {t('cases.cta_desc')}
           </p>
           <Link href="/contact">
             <Button className="bg-kerit-yellow hover:bg-yellow-400 text-kerit-dark font-semibold px-8 py-4">

@@ -189,6 +189,67 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'home.customer_panel': 'Клиентская панель',
     'home.customer_desc': 'Просмотр ваших проектов и статусов',
 
+    // Landing page features
+    'landing.email_features.automation': 'Настройка автоворонок',
+    'landing.email_features.testing': 'A/B тестирование',
+    'landing.email_features.analytics': 'Аналитика и отчеты',
+    'landing.chatbot_features.support': '24/7 поддержка клиентов',
+    'landing.chatbot_features.crm': 'Интеграция с CRM',
+    'landing.chatbot_features.multichannel': 'Многоканальность',
+    'landing.performance_features.audit': 'Аудит инфраструктуры',
+    'landing.performance_features.database': 'Оптимизация базы данных',
+    'landing.performance_features.monitoring': 'Мониторинг системы',
+
+    // Case study examples
+    'landing.case_email.title': 'Email-маркетинг',
+    'landing.case_email.result': 'Увеличение конверсии на 340%',
+    'landing.case_email.desc': 'Как мы помогли интернет-магазину одежды автоматизировать email-кампании и утроить продажи',
+    'landing.case_chatbot.title': 'Чат-бот',
+    'landing.case_chatbot.result': 'Автоматизация поддержки клиентов',
+    'landing.case_chatbot.desc': 'Внедрение интеллектуального чат-бота снизило нагрузку на call-центр на 70%',
+    'landing.case_performance.title': 'Оптимизация',
+    'landing.case_performance.result': 'Ускорение сайта в 5 раз',
+    'landing.case_performance.desc': 'Комплексная оптимизация системы позволила сократить время загрузки с 8 до 1.6 секунд',
+    'landing.read_case': 'Читать кейс',
+
+    // Testimonials
+    'testimonial.alexey.name': 'Алексей Петров',
+    'testimonial.alexey.title': 'CEO, TechStart',
+    'testimonial.alexey.text': 'Команда Kerit профессионально подошла к настройке нашего email-маркетинга. Результат превзошел все ожидания!',
+
+    // About page additional
+    'about.cta_title': 'Готовы к сотрудничеству?',
+    'about.cta_desc': 'Свяжитесь с нами для обсуждения вашего проекта',
+    'about.contact_us': 'Связаться с нами',
+
+    // Cases page
+    'cases.updating_title': 'Кейсы обновляются',
+    'cases.updating_desc': 'Мы работаем над добавлением новых кейсов. Следите за обновлениями!',
+    'cases.cta_title': 'Готовы создать свой успешный кейс?',
+    'cases.cta_desc': 'Обсудите ваш проект с нашими экспертами и получите персональную стратегию развития',
+
+    // Blog page
+    'blog.updating_title': 'Блог обновляется',
+    'blog.updating_desc': 'Мы работаем над добавлением новых экспертных статей. Следите за обновлениями!',
+    'blog.newsletter_title': 'Не пропустите новые статьи',
+    'blog.newsletter_desc': 'Подпишитесь на наши обновления и получайте свежие экспертные материалы первыми',
+    'blog.newsletter_note': 'Никакого спама, только полезные материалы',
+
+    // Pricing FAQ
+    'pricing.faq_title': 'Часто задаваемые вопросы',
+    'pricing.faq_subtitle': 'Ответы на популярные вопросы о наших тарифах',
+    'blog.no_posts_title': 'Статьи не найдены',
+    'pricing.faq_q1': 'Можно ли изменить пакет в процессе работы?',
+    'pricing.faq_a1': 'Да, вы можете перейти на другой пакет в любое время. Мы пересчитаем стоимость пропорционально.',
+    'pricing.faq_q2': 'Что входит в поддержку?',
+    'pricing.faq_a2': 'Поддержка включает консультации, исправление ошибок, обновления и оптимизацию в рамках выбранного пакета.',
+    'pricing.faq_q3': 'Предоставляете ли скидки?',
+    'pricing.faq_a3': 'Мы предоставляем скидки при заказе нескольких услуг и долгосрочном сотрудничестве. Обсудите это с менеджером.',
+    'pricing.faq_q4': 'Какие способы оплаты доступны?',
+    'pricing.faq_a4': 'Мы принимаем оплату банковским переводом, картой и электронными кошельками. Возможна рассрочка.',
+    'pricing.custom_title': 'Нужен индивидуальный расчет?',
+    'pricing.custom_desc': 'Получите персональное предложение с учетом специфики вашего проекта и бюджета',
+
     // Common
     'common.read_more': 'Подробнее',
     'common.loading': 'Загрузка...',
@@ -382,6 +443,67 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'home.admin_desc': 'Manage content, analytics, and users',
     'home.customer_panel': 'Customer Panel',
     'home.customer_desc': 'View your projects and statuses',
+
+    // Landing page features
+    'landing.email_features.automation': 'Autoflow Setup',
+    'landing.email_features.testing': 'A/B Testing',
+    'landing.email_features.analytics': 'Analytics & Reports',
+    'landing.chatbot_features.support': '24/7 Customer Support',
+    'landing.chatbot_features.crm': 'CRM Integration',
+    'landing.chatbot_features.multichannel': 'Multi-channel',
+    'landing.performance_features.audit': 'Infrastructure Audit',
+    'landing.performance_features.database': 'Database Optimization',
+    'landing.performance_features.monitoring': 'System Monitoring',
+
+    // Case study examples
+    'landing.case_email.title': 'Email Marketing',
+    'landing.case_email.result': '340% Conversion Increase',
+    'landing.case_email.desc': 'How we helped an online clothing store automate email campaigns and triple sales',
+    'landing.case_chatbot.title': 'Chatbot',
+    'landing.case_chatbot.result': 'Customer Support Automation',
+    'landing.case_chatbot.desc': 'Smart chatbot implementation reduced call center load by 70%',
+    'landing.case_performance.title': 'Optimization',
+    'landing.case_performance.result': '5x Website Speed Boost',
+    'landing.case_performance.desc': 'Comprehensive system optimization reduced loading time from 8 to 1.6 seconds',
+    'landing.read_case': 'Read Case',
+
+    // Testimonials
+    'testimonial.alexey.name': 'Alexey Petrov',
+    'testimonial.alexey.title': 'CEO, TechStart',
+    'testimonial.alexey.text': 'The Kerit team professionally approached setting up our email marketing. The result exceeded all expectations!',
+
+    // About page additional
+    'about.cta_title': 'Ready to collaborate?',
+    'about.cta_desc': 'Contact us to discuss your project',
+    'about.contact_us': 'Contact Us',
+
+    // Cases page
+    'cases.updating_title': 'Cases are being updated',
+    'cases.updating_desc': 'We are working on adding new cases. Stay tuned for updates!',
+    'cases.cta_title': 'Ready to create your success story?',
+    'cases.cta_desc': 'Discuss your project with our experts and get a personalized development strategy',
+
+    // Blog page
+    'blog.updating_title': 'Blog is being updated',
+    'blog.updating_desc': 'We are working on adding new expert articles. Stay tuned for updates!',
+    'blog.newsletter_title': 'Don\'t miss new articles',
+    'blog.newsletter_desc': 'Subscribe to our updates and get fresh expert materials first',
+    'blog.newsletter_note': 'No spam, only useful materials',
+
+    // Pricing FAQ
+    'pricing.faq_title': 'Frequently Asked Questions',
+    'pricing.faq_subtitle': 'Answers to popular questions about our pricing',
+    'blog.no_posts_title': 'No Articles Found',
+    'pricing.faq_q1': 'Can I change the package during work?',
+    'pricing.faq_a1': 'Yes, you can switch to another package at any time. We will recalculate the cost proportionally.',
+    'pricing.faq_q2': 'What is included in support?',
+    'pricing.faq_a2': 'Support includes consultations, bug fixes, updates and optimization within the selected package.',
+    'pricing.faq_q3': 'Do you provide discounts?',
+    'pricing.faq_a3': 'We provide discounts for ordering multiple services and long-term cooperation. Discuss this with the manager.',
+    'pricing.faq_q4': 'What payment methods are available?',
+    'pricing.faq_a4': 'We accept payment by bank transfer, card and electronic wallets. Installment plans are possible.',
+    'pricing.custom_title': 'Need a custom quote?',
+    'pricing.custom_desc': 'Get a personalized offer taking into account the specifics of your project and budget',
 
     // Common
     'common.read_more': 'Read More',

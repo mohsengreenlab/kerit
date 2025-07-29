@@ -106,15 +106,15 @@ export default function About() {
             </div>
 
             <div className="text-center bg-kerit-dark rounded-2xl p-12 text-white">
-              <h2 className="text-3xl font-bold mb-6">Готовы к сотрудничеству?</h2>
+              <h2 className="text-3xl font-bold mb-6">{t('about.cta_title')}</h2>
               <p className="text-kerit-light text-lg mb-8">
-                Свяжитесь с нами для обсуждения вашего проекта
+                {t('about.cta_desc')}
               </p>
               <a
                 href="/contact"
                 className="bg-kerit-yellow hover:bg-yellow-400 text-kerit-dark font-semibold px-8 py-4 rounded-lg transition-colors inline-block"
               >
-                Связаться с нами
+                {t('about.contact_us')}
               </a>
             </div>
           </div>

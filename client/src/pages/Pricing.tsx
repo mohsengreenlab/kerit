@@ -246,36 +246,36 @@ export default function Pricing() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-kerit-dark mb-4">Часто задаваемые вопросы</h2>
-            <p className="text-xl text-gray-600">Ответы на популярные вопросы о наших тарифах</p>
+            <h2 className="text-4xl font-bold text-kerit-dark mb-4">{t('pricing.faq_title')}</h2>
+            <p className="text-xl text-gray-600">{t('pricing.faq_subtitle')}</p>
           </div>
 
           <div className="space-y-6">
             <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="font-semibold text-kerit-dark mb-2">Можно ли изменить пакет в процессе работы?</h3>
+              <h3 className="font-semibold text-kerit-dark mb-2">{t('pricing.faq_q1')}</h3>
               <p className="text-gray-600">
-                Да, вы можете перейти на другой пакет в любое время. Мы пересчитаем стоимость пропорционально.
+                {t('pricing.faq_a1')}
               </p>
             </div>
             
             <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="font-semibold text-kerit-dark mb-2">Что входит в поддержку?</h3>
+              <h3 className="font-semibold text-kerit-dark mb-2">{t('pricing.faq_q2')}</h3>
               <p className="text-gray-600">
-                Поддержка включает консультации, исправление ошибок, обновления и оптимизацию в рамках выбранного пакета.
+                {t('pricing.faq_a2')}
               </p>
             </div>
             
             <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="font-semibold text-kerit-dark mb-2">Предоставляете ли скидки?</h3>
+              <h3 className="font-semibold text-kerit-dark mb-2">{t('pricing.faq_q3')}</h3>
               <p className="text-gray-600">
-                Мы предоставляем скидки при заказе нескольких услуг и долгосрочном сотрудничестве. Обсудите это с менеджером.
+                {t('pricing.faq_a3')}
               </p>
             </div>
             
             <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="font-semibold text-kerit-dark mb-2">Какие способы оплаты доступны?</h3>
+              <h3 className="font-semibold text-kerit-dark mb-2">{t('pricing.faq_q4')}</h3>
               <p className="text-gray-600">
-                Мы принимаем оплату банковским переводом, картой и электронными кошельками. Возможна рассрочка.
+                {t('pricing.faq_a4')}
               </p>
             </div>
           </div>
@@ -286,10 +286,10 @@ export default function Pricing() {
       <section className="py-20 bg-kerit-dark">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Нужен индивидуальный расчет?
+            {t('pricing.custom_title')}
           </h2>
           <p className="text-xl text-kerit-light mb-10">
-            Получите персональное предложение с учетом специфики вашего проекта и бюджета
+            {t('pricing.custom_desc')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button

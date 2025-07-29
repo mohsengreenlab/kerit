@@ -14,44 +14,44 @@ export default function Landing() {
       icon: 'fas fa-envelope',
       title: t('services.email.title'),
       description: t('services.email.description'),
-      features: ['Настройка автоворонок', 'A/B тестирование', 'Аналитика и отчеты'],
+      features: [t('landing.email_features.automation'), t('landing.email_features.testing'), t('landing.email_features.analytics')],
       link: '/services/email-marketing',
     },
     {
       icon: 'fas fa-robot',
       title: t('services.chatbot.title'),
       description: t('services.chatbot.description'),
-      features: ['24/7 поддержка клиентов', 'Интеграция с CRM', 'Многоканальность'],
+      features: [t('landing.chatbot_features.support'), t('landing.chatbot_features.crm'), t('landing.chatbot_features.multichannel')],
       link: '/services/customer-chatbot',
     },
     {
       icon: 'fas fa-tachometer-alt',
       title: t('services.performance.title'),
       description: t('services.performance.description'),
-      features: ['Аудит инфраструктуры', 'Оптимизация базы данных', 'Мониторинг системы'],
+      features: [t('landing.performance_features.audit'), t('landing.performance_features.database'), t('landing.performance_features.monitoring')],
       link: '/services/performance-improvement',
     },
   ];
 
   const caseStudies = [
     {
-      category: 'Email-маркетинг',
-      title: 'Увеличение конверсии на 340%',
-      description: 'Как мы помогли интернет-магазину одежды автоматизировать email-кампании и утроить продажи',
+      category: t('landing.case_email.title'),
+      title: t('landing.case_email.result'),
+      description: t('landing.case_email.desc'),
       icon: 'fas fa-chart-line',
       gradient: 'from-kerit-sage to-kerit-dark',
     },
     {
-      category: 'Чат-бот',
-      title: 'Автоматизация поддержки клиентов',
-      description: 'Внедрение интеллектуального чат-бота снизило нагрузку на call-центр на 70%',
+      category: t('landing.case_chatbot.title'),
+      title: t('landing.case_chatbot.result'),
+      description: t('landing.case_chatbot.desc'),
       icon: 'fas fa-robot',
       gradient: 'from-kerit-dark to-kerit-sage',
     },
     {
-      category: 'Оптимизация',
-      title: 'Ускорение сайта в 5 раз',
-      description: 'Комплексная оптимизация системы позволила сократить время загрузки с 8 до 1.6 секунд',
+      category: t('landing.case_performance.title'),
+      title: t('landing.case_performance.result'),
+      description: t('landing.case_performance.desc'),
       icon: 'fas fa-tachometer-alt',
       gradient: 'from-kerit-yellow to-kerit-light',
     },
@@ -59,10 +59,10 @@ export default function Landing() {
 
   const testimonials = [
     {
-      name: 'Алексей Петров',
-      position: 'CEO, TechStart',
+      name: t('testimonial.alexey.name'),
+      position: t('testimonial.alexey.title'),
       avatar: 'АП',
-      text: 'Команда Kerit профессионально подошла к настройке нашего email-маркетинга. Результат превзошел все ожидания!',
+      text: t('testimonial.alexey.text'),
     },
     {
       name: 'Мария Сидорова',
@@ -217,7 +217,7 @@ export default function Landing() {
                   </p>
                   <Link href="/case-studies">
                     <a className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
-                      Читать кейс <i className="fas fa-arrow-right ml-1"></i>
+                      {t('landing.read_case')} <i className="fas fa-arrow-right ml-1"></i>
                     </a>
                   </Link>
                 </div>

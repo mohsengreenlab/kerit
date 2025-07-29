@@ -207,7 +207,7 @@ export default function Blog() {
                     <div className="flex justify-between items-center">
                       <Link href={`/blog/${post.slug}`}>
                         <a className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
-                          Читать статью <i className="fas fa-arrow-right ml-1"></i>
+                          {t('common.read_more')} <i className="fas fa-arrow-right ml-1"></i>
                         </a>
                       </Link>
                       {post.author && (
@@ -225,12 +225,12 @@ export default function Blog() {
               <div className="bg-white rounded-2xl shadow-lg p-12 max-w-2xl mx-auto">
                 <i className="fas fa-search text-6xl text-gray-300 mb-6"></i>
                 <h3 className="text-2xl font-bold text-gray-700 mb-4">
-                  {searchQuery ? 'Статьи не найдены' : 'Блог обновляется'}
+                  {searchQuery ? t('blog.no_posts_title') : t('blog.updating_title')}
                 </h3>
                 <p className="text-gray-600 mb-8">
                   {searchQuery 
-                    ? `По запросу "${searchQuery}" ничего не найдено. Попробуйте изменить поисковый запрос.`
-                    : 'Мы работаем над добавлением новых экспертных статей. Следите за обновлениями!'
+                    ? t('blog.no_posts_desc')
+                    : t('blog.updating_desc')
                   }
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -261,10 +261,10 @@ export default function Blog() {
       <section className="py-20 bg-kerit-dark">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Не пропустите новые статьи
+            {t('blog.newsletter_title')}
           </h2>
           <p className="text-xl text-kerit-light mb-10">
-            Подпишитесь на наши обновления и получайте свежие экспертные материалы первыми
+            {t('blog.newsletter_desc')}
           </p>
           <div className="max-w-md mx-auto flex gap-4">
             <Input
@@ -277,7 +277,7 @@ export default function Blog() {
             </Button>
           </div>
           <p className="text-kerit-light text-sm mt-4">
-            Никакого спама, только полезные материалы
+            {t('blog.newsletter_note')}
           </p>
         </div>
       </section>
