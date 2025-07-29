@@ -16,20 +16,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
   await setupAuth(app);
 
-  // Development login endpoint (temporary)
-  app.get('/api/dev-login', (req, res) => {
-    // Mock user session for development
-    (req as any).session.user = {
-      id: 'dev-user-123',
-      email: 'dev@kerit.com',
-      firstName: 'Development',
-      lastName: 'User',
-      role: 'customer'
-    };
-    res.redirect('/');
-  });
-
-  // Development admin login endpoint
+  // Development admin login endpoint - only for direct /admin24 access
   app.get('/api/dev-admin-login', (req, res) => {
     // Mock admin session for development
     (req as any).session.user = {
@@ -40,20 +27,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       role: 'admin'
     };
     res.redirect('/admin24');
-  });
-
-  // Development logout endpoint (temporary)
-  app.get('/api/dev-logout', (req, res) => {
-    if (req.session) {
-      req.session.destroy((err) => {
-        if (err) {
-          console.error('Session destruction error:', err);
-        }
-        res.redirect('/');
-      });
-    } else {
-      res.redirect('/');
-    }
   });
 
   // Auth routes - allow public access, return null if not authenticated

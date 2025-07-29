@@ -1,17 +1,13 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
-import { useAuth } from '@/hooks/useAuth';
 import { useLanguage } from '@/hooks/useLanguage';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import { LoginModal } from './LoginModal';
 import logoPath from '@assets/Logo_1753789199779.jpg';
 
 export function Header() {
   const [location] = useLocation();
-  const { isAuthenticated, user } = useAuth();
   const { t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const isActive = (path: string) => {
     return location === path || location.startsWith(path + '/');
@@ -55,41 +51,9 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Language Switcher & Auth */}
+          {/* Language Switcher */}
           <div className="flex items-center space-x-4">
             <LanguageSwitcher />
-            
-            {/* Auth Links */}
-            <div className="hidden lg:flex items-center space-x-3 text-sm">
-              {isAuthenticated ? (
-                <>
-                  {user?.role === 'customer' && (
-                    <Link href="/dashboard">
-                      <a className="text-kerit-sage hover:text-kerit-dark transition-colors">
-                        <i className="fas fa-user mr-1"></i>{t('nav.dashboard')}
-                      </a>
-                    </Link>
-                  )}
-                  {user?.role === 'admin' && (
-                    <Link href="/admin">
-                      <a className="text-kerit-sage hover:text-kerit-dark transition-colors">
-                        <i className="fas fa-cog mr-1"></i>{t('nav.admin')}
-                      </a>
-                    </Link>
-                  )}
-                  <a href="/api/dev-logout" className="text-kerit-sage hover:text-kerit-dark transition-colors">
-                    <i className="fas fa-sign-out-alt mr-1"></i>{t('auth.logout')}
-                  </a>
-                </>
-              ) : (
-                <button 
-                  onClick={() => setIsLoginModalOpen(true)}
-                  className="text-kerit-sage hover:text-kerit-dark transition-colors bg-transparent border-none cursor-pointer"
-                >
-                  <i className="fas fa-sign-in-alt mr-1"></i>{t('auth.login')}
-                </button>
-              )}
-            </div>
 
             {/* Mobile Menu Button */}
             <button 
@@ -118,53 +82,12 @@ export function Header() {
                 </a>
               </Link>
             ))}
-            <div className="border-t pt-2">
-              {isAuthenticated ? (
-                <>
-                  {user?.role === 'customer' && (
-                    <Link href="/dashboard">
-                      <a className="block py-2 px-3 text-kerit-sage" onClick={() => setIsMobileMenuOpen(false)}>
-                        <i className="fas fa-user mr-2"></i>{t('nav.dashboard')}
-                      </a>
-                    </Link>
-                  )}
-                  {user?.role === 'admin' && (
-                    <Link href="/admin">
-                      <a className="block py-2 px-3 text-kerit-sage" onClick={() => setIsMobileMenuOpen(false)}>
-                        <i className="fas fa-cog mr-2"></i>{t('nav.admin')}
-                      </a>
-                    </Link>
-                  )}
-                  <a href="/api/dev-logout" className="block py-2 px-3 text-kerit-sage">
-                    <i className="fas fa-sign-out-alt mr-2"></i>{t('auth.logout')}
-                  </a>
-                </>
-              ) : (
-                <button 
-                  onClick={() => {
-                    setIsLoginModalOpen(true);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="block py-2 px-3 text-kerit-sage w-full text-left bg-transparent border-none cursor-pointer"
-                >
-                  <i className="fas fa-sign-in-alt mr-2"></i>{t('auth.login')}
-                </button>
-              )}
-            </div>
+
           </div>
         )}
       </div>
 
-      {/* Login Modal */}
-      {isLoginModalOpen && (
-        <LoginModal 
-          onClose={() => setIsLoginModalOpen(false)}
-          onLogin={() => {
-            setIsLoginModalOpen(false);
-            // The modal handles the login redirect
-          }}
-        />
-      )}
+
     </header>
   );
 }
