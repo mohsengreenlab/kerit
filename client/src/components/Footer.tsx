@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { useLanguage } from '@/hooks/useLanguage';
-import logoPath from '@assets/Logo_1753783870877.jpg';
+import logoPath from '@assets/Logo_1753789199779.jpg';
 
 export function Footer() {
   const { t } = useLanguage();

@@ -119,7 +119,7 @@ export default function Landing() {
             <div className="relative">
               <div className="bg-gradient-to-br from-kerit-sage to-kerit-dark rounded-2xl p-12 shadow-2xl flex items-center justify-center">
                 <img 
-                  src="/attached_assets/Logo_1753783870877.jpg" 
+                  src="/attached_assets/Logo_1753789199779.jpg" 
                   alt="Kerit Logo" 
                   className="max-w-xs w-full h-auto"
                 />
