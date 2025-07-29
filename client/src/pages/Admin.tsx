@@ -101,10 +101,6 @@ export default function Admin() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/booking-consultations'] });
-      toast({
-        title: "Success",
-        description: "Booking status updated",
-      });
     },
     onError: (error) => {
       if (isUnauthorizedError(error as Error)) {
