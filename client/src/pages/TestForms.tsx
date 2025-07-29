@@ -29,10 +29,7 @@ export default function TestForms() {
 
   const contactMutation = useMutation({
     mutationFn: async (data: any) => {
-      return await apiRequest('/api/contact-message', {
-        method: 'POST',
-        body: JSON.stringify(data),
-      });
+      return await apiRequest('POST', '/api/contact-message', data);
     },
     onSuccess: () => {
       toast({
@@ -52,10 +49,7 @@ export default function TestForms() {
 
   const bookingMutation = useMutation({
     mutationFn: async (data: any) => {
-      return await apiRequest('/api/booking-consultation', {
-        method: 'POST',
-        body: JSON.stringify(data),
-      });
+      return await apiRequest('POST', '/api/booking-consultation', data);
     },
     onSuccess: () => {
       toast({

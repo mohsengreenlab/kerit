@@ -16,7 +16,9 @@ const getAppointmentSchema = (t: (key: string) => string) => z.object({
   name: z.string().min(2, t('validation.name_min')),
   email: z.string().email(t('validation.email_invalid')),
   phone: z.string().optional(),
-  preferredTime: z.string().min(1, t('contact.form.time_placeholder')),
+  company: z.string().optional(),
+  service: z.string().optional(),
+  preferredDate: z.string().optional(),
   message: z.string().optional(),
 });
 
@@ -43,22 +45,28 @@ export function AppointmentModal({ onClose }: AppointmentModalProps) {
 
   const mutation = useMutation({
     mutationFn: async (data: AppointmentForm) => {
-      await apiRequest('POST', '/api/contact', {
-        ...data,
-        subject: t('appointment.consultation_request'),
-      });
+      const submissionData = {
+        name: data.name,
+        email: data.email,
+        phone: data.phone || '',
+        company: data.company || '',
+        service: data.service || 'General Consultation',
+        preferredDate: data.preferredDate ? new Date(data.preferredDate).toISOString() : null,
+        message: data.message || 'Consultation request from appointment modal',
+      };
+      await apiRequest('POST', '/api/booking-consultation', submissionData);
     },
     onSuccess: () => {
       toast({
-        title: t('appointment.success.title'),
-        description: t('appointment.success.description'),
+        title: "Consultation Booked Successfully!",
+        description: "Thank you for booking a consultation. We'll contact you soon to confirm the details.",
       });
       onClose();
     },
     onError: (error) => {
       toast({
-        title: t('appointment.error.title'),
-        description: t('appointment.error.description'),
+        title: "Error",
+        description: "Failed to book consultation. Please try again.",
         variant: 'destructive',
       });
     },
@@ -134,22 +142,44 @@ export function AppointmentModal({ onClose }: AppointmentModalProps) {
           </div>
 
           <div>
-            <Label className="text-sm font-medium text-gray-700 mb-2">
-              {t('contact.form.preferred_time')} *
+            <Label htmlFor="company" className="text-sm font-medium text-gray-700 mb-2">
+              Company
             </Label>
-            <Select onValueChange={(value) => setValue('preferredTime', value)}>
+            <Input
+              id="company"
+              type="text"
+              placeholder="Company Name"
+              className="w-full"
+              {...register('company')}
+            />
+          </div>
+
+          <div>
+            <Label className="text-sm font-medium text-gray-700 mb-2">
+              Service
+            </Label>
+            <Select onValueChange={(value) => setValue('service', value)}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder={t('contact.form.time_placeholder')} />
+                <SelectValue placeholder="Select a service" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="morning">{t('time.morning')}</SelectItem>
-                <SelectItem value="afternoon">{t('time.afternoon')}</SelectItem>
-                <SelectItem value="evening">{t('time.evening')}</SelectItem>
+                <SelectItem value="email-marketing">Email Marketing</SelectItem>
+                <SelectItem value="customer-chatbot">Customer Chatbot</SelectItem>
+                <SelectItem value="performance-improvement">Performance Improvement</SelectItem>
               </SelectContent>
             </Select>
-            {errors.preferredTime && (
-              <p className="text-sm text-red-600 mt-1">{errors.preferredTime.message}</p>
-            )}
+          </div>
+
+          <div>
+            <Label htmlFor="preferredDate" className="text-sm font-medium text-gray-700 mb-2">
+              Preferred Date & Time
+            </Label>
+            <Input
+              id="preferredDate"
+              type="datetime-local"
+              className="w-full"
+              {...register('preferredDate')}
+            />
           </div>
 
           <div>
