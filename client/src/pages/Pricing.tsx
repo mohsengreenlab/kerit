@@ -135,7 +135,7 @@ export default function Pricing() {
               className="bg-kerit-yellow hover:bg-yellow-400 text-kerit-dark font-semibold px-8 py-4"
             >
               <i className="fas fa-calculator mr-2"></i>
-              {t('pricing.choose_plan')}
+              {t('pricing.book_consultation')}
             </Button>
             <Button
               onClick={() => setIsAppointmentModalOpen(true)}
@@ -143,7 +143,7 @@ export default function Pricing() {
               className="border-2 border-kerit-sage text-kerit-sage hover:bg-kerit-sage hover:text-white font-semibold px-8 py-4"
             >
               <i className="fas fa-phone mr-2"></i>
-              {t('pricing.get_consultation')}
+              {t('pricing.book_consultation')}
             </Button>
           </div>
         </div>
@@ -301,8 +301,7 @@ export default function Pricing() {
             </Button>
             <Button
               onClick={() => setIsAppointmentModalOpen(true)}
-              variant="outline"
-              className="border-2 border-kerit-light text-kerit-light hover:bg-kerit-light hover:text-kerit-dark font-semibold px-8 py-4"
+              className="bg-kerit-yellow hover:bg-yellow-400 text-kerit-dark font-semibold px-8 py-4"
             >
               <i className="fas fa-comments mr-2"></i>
               {t('pricing.discuss_project')}

@@ -176,8 +176,7 @@ export default function Services() {
             </Button>
             <Link href="/contact">
               <Button
-                variant="outline"
-                className="border-2 border-kerit-light text-kerit-light hover:bg-kerit-light hover:text-kerit-dark font-semibold px-8 py-4"
+                className="bg-kerit-yellow hover:bg-yellow-400 text-kerit-dark font-semibold px-8 py-4"
               >
                 <i className="fas fa-envelope mr-2"></i>
                 {t('services.write_us')}

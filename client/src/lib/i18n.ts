@@ -289,6 +289,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'cases.discuss_project': 'Обсудить проект',
     'pricing.calculate_cost': 'Рассчитать стоимость',
     'pricing.discuss_project': 'Обсудить проект',
+    'pricing.book_consultation': 'Записаться на консультацию',
 
     // Common
     'common.read_more': 'Подробнее',
@@ -585,6 +586,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'cases.discuss_project': 'Discuss Project',
     'pricing.calculate_cost': 'Calculate Cost',
     'pricing.discuss_project': 'Discuss Project',
+    'pricing.book_consultation': 'Book Consultation',
 
     // Common
     'common.read_more': 'Read More',
