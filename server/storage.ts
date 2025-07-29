@@ -8,6 +8,8 @@ import {
   projects,
   translations,
   contactSubmissions,
+  contactMessages,
+  bookingConsultations,
   visitors,
   pageViews,
   type User,
@@ -28,6 +30,10 @@ import {
   type Translation,
   type InsertContactSubmission,
   type ContactSubmission,
+  type ContactMessage,
+  type InsertContactMessage,
+  type BookingConsultation,
+  type InsertBookingConsultation,
   type Visitor,
   type PageView,
 } from "@shared/schema";
@@ -95,6 +101,17 @@ export interface IStorage {
   createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission>;
   getAllContactSubmissions(): Promise<ContactSubmission[]>;
   markContactSubmissionAsRead(id: string): Promise<void>;
+  
+  // Contact messages operations
+  createContactMessage(message: InsertContactMessage): Promise<ContactMessage>;
+  getAllContactMessages(): Promise<ContactMessage[]>;
+  markContactMessageAsRead(id: string): Promise<void>;
+  
+  // Booking consultations operations
+  createBookingConsultation(booking: InsertBookingConsultation): Promise<BookingConsultation>;
+  getAllBookingConsultations(): Promise<BookingConsultation[]>;
+  markBookingConsultationAsRead(id: string): Promise<void>;
+  updateBookingConsultationStatus(id: string, status: string): Promise<void>;
   
   // Analytics operations
   trackVisitor(sessionId: string, ipAddress?: string, userAgent?: string, referrer?: string): Promise<Visitor>;
@@ -376,6 +393,47 @@ export class DatabaseStorage implements IStorage {
 
   async markContactSubmissionAsRead(id: string): Promise<void> {
     await db.update(contactSubmissions).set({ isRead: true }).where(eq(contactSubmissions.id, id));
+  }
+
+  // Contact messages operations
+  async createContactMessage(message: InsertContactMessage): Promise<ContactMessage> {
+    const [newMessage] = await db.insert(contactMessages).values(message).returning();
+    return newMessage;
+  }
+
+  async getAllContactMessages(): Promise<ContactMessage[]> {
+    return await db.select().from(contactMessages).orderBy(desc(contactMessages.createdAt));
+  }
+
+  async markContactMessageAsRead(id: string): Promise<void> {
+    await db
+      .update(contactMessages)
+      .set({ isRead: true })
+      .where(eq(contactMessages.id, id));
+  }
+
+  // Booking consultations operations
+  async createBookingConsultation(booking: InsertBookingConsultation): Promise<BookingConsultation> {
+    const [newBooking] = await db.insert(bookingConsultations).values(booking).returning();
+    return newBooking;
+  }
+
+  async getAllBookingConsultations(): Promise<BookingConsultation[]> {
+    return await db.select().from(bookingConsultations).orderBy(desc(bookingConsultations.createdAt));
+  }
+
+  async markBookingConsultationAsRead(id: string): Promise<void> {
+    await db
+      .update(bookingConsultations)
+      .set({ isRead: true })
+      .where(eq(bookingConsultations.id, id));
+  }
+
+  async updateBookingConsultationStatus(id: string, status: string): Promise<void> {
+    await db
+      .update(bookingConsultations)
+      .set({ status })
+      .where(eq(bookingConsultations.id, id));
   }
 
   // Analytics operations

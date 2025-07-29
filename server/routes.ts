@@ -2,7 +2,14 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./replitAuth";
-import { insertContactSubmissionSchema, insertBlogPostSchema, insertCaseStudySchema } from "@shared/schema";
+import { 
+  insertContactSubmissionSchema, 
+  insertContactMessageSchema, 
+  insertBookingConsultationSchema, 
+  insertBlogPostSchema, 
+  insertCaseStudySchema 
+} from "@shared/schema";
+import { sendContactNotification, sendBookingNotification } from "./emailService";
 import crypto from "crypto";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -358,6 +365,105 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error creating case study:", error);
       res.status(400).json({ message: "Invalid case study data" });
+    }
+  });
+
+  // Contact form submission (public)
+  app.post('/api/contact-message', async (req, res) => {
+    try {
+      const validatedData = insertContactMessageSchema.parse(req.body);
+      const message = await storage.createContactMessage(validatedData);
+      
+      // Send email notification
+      await sendContactNotification({
+        name: message.name,
+        email: message.email,
+        subject: message.subject,
+        message: message.message,
+        createdAt: message.createdAt,
+      });
+      
+      res.json({ message: "Message sent successfully", id: message.id });
+    } catch (error) {
+      console.error("Error submitting contact message:", error);
+      res.status(400).json({ message: "Invalid message data" });
+    }
+  });
+
+  // Booking consultation submission (public)
+  app.post('/api/booking-consultation', async (req, res) => {
+    try {
+      const validatedData = insertBookingConsultationSchema.parse(req.body);
+      const booking = await storage.createBookingConsultation(validatedData);
+      
+      // Send email notification
+      await sendBookingNotification({
+        name: booking.name,
+        email: booking.email,
+        phone: booking.phone,
+        company: booking.company,
+        service: booking.service,
+        preferredDate: booking.preferredDate,
+        message: booking.message,
+        createdAt: booking.createdAt,
+      });
+      
+      res.json({ message: "Consultation booked successfully", id: booking.id });
+    } catch (error) {
+      console.error("Error booking consultation:", error);
+      res.status(400).json({ message: "Invalid booking data" });
+    }
+  });
+
+  // Admin routes for messages and bookings
+  app.get('/api/admin/contact-messages', isAuthenticated, adminAuth, async (req, res) => {
+    try {
+      const messages = await storage.getAllContactMessages();
+      res.json(messages);
+    } catch (error) {
+      console.error("Error fetching contact messages:", error);
+      res.status(500).json({ message: "Failed to fetch contact messages" });
+    }
+  });
+
+  app.patch('/api/admin/contact-messages/:id/mark-read', isAuthenticated, adminAuth, async (req, res) => {
+    try {
+      await storage.markContactMessageAsRead(req.params.id);
+      res.json({ message: "Message marked as read" });
+    } catch (error) {
+      console.error("Error marking message as read:", error);
+      res.status(500).json({ message: "Failed to mark message as read" });
+    }
+  });
+
+  app.get('/api/admin/booking-consultations', isAuthenticated, adminAuth, async (req, res) => {
+    try {
+      const bookings = await storage.getAllBookingConsultations();
+      res.json(bookings);
+    } catch (error) {
+      console.error("Error fetching booking consultations:", error);
+      res.status(500).json({ message: "Failed to fetch booking consultations" });
+    }
+  });
+
+  app.patch('/api/admin/booking-consultations/:id/mark-read', isAuthenticated, adminAuth, async (req, res) => {
+    try {
+      await storage.markBookingConsultationAsRead(req.params.id);
+      res.json({ message: "Booking marked as read" });
+    } catch (error) {
+      console.error("Error marking booking as read:", error);
+      res.status(500).json({ message: "Failed to mark booking as read" });
+    }
+  });
+
+  app.patch('/api/admin/booking-consultations/:id/status', isAuthenticated, adminAuth, async (req, res) => {
+    try {
+      const { status } = req.body;
+      await storage.updateBookingConsultationStatus(req.params.id, status);
+      res.json({ message: "Booking status updated" });
+    } catch (error) {
+      console.error("Error updating booking status:", error);
+      res.status(500).json({ message: "Failed to update booking status" });
     }
   });
 

@@ -69,6 +69,32 @@ export const blogPosts = pgTable("blog_posts", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+// Contact messages table
+export const contactMessages = pgTable("contact_messages", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: varchar("name").notNull(),
+  email: varchar("email").notNull(),
+  subject: varchar("subject").notNull(),
+  message: text("message").notNull(),
+  isRead: boolean("is_read").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Booking consultations table
+export const bookingConsultations = pgTable("booking_consultations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: varchar("name").notNull(),
+  email: varchar("email").notNull(),
+  phone: varchar("phone"),
+  company: varchar("company"),
+  service: varchar("service").notNull(),
+  preferredDate: timestamp("preferred_date"),
+  message: text("message"),
+  status: varchar("status").default('pending'), // pending, confirmed, completed, cancelled
+  isRead: boolean("is_read").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 // Case studies table
 export const caseStudies = pgTable("case_studies", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -285,6 +311,16 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
 // Types
 export type UpsertUser = typeof users.$inferInsert;
 export type User = typeof users.$inferSelect;
+
+// Contact message types
+export type ContactMessage = typeof contactMessages.$inferSelect;
+export type InsertContactMessage = typeof contactMessages.$inferInsert;
+export const insertContactMessageSchema = createInsertSchema(contactMessages);
+
+// Booking consultation types
+export type BookingConsultation = typeof bookingConsultations.$inferSelect;
+export type InsertBookingConsultation = typeof bookingConsultations.$inferInsert;
+export const insertBookingConsultationSchema = createInsertSchema(bookingConsultations);
 export type InsertPage = z.infer<typeof insertPageSchema>;
 export type Page = typeof pages.$inferSelect;
 export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
