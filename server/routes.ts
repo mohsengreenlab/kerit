@@ -16,6 +16,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
   await setupAuth(app);
 
+  // Admin login endpoint with password protection
+  app.post('/api/admin-login', (req, res) => {
+    const { password } = req.body;
+    
+    // Check admin password (use environment variable in production)
+    const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+    
+    if (password === adminPassword) {
+      // Create admin session
+      (req as any).session.user = {
+        id: 'admin-123',
+        email: 'admin@kerit.com',
+        firstName: 'Admin',
+        lastName: 'User',
+        role: 'admin'
+      };
+      res.json({ success: true });
+    } else {
+      res.status(401).json({ success: false, message: 'Invalid password' });
+    }
+  });
+
   // Development admin login endpoint - only for direct /admin24 access
   app.get('/api/dev-admin-login', (req, res) => {
     // Mock admin session for development

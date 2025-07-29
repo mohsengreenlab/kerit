@@ -51,7 +51,7 @@ export default function Admin() {
         variant: "destructive",
       });
       setTimeout(() => {
-        window.location.href = "/api/dev-admin-login";
+        window.location.href = "/admin-login";
       }, 1000);
       return;
     }
@@ -83,7 +83,7 @@ export default function Admin() {
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/dev-admin-login";
+          window.location.href = "/admin-login";
         }, 500);
         return;
       }
@@ -110,7 +110,7 @@ export default function Admin() {
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/dev-admin-login";
+          window.location.href = "/admin-login";
         }, 500);
         return;
       }

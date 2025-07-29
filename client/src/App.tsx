@@ -20,6 +20,7 @@ import Contact from "@/pages/Contact";
 import Pricing from "@/pages/Pricing";
 import Dashboard from "@/pages/Dashboard";
 import Admin from "@/pages/Admin";
+import AdminLogin from "@/pages/AdminLogin";
 import TestForms from "@/pages/TestForms";
 import NotFound from "@/pages/not-found";
 
@@ -51,6 +52,7 @@ function Router() {
         
         {/* Protected routes */}
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/admin-login" component={AdminLogin} />
         <Route path="/admin24" component={Admin} />
         
         {/* Test route */}
