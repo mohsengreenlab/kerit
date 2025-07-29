@@ -22,6 +22,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.redirect('/');
   });
 
+  // Development logout endpoint (temporary)
+  app.get('/api/dev-logout', (req, res) => {
+    if (req.session) {
+      req.session.destroy((err) => {
+        if (err) {
+          console.error('Session destruction error:', err);
+        }
+        res.redirect('/');
+      });
+    } else {
+      res.redirect('/');
+    }
+  });
+
   // Auth routes - allow public access, return null if not authenticated
   app.get('/api/auth/user', async (req: any, res) => {
     try {

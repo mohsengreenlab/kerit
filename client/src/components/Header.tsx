@@ -3,6 +3,7 @@ import { Link, useLocation } from 'wouter';
 import { useAuth } from '@/hooks/useAuth';
 import { useLanguage } from '@/hooks/useLanguage';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { LoginModal } from './LoginModal';
 import logoPath from '@assets/Logo_1753789199779.jpg';
 
 export function Header() {
@@ -10,6 +11,7 @@ export function Header() {
   const { isAuthenticated, user } = useAuth();
   const { t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const isActive = (path: string) => {
     return location === path || location.startsWith(path + '/');
@@ -75,16 +77,13 @@ export function Header() {
                       </a>
                     </Link>
                   )}
-                  <a href="/api/logout" className="text-kerit-sage hover:text-kerit-dark transition-colors">
+                  <a href="/api/dev-logout" className="text-kerit-sage hover:text-kerit-dark transition-colors">
                     <i className="fas fa-sign-out-alt mr-1"></i>{t('auth.logout')}
                   </a>
                 </>
               ) : (
                 <button 
-                  onClick={() => {
-                    // Temporary development login - replace with proper Replit Auth
-                    window.location.href = '/api/dev-login';
-                  }}
+                  onClick={() => setIsLoginModalOpen(true)}
                   className="text-kerit-sage hover:text-kerit-dark transition-colors bg-transparent border-none cursor-pointer"
                 >
                   <i className="fas fa-sign-in-alt mr-1"></i>{t('auth.login')}
@@ -136,15 +135,14 @@ export function Header() {
                       </a>
                     </Link>
                   )}
-                  <a href="/api/logout" className="block py-2 px-3 text-kerit-sage">
+                  <a href="/api/dev-logout" className="block py-2 px-3 text-kerit-sage">
                     <i className="fas fa-sign-out-alt mr-2"></i>{t('auth.logout')}
                   </a>
                 </>
               ) : (
                 <button 
                   onClick={() => {
-                    // Temporary development login - replace with proper Replit Auth
-                    window.location.href = '/api/dev-login';
+                    setIsLoginModalOpen(true);
                     setIsMobileMenuOpen(false);
                   }}
                   className="block py-2 px-3 text-kerit-sage w-full text-left bg-transparent border-none cursor-pointer"
@@ -156,6 +154,17 @@ export function Header() {
           </div>
         )}
       </div>
+
+      {/* Login Modal */}
+      {isLoginModalOpen && (
+        <LoginModal 
+          onClose={() => setIsLoginModalOpen(false)}
+          onLogin={() => {
+            setIsLoginModalOpen(false);
+            // The modal handles the login redirect
+          }}
+        />
+      )}
     </header>
   );
 }

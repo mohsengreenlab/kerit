@@ -309,6 +309,15 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'nav.dashboard': 'Dashboard',
     'nav.admin': 'Admin',
 
+    // Auth
+    'auth.login': 'Login',
+    'auth.logout': 'Logout',
+    'auth.password': 'Password',
+    'auth.logging_in': 'Logging in...',
+    'auth.demo_login': 'Demo Login',
+    'auth.demo_login_desc': 'This is a demonstration version of the login system',
+    'auth.demo_note': 'Demo account for testing features',
+
     // Hero section
     'hero.title': 'IT solutions that scale your business',
     'hero.highlight': 'scale',
