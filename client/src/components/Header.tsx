@@ -3,7 +3,7 @@ import { Link, useLocation } from 'wouter';
 import { useAuth } from '@/hooks/useAuth';
 import { useLanguage } from '@/hooks/useLanguage';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import logoPath from '@assets/Logo_1753783870877.jpg';
+import logoPath from '@assets/Logo_1753789199779.jpg';
 
 export function Header() {
   const [location] = useLocation();
@@ -131,12 +131,12 @@ export function Header() {
                     </Link>
                   )}
                   <a href="/api/logout" className="block py-2 px-3 text-kerit-sage">
-                    <i className="fas fa-sign-out-alt mr-2"></i>Выйти
+                    <i className="fas fa-sign-out-alt mr-2"></i>{t('auth.logout')}
                   </a>
                 </>
               ) : (
                 <a href="/api/login" className="block py-2 px-3 text-kerit-sage">
-                  <i className="fas fa-sign-in-alt mr-2"></i>Войти
+                  <i className="fas fa-sign-in-alt mr-2"></i>{t('auth.login')}
                 </a>
               )}
             </div>
