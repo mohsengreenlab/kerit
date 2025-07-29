@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'wouter';
 import { useLanguage } from '@/hooks/useLanguage';
+import logoPath from '@assets/Logo_1753789199779.jpg';
 import { SEOHead } from '@/components/SEOHead';
 import { StatsGrid, StatsCard } from '@/components/ui/stats';
 import { AppointmentModal } from '@/components/AppointmentModal';
@@ -119,7 +120,7 @@ export default function Landing() {
             <div className="relative">
               <div className="bg-gradient-to-br from-kerit-sage to-kerit-dark rounded-2xl p-12 shadow-2xl flex items-center justify-center">
                 <img 
-                  src="/attached_assets/Logo_1753789199779.jpg" 
+                  src={logoPath} 
                   alt="Kerit Logo" 
                   className="max-w-xs w-full h-auto"
                 />
