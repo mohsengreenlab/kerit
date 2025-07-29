@@ -69,9 +69,7 @@ export default function Admin() {
 
   const markAsReadMutation = useMutation({
     mutationFn: async ({ id, type }: { id: string; type: 'message' | 'booking' }) => {
-      await apiRequest(`/api/admin/${type === 'message' ? 'contact-messages' : 'booking-consultations'}/${id}/mark-read`, {
-        method: 'PATCH',
-      });
+      await apiRequest('PATCH', `/api/admin/${type === 'message' ? 'contact-messages' : 'booking-consultations'}/${id}/mark-read`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/contact-messages'] });
@@ -99,10 +97,7 @@ export default function Admin() {
 
   const updateBookingStatusMutation = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: string }) => {
-      await apiRequest(`/api/admin/booking-consultations/${id}/status`, {
-        method: 'PATCH',
-        body: JSON.stringify({ status }),
-      });
+      await apiRequest('PATCH', `/api/admin/booking-consultations/${id}/status`, { status });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/booking-consultations'] });
