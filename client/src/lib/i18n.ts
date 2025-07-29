@@ -64,6 +64,65 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'cta.audit': 'Получить бесплатный аудит',
     'cta.call': 'Записаться на звонок',
 
+    // Contact page
+    'contact.title': 'Контакты',
+    'contact.subtitle': 'Готовы обсудить ваш проект? Свяжитесь с нашей командой экспертов для получения бесплатной консультации',
+    'contact.form.title': 'Отправить сообщение',
+    'contact.form.name': 'Имя',
+    'contact.form.email': 'Email',
+    'contact.form.phone': 'Телефон',
+    'contact.form.subject': 'Тема',
+    'contact.form.message': 'Сообщение',
+    'contact.form.preferred_time': 'Предпочтительное время звонка',
+    'contact.form.service': 'Интересующая услуга',
+    'contact.form.submit': 'Отправить сообщение',
+    'contact.form.sending': 'Отправка...',
+    'contact.form.message_placeholder': 'Расскажите подробнее о вашем проекте, задачах и ожиданиях',
+    'contact.form.time_placeholder': 'Выберите время',
+    'contact.info.title': 'Контактная информация',
+    'contact.consultation.title': 'Бесплатная консультация',
+    'contact.consultation.desc': 'Получите персональные рекомендации по развитию вашего IT-проекта от наших экспертов',
+    'contact.consultation.item1': 'Анализ текущей ситуации',
+    'contact.consultation.item2': 'Рекомендации по улучшению',
+    'contact.consultation.item3': 'Оценка бюджета и сроков',
+    'contact.consultation.item4': 'План реализации проекта',
+    'contact.consultation.free': 'Консультация совершенно бесплатна!',
+    
+    // Time slots
+    'time.morning': 'Утром (9:00-12:00)',
+    'time.afternoon': 'Днем (12:00-15:00)',
+    'time.evening': 'Вечером (15:00-18:00)',
+    'time.anytime': 'В любое время',
+    
+    // Appointment modal
+    'appointment.title': 'Записаться на консультацию',
+    'appointment.success.title': 'Заявка отправлена!',
+    'appointment.success.description': 'Мы свяжемся с вами в ближайшее время.',
+    'appointment.error.title': 'Ошибка',
+    'appointment.error.description': 'Не удалось отправить заявку. Попробуйте еще раз.',
+    'appointment.consultation_request': 'Запрос на консультацию',
+    'contact.info.email': 'Email',
+    'contact.info.phone': 'Телефон',
+    'contact.info.address': 'Адрес',
+    'contact.info.hours': 'Режим работы',
+    'contact.success.title': 'Сообщение отправлено!',
+    'contact.success.description': 'Мы свяжемся с вами в ближайшее время.',
+    'contact.error.title': 'Ошибка',
+    'contact.error.description': 'Не удалось отправить сообщение. Попробуйте еще раз.',
+
+    // Form validation
+    'validation.name_min': 'Имя должно содержать минимум 2 символа',
+    'validation.email_invalid': 'Введите корректный email',
+    'validation.subject_min': 'Тема должна содержать минимум 5 символов',
+    'validation.message_min': 'Сообщение должно содержать минимум 10 символов',
+
+    // Services
+    'services.email_marketing': 'Email-маркетинг',
+    'services.chatbot_dev': 'Разработка чат-ботов',
+    'services.performance_opt': 'Оптимизация производительности',
+    'services.it_strategy': 'Консультация по IT-стратегии',
+    'services.other': 'Другое',
+
     // Common
     'common.read_more': 'Подробнее',
     'common.loading': 'Загрузка...',
@@ -132,6 +191,65 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'cta.subtitle': 'Get a free consultation and learn how IT solutions can increase your profits',
     'cta.audit': 'Get Free Audit',
     'cta.call': 'Book a Call',
+
+    // Contact page
+    'contact.title': 'Contact',
+    'contact.subtitle': 'Ready to discuss your project? Contact our team of experts for a free consultation',
+    'contact.form.title': 'Send Message',
+    'contact.form.name': 'Name',
+    'contact.form.email': 'Email',
+    'contact.form.phone': 'Phone',
+    'contact.form.subject': 'Subject',
+    'contact.form.message': 'Message',
+    'contact.form.preferred_time': 'Preferred call time',
+    'contact.form.service': 'Service of interest',
+    'contact.form.submit': 'Send Message',
+    'contact.form.sending': 'Sending...',
+    'contact.form.message_placeholder': 'Tell us more about your project, tasks, and expectations',
+    'contact.form.time_placeholder': 'Select time',
+    'contact.info.title': 'Contact Information',
+    'contact.consultation.title': 'Free Consultation',
+    'contact.consultation.desc': 'Get personalized recommendations for developing your IT project from our experts',
+    'contact.consultation.item1': 'Current situation analysis',
+    'contact.consultation.item2': 'Improvement recommendations',
+    'contact.consultation.item3': 'Budget and timeline estimation',
+    'contact.consultation.item4': 'Project implementation plan',
+    'contact.consultation.free': 'Consultation is completely free!',
+    
+    // Time slots
+    'time.morning': 'Morning (9:00-12:00)',
+    'time.afternoon': 'Afternoon (12:00-15:00)',
+    'time.evening': 'Evening (15:00-18:00)',
+    'time.anytime': 'Anytime',
+    
+    // Appointment modal
+    'appointment.title': 'Book Consultation',
+    'appointment.success.title': 'Request sent!',
+    'appointment.success.description': 'We will contact you shortly.',
+    'appointment.error.title': 'Error',
+    'appointment.error.description': 'Failed to send request. Please try again.',
+    'appointment.consultation_request': 'Consultation request',
+    'contact.info.email': 'Email',
+    'contact.info.phone': 'Phone',
+    'contact.info.address': 'Address',
+    'contact.info.hours': 'Business Hours',
+    'contact.success.title': 'Message sent!',
+    'contact.success.description': 'We will contact you shortly.',
+    'contact.error.title': 'Error',
+    'contact.error.description': 'Failed to send message. Please try again.',
+
+    // Form validation
+    'validation.name_min': 'Name must contain at least 2 characters',
+    'validation.email_invalid': 'Please enter a valid email',
+    'validation.subject_min': 'Subject must contain at least 5 characters',
+    'validation.message_min': 'Message must contain at least 10 characters',
+
+    // Services
+    'services.email_marketing': 'Email Marketing',
+    'services.chatbot_dev': 'Chatbot Development',
+    'services.performance_opt': 'Performance Optimization',
+    'services.it_strategy': 'IT Strategy Consulting',
+    'services.other': 'Other',
 
     // Common
     'common.read_more': 'Read More',

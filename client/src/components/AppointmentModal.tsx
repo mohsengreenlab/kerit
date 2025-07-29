@@ -10,23 +10,27 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { apiRequest } from '@/lib/queryClient';
+import { useLanguage } from '@/hooks/useLanguage';
 
-const appointmentSchema = z.object({
-  name: z.string().min(2, 'Имя должно содержать минимум 2 символа'),
-  email: z.string().email('Введите корректный email'),
+const getAppointmentSchema = (t: (key: string) => string) => z.object({
+  name: z.string().min(2, t('validation.name_min')),
+  email: z.string().email(t('validation.email_invalid')),
   phone: z.string().optional(),
-  preferredTime: z.string().min(1, 'Выберите предпочтительное время'),
+  preferredTime: z.string().min(1, t('contact.form.time_placeholder')),
   message: z.string().optional(),
 });
-
-type AppointmentForm = z.infer<typeof appointmentSchema>;
 
 interface AppointmentModalProps {
   onClose: () => void;
 }
 
 export function AppointmentModal({ onClose }: AppointmentModalProps) {
+  const { t } = useLanguage();
   const { toast } = useToast();
+  
+  const appointmentSchema = getAppointmentSchema(t);
+  type AppointmentForm = z.infer<typeof appointmentSchema>;
+  
   const {
     register,
     handleSubmit,
@@ -41,20 +45,20 @@ export function AppointmentModal({ onClose }: AppointmentModalProps) {
     mutationFn: async (data: AppointmentForm) => {
       await apiRequest('POST', '/api/contact', {
         ...data,
-        subject: 'Запрос на консультацию',
+        subject: t('appointment.consultation_request'),
       });
     },
     onSuccess: () => {
       toast({
-        title: 'Заявка отправлена!',
-        description: 'Мы свяжемся с вами в ближайшее время.',
+        title: t('appointment.success.title'),
+        description: t('appointment.success.description'),
       });
       onClose();
     },
     onError: (error) => {
       toast({
-        title: 'Ошибка',
-        description: 'Не удалось отправить заявку. Попробуйте еще раз.',
+        title: t('appointment.error.title'),
+        description: t('appointment.error.description'),
         variant: 'destructive',
       });
     },
@@ -68,7 +72,7 @@ export function AppointmentModal({ onClose }: AppointmentModalProps) {
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-2xl font-bold text-kerit-dark">Записаться на консультацию</h3>
+          <h3 className="text-2xl font-bold text-kerit-dark">{t('appointment.title')}</h3>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 text-2xl"
@@ -80,12 +84,12 @@ export function AppointmentModal({ onClose }: AppointmentModalProps) {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <Label htmlFor="name" className="text-sm font-medium text-gray-700 mb-2">
-              Имя *
+              {t('contact.form.name')} *
             </Label>
             <Input
               id="name"
               type="text"
-              placeholder="Ваше имя"
+              placeholder={t('contact.form.name')}
               className="w-full"
               {...register('name')}
             />
@@ -96,7 +100,7 @@ export function AppointmentModal({ onClose }: AppointmentModalProps) {
 
           <div>
             <Label htmlFor="email" className="text-sm font-medium text-gray-700 mb-2">
-              Email *
+              {t('contact.form.email')} *
             </Label>
             <Input
               id="email"
@@ -112,7 +116,7 @@ export function AppointmentModal({ onClose }: AppointmentModalProps) {
 
           <div>
             <Label htmlFor="phone" className="text-sm font-medium text-gray-700 mb-2">
-              Телефон
+              {t('contact.form.phone')}
             </Label>
             <Input
               id="phone"
@@ -125,16 +129,16 @@ export function AppointmentModal({ onClose }: AppointmentModalProps) {
 
           <div>
             <Label className="text-sm font-medium text-gray-700 mb-2">
-              Предпочтительное время *
+              {t('contact.form.preferred_time')} *
             </Label>
             <Select onValueChange={(value) => setValue('preferredTime', value)}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Выберите время" />
+                <SelectValue placeholder={t('contact.form.time_placeholder')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="morning">Утром (9:00-12:00)</SelectItem>
-                <SelectItem value="afternoon">Днем (12:00-15:00)</SelectItem>
-                <SelectItem value="evening">Вечером (15:00-18:00)</SelectItem>
+                <SelectItem value="morning">{t('time.morning')}</SelectItem>
+                <SelectItem value="afternoon">{t('time.afternoon')}</SelectItem>
+                <SelectItem value="evening">{t('time.evening')}</SelectItem>
               </SelectContent>
             </Select>
             {errors.preferredTime && (
@@ -144,11 +148,11 @@ export function AppointmentModal({ onClose }: AppointmentModalProps) {
 
           <div>
             <Label htmlFor="message" className="text-sm font-medium text-gray-700 mb-2">
-              Комментарий
+              {t('contact.form.message')}
             </Label>
             <Textarea
               id="message"
-              placeholder="Расскажите о ваших задачах"
+              placeholder={t('contact.form.message_placeholder')}
               rows={3}
               className="w-full"
               {...register('message')}
@@ -160,7 +164,7 @@ export function AppointmentModal({ onClose }: AppointmentModalProps) {
             className="w-full bg-kerit-yellow hover:bg-yellow-400 text-kerit-dark font-semibold py-3"
             disabled={mutation.isPending}
           >
-            {mutation.isPending ? 'Отправка...' : 'Записаться на консультацию'}
+            {mutation.isPending ? t('contact.form.sending') : t('appointment.title')}
           </Button>
         </form>
       </div>

@@ -13,21 +13,22 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import { apiRequest } from '@/lib/queryClient';
 
-const contactSchema = z.object({
-  name: z.string().min(2, 'Имя должно содержать минимум 2 символа'),
-  email: z.string().email('Введите корректный email'),
+const getContactSchema = (t: (key: string) => string) => z.object({
+  name: z.string().min(2, t('validation.name_min')),
+  email: z.string().email(t('validation.email_invalid')),
   phone: z.string().optional(),
-  subject: z.string().min(5, 'Тема должна содержать минимум 5 символов'),
-  message: z.string().min(10, 'Сообщение должно содержать минимум 10 символов'),
+  subject: z.string().min(5, t('validation.subject_min')),
+  message: z.string().min(10, t('validation.message_min')),
   preferredTime: z.string().optional(),
 });
-
-type ContactForm = z.infer<typeof contactSchema>;
 
 export default function Contact() {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const contactSchema = getContactSchema(t);
+  type ContactForm = z.infer<typeof contactSchema>;
 
   const {
     register,
@@ -47,14 +48,14 @@ export default function Contact() {
       setIsSubmitted(true);
       reset();
       toast({
-        title: 'Сообщение отправлено!',
-        description: 'Мы свяжемся с вами в ближайшее время.',
+        title: t('contact.success.title'),
+        description: t('contact.success.description'),
       });
     },
     onError: (error) => {
       toast({
-        title: 'Ошибка',
-        description: 'Не удалось отправить сообщение. Попробуйте еще раз.',
+        title: t('contact.error.title'),
+        description: t('contact.error.description'),
         variant: 'destructive',
       });
     },
@@ -67,43 +68,43 @@ export default function Contact() {
   const contactInfo = [
     {
       icon: 'fas fa-envelope',
-      title: 'Email',
+      title: t('contact.info.email'),
       value: 'hello@kerit.com',
       link: 'mailto:hello@kerit.com'
     },
     {
       icon: 'fas fa-phone',
-      title: 'Телефон',
+      title: t('contact.info.phone'),
       value: '+7 (999) 123-45-67',
       link: 'tel:+79991234567'
     },
     {
       icon: 'fas fa-map-marker-alt',
-      title: 'Адрес',
+      title: t('contact.info.address'),
       value: 'Москва, Россия',
       link: null
     },
     {
       icon: 'fas fa-clock',
-      title: 'Режим работы',
+      title: t('contact.info.hours'),
       value: 'Пн-Пт: 9:00-18:00',
       link: null
     }
   ];
 
   const services = [
-    'Email-маркетинг',
-    'Разработка чат-ботов',
-    'Оптимизация производительности',
-    'Консультация по IT-стратегии',
-    'Другое'
+    t('services.email_marketing'),
+    t('services.chatbot_dev'),
+    t('services.performance_opt'),
+    t('services.it_strategy'),
+    t('services.other')
   ];
 
   return (
     <>
       <SEOHead
-        title="Контакты - Kerit | Свяжитесь с нами"
-        description="Свяжитесь с командой Kerit для обсуждения вашего IT-проекта. Email: hello@kerit.com, телефон: +7 (999) 123-45-67. Бесплатная консультация."
+        title={`${t('contact.title')} - Kerit`}
+        description={t('contact.subtitle')}
         keywords="контакты, связаться, консультация, email, телефон, IT консалтинг"
       />
 
@@ -111,10 +112,10 @@ export default function Contact() {
       <section className="bg-gradient-to-br from-kerit-light to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-6xl font-bold text-kerit-dark mb-6">
-            {t('nav.contact')}
+            {t('contact.title')}
           </h1>
           <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Готовы обсудить ваш проект? Свяжитесь с нашей командой экспертов для получения бесплатной консультации
+            {t('contact.subtitle')}
           </p>
         </div>
       </section>
@@ -125,7 +126,7 @@ export default function Contact() {
             {/* Contact Form */}
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <h2 className="text-3xl font-bold text-kerit-dark mb-6">
-                Напишите нам
+                {t('contact.form.title')}
               </h2>
               
               {isSubmitted && (
@@ -133,8 +134,8 @@ export default function Contact() {
                   <div className="flex items-center">
                     <i className="fas fa-check-circle text-green-500 text-xl mr-3"></i>
                     <div>
-                      <h3 className="font-semibold text-green-800">Сообщение отправлено!</h3>
-                      <p className="text-green-700 text-sm">Мы свяжемся с вами в течение 24 часов.</p>
+                      <h3 className="font-semibold text-green-800">{t('contact.success.title')}</h3>
+                      <p className="text-green-700 text-sm">{t('contact.success.description')}</p>
                     </div>
                   </div>
                 </div>
@@ -144,12 +145,12 @@ export default function Contact() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="name" className="text-sm font-medium text-gray-700 mb-2">
-                      Имя *
+                      {t('contact.form.name')} *
                     </Label>
                     <Input
                       id="name"
                       type="text"
-                      placeholder="Ваше имя"
+                      placeholder={t('contact.form.name')}
                       {...register('name')}
                     />
                     {errors.name && (
@@ -176,7 +177,7 @@ export default function Contact() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="phone" className="text-sm font-medium text-gray-700 mb-2">
-                      Телефон
+                      {t('contact.form.phone')}
                     </Label>
                     <Input
                       id="phone"
@@ -188,11 +189,11 @@ export default function Contact() {
 
                   <div>
                     <Label className="text-sm font-medium text-gray-700 mb-2">
-                      Интересующая услуга
+                      {t('contact.form.service')}
                     </Label>
                     <Select onValueChange={(value) => setValue('subject', value)}>
                       <SelectTrigger>
-                        <SelectValue placeholder="Выберите услугу" />
+                        <SelectValue placeholder={t('contact.form.service')} />
                       </SelectTrigger>
                       <SelectContent>
                         {services.map((service, index) => (
@@ -205,12 +206,12 @@ export default function Contact() {
 
                 <div>
                   <Label htmlFor="subject" className="text-sm font-medium text-gray-700 mb-2">
-                    Тема обращения *
+                    {t('contact.form.subject')} *
                   </Label>
                   <Input
                     id="subject"
                     type="text"
-                    placeholder="Кратко опишите вашу задачу"
+                    placeholder={t('contact.form.subject')}
                     {...register('subject')}
                   />
                   {errors.subject && (
@@ -220,11 +221,11 @@ export default function Contact() {
 
                 <div>
                   <Label htmlFor="message" className="text-sm font-medium text-gray-700 mb-2">
-                    Сообщение *
+                    {t('contact.form.message')} *
                   </Label>
                   <Textarea
                     id="message"
-                    placeholder="Расскажите подробнее о вашем проекте, задачах и ожиданиях"
+                    placeholder={t('contact.form.message_placeholder')}
                     rows={5}
                     {...register('message')}
                   />
@@ -235,17 +236,17 @@ export default function Contact() {
 
                 <div>
                   <Label className="text-sm font-medium text-gray-700 mb-2">
-                    Предпочтительное время для связи
+                    {t('contact.form.preferred_time')}
                   </Label>
                   <Select onValueChange={(value) => setValue('preferredTime', value)}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Выберите время" />
+                      <SelectValue placeholder={t('contact.form.time_placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="morning">Утром (9:00-12:00)</SelectItem>
-                      <SelectItem value="afternoon">Днем (12:00-15:00)</SelectItem>
-                      <SelectItem value="evening">Вечером (15:00-18:00)</SelectItem>
-                      <SelectItem value="anytime">В любое время</SelectItem>
+                      <SelectItem value="morning">{t('time.morning')}</SelectItem>
+                      <SelectItem value="afternoon">{t('time.afternoon')}</SelectItem>
+                      <SelectItem value="evening">{t('time.evening')}</SelectItem>
+                      <SelectItem value="anytime">{t('time.anytime')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -258,12 +259,12 @@ export default function Contact() {
                   {mutation.isPending ? (
                     <>
                       <i className="fas fa-spinner fa-spin mr-2"></i>
-                      Отправка...
+                      {t('contact.form.sending')}
                     </>
                   ) : (
                     <>
                       <i className="fas fa-paper-plane mr-2"></i>
-                      Отправить сообщение
+                      {t('contact.form.submit')}
                     </>
                   )}
                 </Button>
@@ -274,7 +275,7 @@ export default function Contact() {
             <div className="space-y-8">
               <div className="bg-white rounded-2xl shadow-lg p-8">
                 <h2 className="text-3xl font-bold text-kerit-dark mb-6">
-                  Контактная информация
+                  {t('contact.info.title')}
                 </h2>
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
@@ -298,30 +299,30 @@ export default function Contact() {
               </div>
 
               <div className="bg-kerit-dark rounded-2xl shadow-lg p-8 text-white">
-                <h3 className="text-2xl font-bold mb-4">Бесплатная консультация</h3>
+                <h3 className="text-2xl font-bold mb-4">{t('contact.consultation.title')}</h3>
                 <p className="text-kerit-light mb-6">
-                  Получите персональные рекомендации по развитию вашего IT-проекта от наших экспертов
+                  {t('contact.consultation.desc')}
                 </p>
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center">
                     <i className="fas fa-check text-kerit-yellow mr-3"></i>
-                    Анализ текущей ситуации
+                    {t('contact.consultation.item1')}
                   </li>
                   <li className="flex items-center">
                     <i className="fas fa-check text-kerit-yellow mr-3"></i>
-                    Рекомендации по улучшению
+                    {t('contact.consultation.item2')}
                   </li>
                   <li className="flex items-center">
                     <i className="fas fa-check text-kerit-yellow mr-3"></i>
-                    Оценка бюджета и сроков
+                    {t('contact.consultation.item3')}
                   </li>
                   <li className="flex items-center">
                     <i className="fas fa-check text-kerit-yellow mr-3"></i>
-                    План реализации проекта
+                    {t('contact.consultation.item4')}
                   </li>
                 </ul>
                 <div className="bg-kerit-yellow text-kerit-dark rounded-lg p-4 text-center font-semibold">
-                  Консультация совершенно бесплатна!
+                  {t('contact.consultation.free')}
                 </div>
               </div>
 
