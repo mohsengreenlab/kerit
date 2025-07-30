@@ -39,11 +39,11 @@ app.use((req, res, next) => {
 
 (async () => {
   // Seed the database with initial data
-  /* try {
+  try {
     await seedDatabase();
   } catch (error) {
     console.error("Failed to seed database:", error);
-  } */
+  }
 
   const server = await registerRoutes(app);
 
