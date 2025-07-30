@@ -32,7 +32,7 @@ export function getSession() {
     tableName: "sessions",
   });
   return session({
-    secret: process.env.SESSION_SECRET!,
+    secret: process.env.SESSION_SECRET || process.env.REPLIT_SESSION || 'fallback-secret-key-for-development-' + Date.now(),
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
