@@ -8,6 +8,8 @@ This is a full-stack IT consultancy website for Kerit, built with Express (Node.
 
 ```
 Preferred communication style: Simple, everyday language.
+No CMS needed - website should load with all content from database seeding on deployment.
+Admin panel (/admin24) only for receiving messages, not content management.
 ```
 
 ## System Architecture
@@ -41,12 +43,13 @@ Preferred communication style: Simple, everyday language.
 - **Routes**: `/admin24` for admin access, `/dashboard` for customer portal
 - **Session Storage**: PostgreSQL-backed sessions with configurable TTL
 
-### Content Management System
-- **Pages**: Dynamic page content with SEO metadata
-- **Blog**: Full blog system with categories, tags, and publishing workflow
+### Content System (No CMS)
+- **Static Content**: All content loaded from database seeding on startup
+- **Blog**: Pre-populated blog posts with categories and tags
 - **Case Studies**: Portfolio showcase with service filtering
 - **Services**: Service descriptions with pricing packages
 - **Multilingual**: Translation system supporting Russian/English
+- **Admin Panel**: Only for receiving contact messages and booking consultations
 
 ### Analytics and Tracking
 - **User Tracking**: Visitor identification and return visitor detection
@@ -114,7 +117,8 @@ Preferred communication style: Simple, everyday language.
 ### Development Environment
 - **Server**: Development server runs with `tsx` for hot reloading
 - **Client**: Vite dev server with HMR and React Fast Refresh
-- **Database**: Drizzle Kit for schema synchronization
+- **Database**: Drizzle Kit for schema synchronization with automatic seeding
+- **Content Loading**: Database seeding runs on startup to populate all content
 - **Environment**: Replit-optimized with cartographer plugin
 
 ### Production Build
