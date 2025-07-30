@@ -10,6 +10,7 @@ import { Layout } from "@/components/Layout";
 import Landing from "@/pages/Landing";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
+import WhoWeAre from "@/pages/WhoWeAre";
 import Services from "@/pages/Services";
 import EmailMarketing from "@/pages/EmailMarketing";
 import CustomerChatbot from "@/pages/CustomerChatbot";
@@ -41,6 +42,7 @@ function Router() {
         {/* Public routes */}
         <Route path="/" component={Landing} />
         <Route path="/about" component={About} />
+        <Route path="/who-we-are" component={WhoWeAre} />
         <Route path="/services" component={Services} />
         <Route path="/services/email-marketing" component={EmailMarketing} />
         <Route path="/services/customer-chatbot" component={CustomerChatbot} />

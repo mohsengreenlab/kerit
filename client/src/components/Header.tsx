@@ -16,6 +16,7 @@ export function Header() {
   const navItems = [
     { path: '/', label: t('nav.home') },
     { path: '/about', label: t('nav.about') },
+    { path: '/who-we-are', label: t('who_we_are.title') },
     { path: '/services', label: t('nav.services') },
     { path: '/case-studies', label: t('nav.cases') },
     { path: '/blog', label: t('nav.blog') },
