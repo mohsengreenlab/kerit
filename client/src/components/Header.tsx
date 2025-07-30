@@ -29,24 +29,24 @@ export function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/">
-              <a className="flex items-center">
-                <img src={logoPath} alt="Kerit Logo" className="h-8 w-auto" />
-              </a>
+            <Link href="/" className="flex items-center">
+              <img src={logoPath} alt="Kerit Logo" className="h-8 w-auto" />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             {navItems.map((item) => (
-              <Link key={item.path} href={item.path}>
-                <a className={`transition-colors font-medium ${
+              <Link 
+                key={item.path} 
+                href={item.path}
+                className={`transition-colors font-medium ${
                   isActive(item.path)
                     ? 'text-kerit-sage border-b-2 border-kerit-yellow'
                     : 'text-kerit-dark hover:text-kerit-sage'
-                }`}>
-                  {item.label}
-                </a>
+                }`}
+              >
+                {item.label}
               </Link>
             ))}
           </nav>
@@ -69,20 +69,19 @@ export function Header() {
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 space-y-2">
             {navItems.map((item) => (
-              <Link key={item.path} href={item.path}>
-                <a 
-                  className={`block py-2 px-3 rounded-md transition-colors ${
-                    isActive(item.path)
-                      ? 'bg-kerit-light text-kerit-dark'
-                      : 'text-kerit-dark hover:bg-gray-50'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
+              <Link 
+                key={item.path} 
+                href={item.path}
+                className={`block py-2 px-3 rounded-md transition-colors ${
+                  isActive(item.path)
+                    ? 'bg-kerit-light text-kerit-dark'
+                    : 'text-kerit-dark hover:bg-gray-50'
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.label}
               </Link>
             ))}
-
           </div>
         )}
       </div>
