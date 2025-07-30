@@ -10,7 +10,18 @@ This is a full-stack IT consultancy website for Kerit, built with Express (Node.
 Preferred communication style: Simple, everyday language.
 No CMS needed - website should load with all content from database seeding on deployment.
 Admin panel (/admin24) only for receiving messages, not content management.
+Admin password for /admin24: admin123 (default fallback when ADMIN_PASSWORD not set)
+Development admin bypass available at: /api/dev-admin-login
 ```
+
+## Recent Changes (January 30, 2025)
+
+✓ Fixed nested anchor tag warnings in Header and Footer components
+✓ Corrected Wouter Link component implementation to avoid DOM nesting warnings
+✓ Fixed similar issues in Landing page components
+✓ Resolved port conflict issues and application startup problems
+✓ All React components now properly use Link className instead of wrapping anchor tags
+✓ Application successfully running on port 5000 with clean console output
 
 ## System Architecture
 

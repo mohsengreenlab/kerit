@@ -158,10 +158,8 @@ export default function Landing() {
                     </li>
                   ))}
                 </ul>
-                <Link href={service.link}>
-                  <a className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
-                    {t('common.read_more')} <i className="fas fa-arrow-right ml-1"></i>
-                  </a>
+                <Link href={service.link} className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
+                  {t('common.read_more')} <i className="fas fa-arrow-right ml-1"></i>
                 </Link>
               </div>
             ))}
@@ -203,10 +201,8 @@ export default function Landing() {
                   <p className="text-gray-600 mb-4">
                     {caseStudy.description}
                   </p>
-                  <Link href="/case-studies">
-                    <a className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
-                      {t('landing.read_case')} <i className="fas fa-arrow-right ml-1"></i>
-                    </a>
+                  <Link href="/case-studies" className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
+                    {t('landing.read_case')} <i className="fas fa-arrow-right ml-1"></i>
                   </Link>
                 </div>
               </div>
@@ -214,10 +210,8 @@ export default function Landing() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/case-studies">
-              <a className="bg-kerit-sage hover:bg-opacity-90 text-white font-semibold px-8 py-4 rounded-lg transition-colors">
-                {t('cases.view_all')}
-              </a>
+            <Link href="/case-studies" className="bg-kerit-sage hover:bg-opacity-90 text-white font-semibold px-8 py-4 rounded-lg transition-colors">
+              {t('cases.view_all')}
             </Link>
           </div>
         </div>

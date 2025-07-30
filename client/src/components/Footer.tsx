@@ -33,23 +33,23 @@ export function Footer() {
             <h3 className="font-semibold text-lg mb-4">{t('nav.services')}</h3>
             <ul className="space-y-2 text-gray-300">
               <li>
-                <Link href="/services/email-marketing">
-                  <a className="hover:text-kerit-yellow transition-colors">{t('services.email.title')}</a>
+                <Link href="/services/email-marketing" className="hover:text-kerit-yellow transition-colors">
+                  {t('services.email.title')}
                 </Link>
               </li>
               <li>
-                <Link href="/services/customer-chatbot">
-                  <a className="hover:text-kerit-yellow transition-colors">{t('services.chatbot.title')}</a>
+                <Link href="/services/customer-chatbot" className="hover:text-kerit-yellow transition-colors">
+                  {t('services.chatbot.title')}
                 </Link>
               </li>
               <li>
-                <Link href="/services/performance-improvement">
-                  <a className="hover:text-kerit-yellow transition-colors">{t('services.performance.title')}</a>
+                <Link href="/services/performance-improvement" className="hover:text-kerit-yellow transition-colors">
+                  {t('services.performance.title')}
                 </Link>
               </li>
               <li>
-                <Link href="/pricing">
-                  <a className="hover:text-kerit-yellow transition-colors">{t('nav.pricing')}</a>
+                <Link href="/pricing" className="hover:text-kerit-yellow transition-colors">
+                  {t('nav.pricing')}
                 </Link>
               </li>
             </ul>
@@ -60,23 +60,23 @@ export function Footer() {
             <h3 className="font-semibold text-lg mb-4">{t('footer.company_section')}</h3>
             <ul className="space-y-2 text-gray-300">
               <li>
-                <Link href="/about">
-                  <a className="hover:text-kerit-yellow transition-colors">{t('nav.about')}</a>
+                <Link href="/about" className="hover:text-kerit-yellow transition-colors">
+                  {t('nav.about')}
                 </Link>
               </li>
               <li>
-                <Link href="/case-studies">
-                  <a className="hover:text-kerit-yellow transition-colors">{t('nav.cases')}</a>
+                <Link href="/case-studies" className="hover:text-kerit-yellow transition-colors">
+                  {t('nav.cases')}
                 </Link>
               </li>
               <li>
-                <Link href="/blog">
-                  <a className="hover:text-kerit-yellow transition-colors">{t('nav.blog')}</a>
+                <Link href="/blog" className="hover:text-kerit-yellow transition-colors">
+                  {t('nav.blog')}
                 </Link>
               </li>
               <li>
-                <Link href="/contact">
-                  <a className="hover:text-kerit-yellow transition-colors">{t('nav.contact')}</a>
+                <Link href="/contact" className="hover:text-kerit-yellow transition-colors">
+                  {t('nav.contact')}
                 </Link>
               </li>
             </ul>
@@ -88,11 +88,11 @@ export function Footer() {
             © 2024 Kerit. {t('footer.rights_reserved')}
           </div>
           <div className="flex space-x-6 text-sm text-gray-400">
-            <Link href="/privacy">
-              <a className="hover:text-kerit-yellow transition-colors">{t('footer.privacy_policy')}</a>
+            <Link href="/privacy" className="hover:text-kerit-yellow transition-colors">
+              {t('footer.privacy_policy')}
             </Link>
-            <Link href="/terms">
-              <a className="hover:text-kerit-yellow transition-colors">{t('footer.terms_of_use')}</a>
+            <Link href="/terms" className="hover:text-kerit-yellow transition-colors">
+              {t('footer.terms_of_use')}
             </Link>
           </div>
         </div>
