@@ -1,15 +1,20 @@
 import { storage } from "./storage";
 
 export async function seedDatabase() {
+  console.log("Starting database seeding...");
+  
   try {
-    console.log("Starting database seeding...");
-
     // First check if data already exists to avoid duplicates
     const existingTranslations = await storage.getTranslationsByLocale('en');
     if (existingTranslations.length > 10) {
       console.log("Database already seeded, skipping...");
       return;
     }
+  } catch (error) {
+    console.log("Unable to check existing translations, proceeding with seeding...");
+  }
+
+  try {
 
     // Create admin user first for blog posts
     const adminUser = await storage.upsertUser({

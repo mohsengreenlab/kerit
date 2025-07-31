@@ -3,7 +3,9 @@ import { drizzle } from 'drizzle-orm/neon-serverless';
 import ws from "ws";
 import * as schema from "@shared/schema";
 
+// Configure Neon for serverless environment
 neonConfig.webSocketConstructor = ws;
+neonConfig.pipelineConnect = false; // Disable pipelining for better reliability
 
 if (!process.env.DATABASE_URL) {
   throw new Error(

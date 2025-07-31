@@ -20,7 +20,7 @@ export function Layout({ children }: LayoutProps) {
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
 
   // Fetch translations from API
-  const { data: apiTranslations = {} } = useQuery({
+  const { data: apiTranslations = {} } = useQuery<Record<string, string>>({
     queryKey: ['/api/translations', locale],
     enabled: true,
     staleTime: 5 * 60 * 1000, // 5 minutes
@@ -37,14 +37,14 @@ export function Layout({ children }: LayoutProps) {
   };
 
   const t = (key: string, defaultValue?: string) => {
-    return getTranslation(key, locale, apiTranslations) || defaultValue || key;
+    return getTranslation(key, locale, apiTranslations as Record<string, string>) || defaultValue || key;
   };
 
   const languageContextValue = {
     locale,
     setLocale: handleSetLocale,
     t,
-    translations: apiTranslations,
+    translations: apiTranslations as Record<string, string>,
   };
 
   return (

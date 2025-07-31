@@ -34,8 +34,8 @@ export function CookieNotice() {
         <div className="mb-4 sm:mb-0">
           <p className="text-sm">
             {t('cookies.message')}{' '}
-            <Link href="/privacy">
-              <a className="text-kerit-yellow hover:underline">{t('cookies.learn_more')}</a>
+            <Link href="/privacy" className="text-kerit-yellow hover:underline">
+              {t('cookies.learn_more')}
             </Link>
           </p>
         </div>
