@@ -16,14 +16,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
   await setupAuth(app);
 
-  // Admin login endpoint with password protection
+  // Admin login endpoint with username/password protection
   app.post('/api/admin-login', (req, res) => {
-    const { password } = req.body;
+    const { username, password, captcha } = req.body;
     
-    // Check admin password (use environment variable in production)
-    const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+    // Check admin credentials
+    const adminUsername = 'admin2024';
+    const adminPassword = 'dweftr234#@$@#FERFddddd';
     
-    if (password === adminPassword) {
+    // Simple captcha check (in production, use proper captcha service)
+    const expectedCaptcha = req.session?.captcha;
+    
+    if (username === adminUsername && password === adminPassword && captcha === expectedCaptcha) {
       // Create admin session
       (req as any).session.user = {
         id: 'admin-123',
@@ -34,8 +38,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
       };
       res.json({ success: true });
     } else {
-      res.status(401).json({ success: false, message: 'Invalid password' });
+      res.status(401).json({ success: false, message: 'Invalid credentials or captcha' });
     }
+  });
+
+  // Generate captcha endpoint
+  app.get('/api/admin-captcha', (req, res) => {
+    // Generate simple math captcha
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    const operation = Math.random() > 0.5 ? '+' : '-';
+    const answer = operation === '+' ? num1 + num2 : num1 - num2;
+    
+    (req as any).session.captcha = answer.toString();
+    
+    res.json({ 
+      question: `${num1} ${operation} ${num2} = ?`,
+      sessionId: req.sessionID 
+    });
   });
 
   // Development admin login endpoint - only for direct /admin24 access

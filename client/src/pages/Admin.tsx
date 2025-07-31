@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { isUnauthorizedError } from '@/lib/authUtils';
 import { apiRequest } from '@/lib/queryClient';
 
@@ -41,21 +43,129 @@ export default function Admin() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState('messages');
+  
+  // Login form state
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [captcha, setCaptcha] = useState('');
+  const [captchaQuestion, setCaptchaQuestion] = useState('');
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
-  // Redirect to home if not authenticated as admin
+  // Generate captcha on component mount
   useEffect(() => {
-    if (!authLoading && (!isAuthenticated || user?.role !== 'admin')) {
+    generateCaptcha();
+  }, []);
+
+  const generateCaptcha = async () => {
+    try {
+      const response = await fetch('/api/admin-captcha');
+      const data = await response.json();
+      setCaptchaQuestion(data.question);
+    } catch (error) {
+      console.error('Failed to generate captcha:', error);
+    }
+  };
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoggingIn(true);
+
+    try {
+      await apiRequest('POST', '/api/admin-login', { username, password, captcha });
+      
       toast({
-        title: "Access Denied",
-        description: "Admin access required. Redirecting to admin login...",
+        title: "Login Successful",
+        description: "Welcome to admin dashboard",
+      });
+      
+      // Refresh the page to update auth state
+      window.location.reload();
+    } catch (error) {
+      toast({
+        title: "Login Failed",
+        description: "Invalid credentials or captcha",
         variant: "destructive",
       });
-      setTimeout(() => {
-        window.location.href = "/admin-login";
-      }, 1000);
-      return;
+      generateCaptcha(); // Generate new captcha on failed attempt
+      setCaptcha('');
+    } finally {
+      setIsLoggingIn(false);
     }
-  }, [isAuthenticated, authLoading, user, toast]);
+  };
+
+  // Show login form if not authenticated as admin
+  if (!authLoading && (!isAuthenticated || user?.role !== 'admin')) {
+    return (
+      <>
+        <SEOHead title="Admin Login - Kerit" />
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+          <Card className="w-full max-w-md">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl font-bold text-kerit-dark">Admin Access</CardTitle>
+              <p className="text-gray-600">Please login to access the admin panel</p>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleLogin} className="space-y-4">
+                <div>
+                  <Label htmlFor="username">Username</Label>
+                  <Input
+                    id="username"
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Enter username"
+                    required
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="password">Password</Label>
+                  <Input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter password"
+                    required
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="captcha">Security Check: {captchaQuestion}</Label>
+                  <Input
+                    id="captcha"
+                    type="text"
+                    value={captcha}
+                    onChange={(e) => setCaptcha(e.target.value)}
+                    placeholder="Enter the answer"
+                    required
+                    className="mt-1"
+                  />
+                </div>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-kerit-sage hover:bg-kerit-dark"
+                  disabled={isLoggingIn}
+                >
+                  {isLoggingIn ? (
+                    <>
+                      <i className="fas fa-spinner fa-spin mr-2"></i>
+                      Logging in...
+                    </>
+                  ) : (
+                    <>
+                      <i className="fas fa-sign-in-alt mr-2"></i>
+                      Login to Admin Panel
+                    </>
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </>
+    );
+  }
 
   const { data: messages, isLoading: messagesLoading } = useQuery<ContactMessage[]>({
     queryKey: ['/api/admin/contact-messages'],
