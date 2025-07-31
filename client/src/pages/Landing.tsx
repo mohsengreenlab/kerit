@@ -158,9 +158,6 @@ export default function Landing() {
                     </li>
                   ))}
                 </ul>
-                <Link href={service.link} className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
-                  {t('common.read_more')} <i className="fas fa-arrow-right ml-1"></i>
-                </Link>
               </div>
             ))}
           </div>
