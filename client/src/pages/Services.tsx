@@ -129,11 +129,7 @@ export default function Services() {
                       ))}
                     </ul>
                   )}
-                  <Link href={`/services/${service.slug}`}>
-                    <a className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
-                      {t('common.read_more')} <i className="fas fa-arrow-right ml-1"></i>
-                    </a>
-                  </Link>
+
                 </div>
               ))}
             </div>

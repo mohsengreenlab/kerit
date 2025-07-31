@@ -12,9 +12,6 @@ import Home from "@/pages/Home";
 import About from "@/pages/About";
 import WhoWeAre from "@/pages/WhoWeAre";
 import Services from "@/pages/Services";
-import EmailMarketing from "@/pages/EmailMarketing";
-import CustomerChatbot from "@/pages/CustomerChatbot";
-import PerformanceImprovement from "@/pages/PerformanceImprovement";
 import CaseStudies from "@/pages/CaseStudies";
 import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
@@ -44,9 +41,6 @@ function Router() {
         <Route path="/about" component={About} />
         <Route path="/who-we-are" component={WhoWeAre} />
         <Route path="/services" component={Services} />
-        <Route path="/services/email-marketing" component={EmailMarketing} />
-        <Route path="/services/customer-chatbot" component={CustomerChatbot} />
-        <Route path="/services/performance-improvement" component={PerformanceImprovement} />
         <Route path="/case-studies" component={CaseStudies} />
         <Route path="/blog" component={Blog} />
         <Route path="/contact" component={Contact} />
