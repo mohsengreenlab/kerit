@@ -196,10 +196,8 @@ export default function CaseStudies() {
                       </div>
                     )}
                     <div className="flex justify-between items-center">
-                      <Link href={`/case-studies/${caseStudy.slug}`}>
-                        <a className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
-                          {t('landing.read_case')} <i className="fas fa-arrow-right ml-1"></i>
-                        </a>
+                      <Link href={`/case-studies/${caseStudy.slug}`} className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
+                        {t('landing.read_case')} <i className="fas fa-arrow-right ml-1"></i>
                       </Link>
                       <div className="text-sm text-gray-400">
                         {new Date(caseStudy.publishedAt).toLocaleDateString('ru-RU')}
