@@ -1,0 +1,83 @@
+kerit@FreePaper:~/projects/kerit-app$ netstat -tulpn | grep :3001
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+tcp        0      0 0.0.0.0:3001            0.0.0.0:*               LISTEN      -                   
+kerit@FreePaper:~/projects/kerit-app$ cat ecosystem.config.json
+{
+  "apps": [{
+    "name": "kerit-app",
+    "script": "dist/index.js",
+    "cwd": "/home/kerit/projects/kerit-app",
+    "env": {
+      "NODE_ENV": "production",
+      "PORT": "3001",
+      "DATABASE_URL": "postgresql://kerit_user:ferfgrtgSGSERGERG423423FEFERFERF@localhost:5432/kerit_db",
+      "SESSION_SECRET": "nrsjvlsjdvfgTREHBRSGTWRGTefhewurbcfewrWCERCGWERCGwegethytjbuikUIKYUINKUYxfwefwexf",
+      "REPL_ID": "kerit-vps-production",
+      "REPLIT_DOMAINS": "kerit.com.ru",
+      "ISSUER_URL": "https://replit.com/oidc"
+    },
+    "instances": 2,
+    "exec_mode": "cluster",
+    "watch": false,
+    "max_memory_restart": "1G",
+    "error_file": "/home/kerit/logs/kerit-error.log",
+    "out_file": "/home/kerit/logs/kerit-out.log",
+    "log_file": "/home/kerit/logs/kerit-combined.log",
+    "time": true,
+    "restart_delay": 1000
+  }]
+}
+kerit@FreePaper:~/projects/kerit-app$ pm2 start ecosystem.config.json
+[PM2][WARN] Applications kerit-app not running, starting...
+[PM2] App [kerit-app] launched (2 instances)
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 0  │ kerit-app          │ cluster  │ 0    │ online    │ 0%       │ 47.2mb   │
+│ 1  │ kerit-app          │ cluster  │ 0    │ online    │ 0%       │ 40.0mb   │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+kerit@FreePaper:~/projects/kerit-app$ pm2 status
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 0  │ kerit-app          │ cluster  │ 1    │ online    │ 0%       │ 87.6mb   │
+│ 1  │ kerit-app          │ cluster  │ 1    │ online    │ 100%     │ 86.8mb   │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+kerit@FreePaper:~/projects/kerit-app$ curl -X POST http://localhost:3001/api/booking-consultation \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name":"Final Test",
+    "email":"finaltest@test.com",
+    "phone":"1234567890",
+    "company":"Test Company",
+    "service":"email-marketing",
+    "preferredDate":"2025-02-15T10:00:00Z",
+    "message":"Testing after complete fix"
+  }' -v
+Note: Unnecessary use of -X or --request, POST is already inferred.
+* Host localhost:3001 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:3001...
+* connect to ::1 port 3001 from ::1 port 57006 failed: Connection refused
+*   Trying 127.0.0.1:3001...
+* Connected to localhost (127.0.0.1) port 3001
+> POST /api/booking-consultation HTTP/1.1
+> Host: localhost:3001
+> User-Agent: curl/8.5.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 240
+> 
+< HTTP/1.1 400 Bad Request
+< X-Powered-By: Express
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 34
+< ETag: W/"22-Gk2RjI70r6EqG5Z19wp4A5W2Qds"
+< Date: Fri, 01 Aug 2025 09:35:39 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< 
+* Connection #0 to host localhost left intact
+{"message":"Invalid booking data"}kerit@FreePaper:~/projects/kerit-app$ 
