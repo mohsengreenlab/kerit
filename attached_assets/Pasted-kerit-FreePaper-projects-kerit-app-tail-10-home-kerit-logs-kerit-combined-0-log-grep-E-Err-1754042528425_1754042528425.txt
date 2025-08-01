@@ -1,0 +1,53 @@
+kerit@FreePaper:~/projects/kerit-app$ tail -10 /home/kerit/logs/kerit-combined-0.log | grep -E "(Error|validation|Invalid|POST)"
+2025-08-01T09:50:15: 9:50:15 AM [express] POST /api/booking-consultation 400 in 7ms :: {"message":"Invalid booking data"}
+kerit@FreePaper:~/projects/kerit-app$ curl -X POST http://localhost:3001/api/booking-consultation \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name":"Test User",
+    "email":"test@example.com",
+    "phone":"",
+    "company":"",
+    "service":"email-marketing",
+    "preferredDate":null,
+    "message":"Test booking"
+  }' -v
+Note: Unnecessary use of -X or --request, POST is already inferred.
+* Host localhost:3001 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:3001...
+* connect to ::1 port 3001 from ::1 port 39268 failed: Connection refused
+*   Trying 127.0.0.1:3001...
+* Connected to localhost (127.0.0.1) port 3001
+> POST /api/booking-consultation HTTP/1.1
+> Host: localhost:3001
+> User-Agent: curl/8.5.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 183
+> 
+< HTTP/1.1 400 Bad Request
+< X-Powered-By: Express
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 34
+< ETag: W/"22-Gk2RjI70r6EqG5Z19wp4A5W2Qds"
+< Date: Fri, 01 Aug 2025 09:51:20 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< 
+* Connection #0 to host localhost left intact
+{"message":"Invalid booking data"}kericurl -s https://kerit.com.ru/ | head -20s https://kerit.com.ru/ | head -20
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <script type="module" crossorigin src="/assets/index-Df1Afy8l.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bt8X7f4j.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+  </body>
+</html>kerit@FreePaper:~/projects/kerit-app$ 
