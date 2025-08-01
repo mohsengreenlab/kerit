@@ -14,17 +14,16 @@ Admin password for /admin24: admin123 (default fallback when ADMIN_PASSWORD not 
 Development admin bypass available at: /api/dev-admin-login
 ```
 
-## Recent Changes (January 31, 2025)
+## Recent Changes (August 1, 2025)
 
-✓ Implemented direct admin login at /admin24 with username/password and captcha
-✓ Updated admin credentials: username=admin2024, password=dweftr234#@$@#FERFddddd
-✓ Added math captcha security check for admin login
-✓ Removed all "read more" links from Services and Landing pages
-✓ Fixed all nested anchor tag DOM warnings in components
-✓ Deleted individual service detail pages (EmailMarketing, CustomerChatbot, PerformanceImprovement)
-✓ Improved database connection handling with better error management
-✓ Resolved TypeScript type errors and port conflict issues
-✓ Application running cleanly on port 5000 without console warnings
+✓ **CRITICAL FIX**: Resolved booking consultation validation errors on production VPS
+✓ Updated `insertBookingConsultationSchema` to properly handle optional nullable fields
+✓ Fixed "Invalid booking data" 400 errors that prevented website visitors from booking appointments  
+✓ Booking API now returns 200 OK with successful consultation bookings
+✓ Successfully migrated from Replit Agent to standard Replit environment
+✓ Deployed complete database schema and application to production VPS
+✓ Fixed VPS deployment script to include dev dependencies for building
+✓ Application running successfully on both development (port 5000) and production (port 3001)
 
 ## System Architecture
 
