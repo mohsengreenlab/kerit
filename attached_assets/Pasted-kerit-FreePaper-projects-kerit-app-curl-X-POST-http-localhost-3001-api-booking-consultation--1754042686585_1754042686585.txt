@@ -1,0 +1,73 @@
+kerit@FreePaper:~/projects/kerit-app$ curl -X POST http://localhost:3001/api/booking-consultation \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name":"Test User",
+    "email":"test@example.com",
+    "service":"email-marketing"
+  }' -v
+Note: Unnecessary use of -X or --request, POST is already inferred.
+* Host localhost:3001 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:3001...
+* connect to ::1 port 3001 from ::1 port 44428 failed: Connection refused
+*   Trying 127.0.0.1:3001...
+* Connected to localhost (127.0.0.1) port 3001
+> POST /api/booking-consultation HTTP/1.1
+> Host: localhost:3001
+> User-Agent: curl/8.5.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 93
+> 
+< HTTP/1.1 400 Bad Request
+< X-Powered-By: Express
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 34
+< ETag: W/"22-Gk2RjI70r6EqG5Z19wp4A5W2Qds"
+< Date: Fri, 01 Aug 2025 09:53:48 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< 
+* Connection #0 to host localhost left intact
+{"message":"Invalid booking data"}kerit@FreePaper:~/projects/kerit-app$ curl -X POST http://localhost:3001/api/booking-consultation \                                    curl -X POST http://localhost:3001/api/booking-consultation \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name":"Test User",
+    "email":"test@example.com",
+    "phone":"",
+    "company":"",
+    "service":"email-marketing",
+    "message":"Test booking"
+  }' -v
+Note: Unnecessary use of -X or --request, POST is already inferred.
+* Host localhost:3001 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:3001...
+* connect to ::1 port 3001 from ::1 port 60616 failed: Connection refused
+*   Trying 127.0.0.1:3001...
+* Connected to localhost (127.0.0.1) port 3001
+> POST /api/booking-consultation HTTP/1.1
+> Host: localhost:3001
+> User-Agent: curl/8.5.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 157
+> 
+< HTTP/1.1 400 Bad Request
+< X-Powered-By: Express
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 34
+< ETag: W/"22-Gk2RjI70r6EqG5Z19wp4A5W2Qds"
+< Date: Fri, 01 Aug 2025 09:53:55 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< 
+* Connection #0 to host localhost left intact
+{"message":"Invalid booking data"}keritail -5 /home/kerit/logs/kerit-combined-0.logme/kerit/logs/kerit-combined-0.log
+    }
+  },
+  [Symbol(kMessage)]: "Hostname/IP does not match certificate's altnames: Host: localhost. is not in the cert's altnames: DNS:daneshmehr.org"
+}
+2025-08-01T09:53:48: 9:53:48 AM [express] POST /api/booking-consultation 400 in 17ms :: {"message":"Invalid booking data"}
