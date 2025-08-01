@@ -1,0 +1,67 @@
+kerit@FreePaper:/root$ /home/kerit/deploy.sh
+Fri Aug  1 10:16:12 AM UTC 2025: Starting deployment...
+Fri Aug  1 10:16:12 AM UTC 2025: Creating backup...
+Fri Aug  1 10:16:21 AM UTC 2025: Pulling latest changes from GitHub...
+remote: Enumerating objects: 58, done.
+remote: Counting objects: 100% (58/58), done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 51 (delta 40), reused 51 (delta 40), pack-reused 0 (from 0)
+Unpacking objects: 100% (51/51), 57.63 KiB | 526.00 KiB/s, done.
+From github.com:mohsengreenlab/kerit
+ * branch            main       -> FETCH_HEAD
+   75af745..bac5ee0  main       -> origin/main
+Updating 75af745..bac5ee0
+Fast-forward
+ .replit                                            |   3 +-
+ .../Kerit Vps Documentation_1754039936108.pdf      | Bin 0 -> 44441 bytes
+ ...09-38-30-Contin-1754041786933_1754041786933.txt |  67 ++++++++
+ ...aper-projects-k-1754042467022_1754042467023.txt | 169 +++++++++++++++++++++
+ ...g-consultation--1754042686585_1754042686585.txt |  73 +++++++++
+ ...g-consultation--1754042769364_1754042769366.txt |  88 +++++++++++
+ ...could-be-identi-1754041618934_1754041618935.txt |  83 ++++++++++
+ ...-log-grep-E-Err-1754042528425_1754042528425.txt |  53 +++++++
+ ...log-grep-A10-B1-1754042623180_1754042623180.txt |  69 +++++++++
+ ...pp-ecosystem-co-1754041257150_1754041257150.txt |  55 +++++++
+ server/db.ts                                       |  18 ++-
+ shared/schema.ts                                   |  12 +-
+ vps-deploy.sh                                      |  23 +++
+ 13 files changed, 702 insertions(+), 11 deletions(-)
+ create mode 100644 attached_assets/Kerit Vps Documentation_1754039936108.pdf
+ create mode 100644 attached_assets/Pasted-kerit-FreePaper-logs-tail-10-home-kerit-logs-kerit-combined-0-log-2025-08-01T09-38-30-Contin-1754041786933_1754041786933.txt
+ create mode 100644 attached_assets/Pasted-kerit-FreePaper-projects-kerit-app-cd-home-kerit-projects-kerit-app-kerit-FreePaper-projects-k-1754042467022_1754042467023.txt
+ create mode 100644 attached_assets/Pasted-kerit-FreePaper-projects-kerit-app-curl-X-POST-http-localhost-3001-api-booking-consultation--1754042686585_1754042686585.txt
+ create mode 100644 attached_assets/Pasted-kerit-FreePaper-projects-kerit-app-curl-X-POST-https-kerit-com-ru-api-booking-consultation--1754042769364_1754042769366.txt
+ create mode 100644 attached_assets/Pasted-kerit-FreePaper-projects-kerit-app-netstat-tulpn-grep-3001-Not-all-processes-could-be-identi-1754041618934_1754041618935.txt
+ create mode 100644 attached_assets/Pasted-kerit-FreePaper-projects-kerit-app-tail-10-home-kerit-logs-kerit-combined-0-log-grep-E-Err-1754042528425_1754042528425.txt
+ create mode 100644 attached_assets/Pasted-kerit-FreePaper-projects-kerit-app-tail-20-home-kerit-logs-kerit-combined-0-log-grep-A10-B1-1754042623180_1754042623180.txt
+ create mode 100644 attached_assets/Pasted-root-FreePaper-home-kerit-projects-kerit-app-pm2-start-home-kerit-projects-kerit-app-ecosystem-co-1754041257150_1754041257150.txt
+ create mode 100644 vps-deploy.sh
+Fri Aug  1 10:16:22 AM UTC 2025: Installing dependencies...
+npm warn config production Use `--omit=dev` instead.
+npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+
+added 414 packages, and audited 415 packages in 14s
+
+60 packages are looking for funding
+  run `npm fund` for details
+
+3 low severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+Fri Aug  1 10:16:37 AM UTC 2025: Building application...
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+sh: 1: vite: not found
+kerit@FreePaper:/root$ tail -f /home/kerit/logs/deploy.log
+Fri Aug  1 10:16:12 AM UTC 2025: Starting deployment...
+Fri Aug  1 10:16:12 AM UTC 2025: Creating backup...
+Fri Aug  1 10:16:21 AM UTC 2025: Pulling latest changes from GitHub...
+Fri Aug  1 10:16:22 AM UTC 2025: Installing dependencies...
+Fri Aug  1 10:16:37 AM UTC 2025: Building application...
+^C
+kerit@FreePaper:/root$ 
