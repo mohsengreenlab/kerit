@@ -1,0 +1,169 @@
+kerit@FreePaper:~/projects/kerit-app$ cd /home/kerit/projects/kerit-app
+kerit@FreePaper:~/projects/kerit-app$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.env
+	ecosystem.config.json
+
+nothing added to commit but untracked files present (use "git add" to track)
+kerit@FreePaper:~/projects/kerit-app$ git log --oneline -5
+75af745 (HEAD -> main, origin/main, origin/HEAD) Assistant checkpoint: Fix admin login to include username and captcha
+1395ab9 Implement direct admin login page with enhanced security measures
+debb464 Improve the way users access and view detailed case study information
+3138d5a Remove extra links from the services section to simplify the interface
+0fc8064 Remove extra service details and navigation links from the Services page
+kerit@FreePaper:~/projects/kerit-app$ git pull origin main
+From github.com:mohsengreenlab/kerit
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+kerit@FreePaper:~/projects/kerit-app$ npm run build
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+vite v5.4.19 building for production...
+transforming (3) src/main.tsxBrowserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/lib/i18n.ts: Duplicate key "pricing.faq_title" in object literal
+237|  
+238|      // Pricing FAQ
+239|      'pricing.faq_title': 'Часто задаваемые вопросы',
+   |      ^
+240|      'pricing.faq_subtitle': 'Ответы на популярные вопросы о наших тарифах',
+241|      'blog.no_posts_title': 'Статьи не найдены',
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/lib/i18n.ts: Duplicate key "blog.no_posts_desc" in object literal
+272|      'blog.email_placeholder': 'Ваш email',
+273|      'blog.subscribe': 'Подписаться',
+274|      'blog.no_posts_desc': 'По запросу ничего не найдено. Попробуйте изменить поисковый запрос.',
+   |      ^
+275|      'blog.updating_title': 'Блог обновляется',
+276|      'blog.updating_desc': 'Мы работаем над добавлением новых экспертных статей. Следите за обновлениями!',
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/lib/i18n.ts: Duplicate key "blog.updating_title" in object literal
+273|      'blog.subscribe': 'Подписаться',
+274|      'blog.no_posts_desc': 'По запросу ничего не найдено. Попробуйте изменить поисковый запрос.',
+275|      'blog.updating_title': 'Блог обновляется',
+   |      ^
+276|      'blog.updating_desc': 'Мы работаем над добавлением новых экспертных статей. Следите за обновлениями!',
+277|      
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/lib/i18n.ts: Duplicate key "blog.updating_desc" in object literal
+274|      'blog.no_posts_desc': 'По запросу ничего не найдено. Попробуйте изменить поисковый запрос.',
+275|      'blog.updating_title': 'Блог обновляется',
+276|      'blog.updating_desc': 'Мы работаем над добавлением новых экспертных статей. Следите за обновлениями!',
+   |      ^
+277|      
+278|      // Contact FAQ
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/lib/i18n.ts: Duplicate key "auth.login" in object literal
+486|  
+487|      // Header/Auth
+488|      'auth.login': 'Login',
+   |      ^
+489|      'auth.logout': 'Logout',
+490|  
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/lib/i18n.ts: Duplicate key "auth.logout" in object literal
+487|      // Header/Auth
+488|      'auth.login': 'Login',
+489|      'auth.logout': 'Logout',
+   |      ^
+490|  
+491|      // Cookie Notice
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/lib/i18n.ts: Duplicate key "pricing.faq_title" in object literal
+591|  
+592|      // Pricing FAQ
+593|      'pricing.faq_title': 'Frequently Asked Questions',
+   |      ^
+594|      'pricing.faq_subtitle': 'Answers to popular questions about our pricing',
+595|      'blog.no_posts_title': 'No Articles Found',
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/lib/i18n.ts: Duplicate key "blog.no_posts_desc" in object literal
+626|      'blog.email_placeholder': 'Your email',
+627|      'blog.subscribe': 'Subscribe',
+628|      'blog.no_posts_desc': 'Nothing found for your query. Try changing the search term.',
+   |      ^
+629|      'blog.updating_title': 'Blog is being updated',
+630|      'blog.updating_desc': 'We are working on adding new expert articles. Stay tuned for updates!',
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/lib/i18n.ts: Duplicate key "blog.updating_title" in object literal
+627|      'blog.subscribe': 'Subscribe',
+628|      'blog.no_posts_desc': 'Nothing found for your query. Try changing the search term.',
+629|      'blog.updating_title': 'Blog is being updated',
+   |      ^
+630|      'blog.updating_desc': 'We are working on adding new expert articles. Stay tuned for updates!',
+631|      
+
+[plugin:vite:esbuild] [plugin vite:esbuild] client/src/lib/i18n.ts: Duplicate key "blog.updating_desc" in object literal
+628|      'blog.no_posts_desc': 'Nothing found for your query. Try changing the search term.',
+629|      'blog.updating_title': 'Blog is being updated',
+630|      'blog.updating_desc': 'We are working on adding new expert articles. Stay tuned for updates!',
+   |      ^
+631|      
+632|      // Contact FAQ
+
+✓ 1743 modules transformed.
+../dist/public/index.html                                0.63 kB │ gzip:   0.38 kB
+../dist/public/assets/Logo_1753789199779-D4RQ142E.jpg    4.25 kB
+../dist/public/assets/index-Bt8X7f4j.css                87.25 kB │ gzip:  14.20 kB
+../dist/public/assets/index-Df1Afy8l.js                533.35 kB │ gzip: 156.06 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 12.64s
+
+  dist/index.js  58.9kb
+
+⚡ Done in 26ms
+kerit@FreePaper:~/projects/kerit-app$ pm2 restart kerit-app
+Use --update-env to update environment variables
+[PM2] Applying action restartProcessId on app [kerit-app](ids: [ 0, 1 ])
+[PM2] [kerit-app](0) ✓
+[PM2] [kerit-app](1) ✓
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 0  │ kerit-app          │ cluster  │ 1    │ online    │ 0%       │ 54.2mb   │
+│ 1  │ kerit-app          │ cluster  │ 1    │ online    │ 0%       │ 39.9mb   │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+kerit@FreePaper:~/projects/kerit-app$ curl -X POST http://localhost:3001/api/booking-consultation \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name":"Test User",
+    "email":"test@example.com",
+    "service":"email-marketing"
+  }' -v
+Note: Unnecessary use of -X or --request, POST is already inferred.
+* Host localhost:3001 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:3001...
+* connect to ::1 port 3001 from ::1 port 32986 failed: Connection refused
+*   Trying 127.0.0.1:3001...
+* Connected to localhost (127.0.0.1) port 3001
+> POST /api/booking-consultation HTTP/1.1
+> Host: localhost:3001
+> User-Agent: curl/8.5.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 93
+> 
+< HTTP/1.1 400 Bad Request
+< X-Powered-By: Express
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 34
+< ETag: W/"22-Gk2RjI70r6EqG5Z19wp4A5W2Qds"
+< Date: Fri, 01 Aug 2025 09:49:57 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< 
+* Connection #0 to host localhost left intact
+{"message":"Invalid booking data"}kerit@FreePaper:~/projects/kerit-app$ 
