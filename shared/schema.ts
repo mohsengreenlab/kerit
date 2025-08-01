@@ -320,8 +320,16 @@ export const insertContactMessageSchema = createInsertSchema(contactMessages);
 // Booking consultation types
 export type BookingConsultation = typeof bookingConsultations.$inferSelect;
 export type InsertBookingConsultation = typeof bookingConsultations.$inferInsert;
-export const insertBookingConsultationSchema = createInsertSchema(bookingConsultations).extend({
-  preferredDate: z.string().optional().transform((val) => val ? new Date(val) : undefined)
+export const insertBookingConsultationSchema = createInsertSchema(bookingConsultations).omit({
+  id: true,
+  status: true,
+  isRead: true,
+  createdAt: true,
+}).extend({
+  phone: z.string().optional().nullable(),
+  company: z.string().optional().nullable(),
+  message: z.string().optional().nullable(),
+  preferredDate: z.string().optional().nullable().transform((val) => val ? new Date(val) : null)
 });
 export type InsertPage = z.infer<typeof insertPageSchema>;
 export type Page = typeof pages.$inferSelect;
