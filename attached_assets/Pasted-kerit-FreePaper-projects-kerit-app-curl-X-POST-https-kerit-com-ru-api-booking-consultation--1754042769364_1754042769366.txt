@@ -1,0 +1,88 @@
+kerit@FreePaper:~/projects/kerit-app$ curl -X POST https://kerit.com.ru/api/booking-consultation \
+  -H "Content-Type: application/json" \
+  -H "Origin: https://kerit.com.ru" \
+  -H "Referer: https://kerit.com.ru/contact" \
+  -d '{
+    "name":"Real Website Test",
+    "email":"website.test@example.com",
+    "service":"email-marketing",
+    "message":"Testing real website booking"
+  }' -v
+Note: Unnecessary use of -X or --request, POST is already inferred.
+* Host kerit.com.ru:443 was resolved.
+* IPv6: 2a06:98c1:3120::2, 2a06:98c1:3121::2
+* IPv4: 188.114.97.2, 188.114.96.2
+*   Trying [2a06:98c1:3120::2]:443...
+* Connected to kerit.com.ru (2a06:98c1:3120::2) port 443
+* ALPN: curl offers h2,http/1.1
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+*  CAfile: /etc/ssl/certs/ca-certificates.crt
+*  CApath: /etc/ssl/certs
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384 / X25519 / id-ecPublicKey
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=kerit.com.ru
+*  start date: Jul 31 10:49:48 2025 GMT
+*  expire date: Oct 29 11:48:40 2025 GMT
+*  subjectAltName: host "kerit.com.ru" matched cert's "kerit.com.ru"
+*  issuer: C=US; O=Google Trust Services; CN=WE1
+*  SSL certificate verify ok.
+*   Certificate level 0: Public key type EC/prime256v1 (256/128 Bits/secBits), signed using ecdsa-with-SHA256
+*   Certificate level 1: Public key type EC/prime256v1 (256/128 Bits/secBits), signed using ecdsa-with-SHA384
+*   Certificate level 2: Public key type EC/secp384r1 (384/192 Bits/secBits), signed using ecdsa-with-SHA384
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://kerit.com.ru/api/booking-consultation
+* [HTTP/2] [1] [:method: POST]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: kerit.com.ru]
+* [HTTP/2] [1] [:path: /api/booking-consultation]
+* [HTTP/2] [1] [user-agent: curl/8.5.0]
+* [HTTP/2] [1] [accept: */*]
+* [HTTP/2] [1] [content-type: application/json]
+* [HTTP/2] [1] [origin: https://kerit.com.ru]
+* [HTTP/2] [1] [referer: https://kerit.com.ru/contact]
+* [HTTP/2] [1] [content-length: 155]
+> POST /api/booking-consultation HTTP/2
+> Host: kerit.com.ru
+> User-Agent: curl/8.5.0
+> Accept: */*
+> Content-Type: application/json
+> Origin: https://kerit.com.ru
+> Referer: https://kerit.com.ru/contact
+> Content-Length: 155
+> 
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* old SSL session ID is stale, removing
+< HTTP/2 400 
+< date: Fri, 01 Aug 2025 10:05:55 GMT
+< content-type: application/json; charset=utf-8
+< content-length: 34
+< server: cloudflare
+< x-powered-by: Express
+< etag: W/"22-Gk2RjI70r6EqG5Z19wp4A5W2Qds"
+< cf-cache-status: DYNAMIC
+< nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+< report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=bVVT3zKoobTHPrFCxrlqm%2Bqwp0hm66GDjkFeB3WgNxajphhluDmxeUap56V4Y4bPotwPVrI3EnOJfEUxDzRSLUyYMYzcsIJttfu8u4oluw%2FdDvZ5rNdmkQ%3D%3D"}]}
+< cf-ray: 96848516ce657906-CDG
+< alt-svc: h3=":443"; ma=86400
+< 
+* Connection #0 to host kerit.com.ru left intact
+{"message":"Invalid booking data"}kericurl -s https://kerit.com.ru/admin24 | head -10://kerit.com.ru/admin24 | head -10
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <script type="module" crossorigin src="/assets/index-Df1Afy8l.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bt8X7f4j.css">
+  </head>
+  <body>
+    <div id="root"></div>
