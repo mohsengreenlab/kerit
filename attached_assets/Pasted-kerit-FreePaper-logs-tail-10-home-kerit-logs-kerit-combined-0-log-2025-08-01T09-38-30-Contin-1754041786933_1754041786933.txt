@@ -1,0 +1,67 @@
+kerit@FreePaper:~/logs$ tail -10 /home/kerit/logs/kerit-combined-0.log
+}
+2025-08-01T09:38:30: Continuing with server startup...
+Error: bind EADDRINUSE 0.0.0.0:3001
+    at listenOnPrimaryHandle (node:net:1989:18)
+    at rr (node:internal/cluster/child:163:12)
+    at Worker.<anonymous> (node:internal/cluster/child:113:7)
+    at process.onInternalMessage (node:internal/cluster/utils:49:5)
+    at process.emit (node:events:536:35)
+    at emit (node:internal/child_process:950:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:83:21)
+kerit@FreePaper:~/logs$ tail -10 /home/kerit/logs/kerit-combined-1.log
+}
+2025-08-01T09:38:34: Continuing with server startup...
+Error: bind EADDRINUSE 0.0.0.0:3001
+    at listenOnPrimaryHandle (node:net:1989:18)
+    at rr (node:internal/cluster/child:163:12)
+    at Worker.<anonymous> (node:internal/cluster/child:113:7)
+    at process.onInternalMessage (node:internal/cluster/utils:49:5)
+    at process.emit (node:events:536:35)
+    at emit (node:internal/child_process:950:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:83:21)
+kerit@FreePaper:~/logs$ curl -X POST http://localhost:3001/api/booking-consultation \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name":"Test User",
+    "email":"test@example.com",
+    "service":"email-marketing",
+    "message":"Simple test"
+  }' -v
+Note: Unnecessary use of -X or --request, POST is already inferred.
+* Host localhost:3001 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:3001...
+* connect to ::1 port 3001 from ::1 port 33508 failed: Connection refused
+*   Trying 127.0.0.1:3001...
+* Connected to localhost (127.0.0.1) port 3001
+> POST /api/booking-consultation HTTP/1.1
+> Host: localhost:3001
+> User-Agent: curl/8.5.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 122
+> 
+< HTTP/1.1 400 Bad Request
+< X-Powered-By: Express
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 34
+< ETag: W/"22-Gk2RjI70r6EqG5Z19wp4A5W2Qds"
+< Date: Fri, 01 Aug 2025 09:38:44 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< 
+* Connection #0 to host localhost left intact
+{"message":"Invalid booktail -3 /home/kerit/logs/kerit-combined-0.logme/kerit/logs/kerit-combined-0.log
+    at process.emit (node:events:536:35)
+    at emit (node:internal/child_process:950:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:83:21)
+kerit@FreePaper:~/logs$ tail -3 /home/kerit/logs/kerit-combined-1.log
+    at process.emit (node:events:536:35)
+    at emit (node:internal/child_process:950:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:83:21)
+kerit@FreePaper:~/logs$ pm2 save
+[PM2] Saving current process list...
+[PM2] Successfully saved in /home/kerit/.pm2/dump.pm2
+kerit@FreePaper:~/logs$ 
