@@ -1,0 +1,69 @@
+kerit@FreePaper:~/projects/kerit-app$ tail -20 /home/kerit/logs/kerit-combined-0.log | grep -A10 -B10 "booking"
+  errors: [
+    {
+      code: 'invalid_type',
+      expected: 'string',
+      received: 'null',
+      path: [Array],
+      message: 'Expected string, received null'
+    }
+  ]
+}
+2025-08-01T09:50:15: 9:50:15 AM [express] POST /api/booking-consultation 400 in 7ms :: {"message":"Invalid booking data"}
+kerit@FreePaper:~/projects/kerit-app$ head -100 /home/kerit/projects/kerit-app/dist/index.js | grep -A5 -B5 "booking"
+// shared/schema.ts
+var schema_exports = {};
+__export(schema_exports, {
+  blogPosts: () => blogPosts,
+  blogPostsRelations: () => blogPostsRelations,
+  bookingConsultations: () => bookingConsultations,
+  caseStudies: () => caseStudies,
+  contactMessages: () => contactMessages,
+  contactSubmissions: () => contactSubmissions,
+  insertBlogPostSchema: () => insertBlogPostSchema,
+  insertBookingConsultationSchema: () => insertBookingConsultationSchema,
+kerit@FreePaper:~/projects/kerit-app$ curl -s "https://kerit.com.ru" -H "Accept: text/html" | grep -i "book\|consult" | head -5
+kerit@FreePaper:~/projects/kerit-app$ curl -X POST http://localhost:3001/api/booking-consultation \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name":"Test User",
+    "email":"test@example.com",
+    "service":"email-marketing",
+    "message":"Test booking"
+  }' -v
+Note: Unnecessary use of -X or --request, POST is already inferred.
+* Host localhost:3001 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:3001...
+* connect to ::1 port 3001 from ::1 port 37996 failed: Connection refused
+*   Trying 127.0.0.1:3001...
+* Connected to localhost (127.0.0.1) port 3001
+> POST /api/booking-consultation HTTP/1.1
+> Host: localhost:3001
+> User-Agent: curl/8.5.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 123
+> 
+< HTTP/1.1 400 Bad Request
+< X-Powered-By: Express
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 34
+< ETag: W/"22-Gk2RjI70r6EqG5Z19wp4A5W2Qds"
+< Date: Fri, 01 Aug 2025 09:52:54 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< 
+* Connection #0 to host localhost left intact
+{"message":"Invalid booking data"}kerit@FreePaper:~/projects/kerit-app$ curl -s https://kerit.com.ru/contact -H "Accept: text/html" | head -10                           curl -s https://kerit.com.ru/contact -H "Accept: text/html" | head -10
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <script type="module" crossorigin src="/assets/index-Df1Afy8l.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bt8X7f4j.css">
+  </head>
+  <body>
+    <div id="root"></div>
