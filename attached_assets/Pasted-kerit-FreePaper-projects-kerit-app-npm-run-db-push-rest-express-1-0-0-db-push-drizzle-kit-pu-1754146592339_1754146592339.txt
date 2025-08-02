@@ -1,0 +1,30 @@
+kerit@FreePaper:~/projects/kerit-app$ npm run db:push
+
+> rest-express@1.0.0 db:push
+> drizzle-kit push
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file '/home/kerit/projects/kerit-app/drizzle.config.ts'
+Using 'pg' driver for database querying
+[✓] Pulling schema from database...
+[i] No changes detected
+kerit@FreePaper:~/projects/kerit-app$ pm2 restart kerit-app
+Use --update-env to update environment variables
+[PM2] Applying action restartProcessId on app [kerit-app](ids: [ 0, 1 ])
+[PM2] [kerit-app](0) ✓
+[PM2] [kerit-app](1) ✓
+┌────┬──────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name         │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼──────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0  │ kerit-app    │ default     │ 1.0.0   │ cluster │ 3014338  │ 0s     │ 7    │ online    │ 0%       │ 53.0mb   │ kerit    │ disabled │
+│ 1  │ kerit-app    │ default     │ 1.0.0   │ cluster │ 3014346  │ 0s     │ 7    │ online    │ 0%       │ 40.0mb   │ kerit    │ disabled │
+└────┴──────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+kerit@FreePaper:~/projects/kerit-app$ pm2 logs | grep -i "seeding"
+0|kerit-ap | 2025-08-02T12:45:38: Starting database seeding...
+0|kerit-ap | 2025-08-02T12:45:38: Database seeding completed successfully
+0|kerit-ap | 2025-08-02T14:45:23: Starting database seeding...
+0|kerit-ap | 2025-08-02T14:45:23: Database seeding completed successfully
+1|kerit-ap | 2025-08-02T12:45:38: Starting database seeding...
+1|kerit-ap | 2025-08-02T12:45:38: Database seeding completed successfully
+1|kerit-ap | 2025-08-02T14:45:23: Starting database seeding...
+1|kerit-ap | 2025-08-02T14:45:23: Database seeding completed successfully
