@@ -1,7 +1,8 @@
-import { useParams } from 'wouter';
+import { useParams, useLocation } from 'wouter';
 import { useQuery } from '@tanstack/react-query';
 import { useLanguage } from '@/hooks/useLanguage';
 import { SEOHead } from '@/components/SEOHead';
+import { useEffect } from 'react';
 
 interface BlogPost {
   id: string;
@@ -22,14 +23,34 @@ interface BlogPost {
 export default function BlogDetail() {
   const { slug } = useParams();
   const { t } = useLanguage();
+  const [, navigate] = useLocation();
 
   // Get current language from localStorage
   const currentLanguage = localStorage.getItem('language') || 'en';
 
-  // Append language suffix to slug for API call
-  const languageSlug = slug?.endsWith('-ru') || slug?.endsWith('-en') 
-    ? slug 
-    : `${slug}-${currentLanguage}`;
+  // Determine the correct slug based on current language
+  const getLanguageSlug = () => {
+    if (!slug) return '';
+    
+    // If slug already has language suffix, check if it matches current language
+    if (slug.endsWith('-ru') || slug.endsWith('-en')) {
+      const baseSlug = slug.replace(/-ru$|-en$/, '');
+      return `${baseSlug}-${currentLanguage}`;
+    }
+    
+    // If no language suffix, add current language
+    return `${slug}-${currentLanguage}`;
+  };
+
+  const languageSlug = getLanguageSlug();
+
+  // Navigate to correct language version when language changes
+  useEffect(() => {
+    if (slug && !slug.endsWith(`-${currentLanguage}`)) {
+      const baseSlug = slug.replace(/-ru$|-en$/, '');
+      navigate(`/blog/${baseSlug}-${currentLanguage}`, { replace: true });
+    }
+  }, [currentLanguage, slug, navigate]);
 
   const { data: blogPost, isLoading, error } = useQuery<BlogPost>({
     queryKey: [`/api/blog/post/${languageSlug}`],
@@ -56,16 +77,16 @@ export default function BlogDetail() {
       <div className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-bold text-kerit-dark mb-4">
-            {t('blog.not_found.title') || 'Blog Post Not Found'}
+            Blog Post Not Found
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            {t('blog.not_found.desc') || 'The blog post you are looking for does not exist.'}
+            The blog post you are looking for does not exist.
           </p>
           <a 
             href="/blog" 
             className="bg-kerit-sage hover:bg-opacity-90 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
           >
-            {t('blog.back_to_blog') || 'Back to Blog'}
+            {t('blog.back_to_blog')}
           </a>
         </div>
       </div>
@@ -175,7 +196,7 @@ export default function BlogDetail() {
             {blogPost.author && (
               <div className="mb-4">
                 <p className="text-gray-600">
-                  {t('blog.author') || 'Author'}: {blogPost.author.firstName} {blogPost.author.lastName}
+                  {t('blog.author')}: {blogPost.author.firstName} {blogPost.author.lastName}
                 </p>
               </div>
             )}
@@ -184,7 +205,7 @@ export default function BlogDetail() {
               className="inline-flex items-center text-kerit-sage hover:text-kerit-dark transition-colors font-semibold"
             >
               <i className="fas fa-arrow-left mr-2"></i>
-              {t('blog.back_to_blog') || 'Back to Blog'}
+              {t('blog.back_to_blog')}
             </a>
           </div>
         </div>

@@ -162,6 +162,8 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'blog.search_placeholder': 'Поиск статей...',
     'blog.no_posts': 'Статьи не найдены',
     'blog.no_posts_desc': 'В данной категории пока нет опубликованных статей.',
+    'blog.author': 'Автор',
+    'blog.back_to_blog': 'Назад к блогу',
 
     // Case Studies page extensions
     'cases.no_cases': 'Кейсы не найдены',
@@ -514,6 +516,8 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'blog.search_placeholder': 'Search articles...',
     'blog.no_posts': 'No articles found',
     'blog.no_posts_desc': 'No published articles in this category yet.',
+    'blog.author': 'Author',
+    'blog.back_to_blog': 'Back to Blog',
 
     // Case Studies page extensions
     'cases.no_cases': 'No cases found',
