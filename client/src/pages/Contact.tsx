@@ -28,7 +28,7 @@ const getBookingSchema = (t: (key: string) => string) => z.object({
   email: z.string().email(t('validation.email_invalid')),
   phone: z.string().optional(),
   company: z.string().optional(),
-  service: z.string().min(1, 'Please select a service'),
+  service: z.string().min(1, t('validation.service_required')),
   preferredDate: z.string().optional(),
   message: z.string().optional(),
 });
@@ -72,14 +72,14 @@ export default function Contact() {
       setIsContactSubmitted(true);
       resetContact();
       toast({
-        title: "Message Sent Successfully!",
-        description: "Thank you for your message. We'll get back to you within 24 hours.",
+        title: t('contact.success.title'),
+        description: t('contact.success.description'),
       });
     },
     onError: (error) => {
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
+        title: t('contact.error.title'),
+        description: t('contact.error.description'),
         variant: 'destructive',
       });
     },
@@ -97,14 +97,14 @@ export default function Contact() {
       setIsBookingSubmitted(true);
       resetBooking();
       toast({
-        title: "Consultation Booked Successfully!",
-        description: "Thank you for booking a consultation. We'll contact you soon to confirm the details.",
+        title: t('appointment.success.title'),
+        description: t('appointment.success.description'),
       });
     },
     onError: (error) => {
       toast({
-        title: "Error", 
-        description: "Failed to book consultation. Please try again.",
+        title: t('appointment.error.title'), 
+        description: t('appointment.error.description'),
         variant: 'destructive',
       });
     },
@@ -180,13 +180,13 @@ export default function Contact() {
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <Tabs defaultValue="contact" className="w-full">
                 <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="contact">Send Message</TabsTrigger>
-                  <TabsTrigger value="booking">Book Consultation</TabsTrigger>
+                  <TabsTrigger value="contact">{t('contact.form.title')}</TabsTrigger>
+                  <TabsTrigger value="booking">{t('appointment.title')}</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="contact" className="space-y-6">
                   <h2 className="text-3xl font-bold text-kerit-dark">
-                    Send Us a Message
+                    {t('contact.form.title')}
                   </h2>
                   
                   {isContactSubmitted && (
@@ -194,8 +194,8 @@ export default function Contact() {
                       <div className="flex items-center">
                         <i className="fas fa-check-circle text-green-500 text-xl mr-3"></i>
                         <div>
-                          <h3 className="font-semibold text-green-800">Message Sent!</h3>
-                          <p className="text-green-700 text-sm">Thank you for your message. We'll get back to you within 24 hours.</p>
+                          <h3 className="font-semibold text-green-800">{t('contact.success.title')}</h3>
+                          <p className="text-green-700 text-sm">{t('contact.success.description')}</p>
                         </div>
                       </div>
                     </div>
@@ -205,12 +205,12 @@ export default function Contact() {
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <Label htmlFor="name" className="text-sm font-medium text-gray-700 mb-2">
-                          Name *
+                          {t('contact.form.name')} *
                         </Label>
                         <Input
                           id="name"
                           type="text"
-                          placeholder="Your Name"
+                          placeholder={t('contact.form.name')}
                           {...registerContact('name')}
                         />
                         {contactErrors.name && (
@@ -220,7 +220,7 @@ export default function Contact() {
 
                       <div>
                         <Label htmlFor="email" className="text-sm font-medium text-gray-700 mb-2">
-                          Email *
+                          {t('contact.form.email')} *
                         </Label>
                         <Input
                           id="email"
@@ -236,12 +236,12 @@ export default function Contact() {
 
                     <div>
                       <Label htmlFor="subject" className="text-sm font-medium text-gray-700 mb-2">
-                        Subject *
+                        {t('contact.form.subject')} *
                       </Label>
                       <Input
                         id="subject"
                         type="text"
-                        placeholder="Message Subject"
+                        placeholder={t('contact.form.subject')}
                         {...registerContact('subject')}
                       />
                       {contactErrors.subject && (
@@ -251,11 +251,11 @@ export default function Contact() {
 
                     <div>
                       <Label htmlFor="message" className="text-sm font-medium text-gray-700 mb-2">
-                        Message *
+                        {t('contact.form.message')} *
                       </Label>
                       <Textarea
                         id="message"
-                        placeholder="Your message..."
+                        placeholder={t('contact.form.message_placeholder')}
                         rows={5}
                         {...registerContact('message')}
                       />
@@ -272,12 +272,12 @@ export default function Contact() {
                       {contactMutation.isPending ? (
                         <>
                           <i className="fas fa-spinner fa-spin mr-2"></i>
-                          Sending...
+                          {t('contact.form.sending')}
                         </>
                       ) : (
                         <>
                           <i className="fas fa-paper-plane mr-2"></i>
-                          Send Message
+                          {t('contact.form.submit')}
                         </>
                       )}
                     </Button>
@@ -286,7 +286,7 @@ export default function Contact() {
 
                 <TabsContent value="booking" className="space-y-6">
                   <h2 className="text-3xl font-bold text-kerit-dark">
-                    Book a Consultation
+                    {t('appointment.title')}
                   </h2>
                   
                   {isBookingSubmitted && (
@@ -294,8 +294,8 @@ export default function Contact() {
                       <div className="flex items-center">
                         <i className="fas fa-check-circle text-green-500 text-xl mr-3"></i>
                         <div>
-                          <h3 className="font-semibold text-green-800">Consultation Booked!</h3>
-                          <p className="text-green-700 text-sm">Thank you for booking. We'll contact you soon to confirm the details.</p>
+                          <h3 className="font-semibold text-green-800">{t('appointment.success.title')}</h3>
+                          <p className="text-green-700 text-sm">{t('appointment.success.description')}</p>
                         </div>
                       </div>
                     </div>
@@ -305,12 +305,12 @@ export default function Contact() {
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <Label htmlFor="booking-name" className="text-sm font-medium text-gray-700 mb-2">
-                          Name *
+                          {t('contact.form.name')} *
                         </Label>
                         <Input
                           id="booking-name"
                           type="text"
-                          placeholder="Your Name"
+                          placeholder={t('contact.form.name')}
                           {...registerBooking('name')}
                         />
                         {bookingErrors.name && (
@@ -320,7 +320,7 @@ export default function Contact() {
 
                       <div>
                         <Label htmlFor="booking-email" className="text-sm font-medium text-gray-700 mb-2">
-                          Email *
+                          {t('contact.form.email')} *
                         </Label>
                         <Input
                           id="booking-email"
@@ -337,7 +337,7 @@ export default function Contact() {
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <Label htmlFor="booking-phone" className="text-sm font-medium text-gray-700 mb-2">
-                          Phone
+                          {t('contact.form.phone')}
                         </Label>
                         <Input
                           id="booking-phone"
@@ -349,12 +349,12 @@ export default function Contact() {
 
                       <div>
                         <Label htmlFor="booking-company" className="text-sm font-medium text-gray-700 mb-2">
-                          Company
+                          {t('contact.form.company')}
                         </Label>
                         <Input
                           id="booking-company"
                           type="text"
-                          placeholder="Company Name"
+                          placeholder={t('contact.form.company_placeholder')}
                           {...registerBooking('company')}
                         />
                       </div>
@@ -362,16 +362,16 @@ export default function Contact() {
 
                     <div>
                       <Label className="text-sm font-medium text-gray-700 mb-2">
-                        Service *
+                        {t('contact.form.service')} *
                       </Label>
                       <Select onValueChange={(value) => setBookingValue('service', value)}>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a service" />
+                          <SelectValue placeholder={t('contact.form.select_service')} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="email-marketing">Email Marketing</SelectItem>
-                          <SelectItem value="customer-chatbot">Customer Chatbot</SelectItem>
-                          <SelectItem value="performance-improvement">Performance Improvement</SelectItem>
+                          <SelectItem value="email-marketing">{t('services.email_marketing')}</SelectItem>
+                          <SelectItem value="customer-chatbot">{t('services.chatbot_dev')}</SelectItem>
+                          <SelectItem value="performance-improvement">{t('services.performance_opt')}</SelectItem>
                         </SelectContent>
                       </Select>
                       {bookingErrors.service && (
@@ -381,7 +381,7 @@ export default function Contact() {
 
                     <div>
                       <Label htmlFor="booking-date" className="text-sm font-medium text-gray-700 mb-2">
-                        Preferred Date & Time
+                        {t('contact.form.preferred_date')}
                       </Label>
                       <Input
                         id="booking-date"
@@ -392,11 +392,11 @@ export default function Contact() {
 
                     <div>
                       <Label htmlFor="booking-message" className="text-sm font-medium text-gray-700 mb-2">
-                        Additional Message
+                        {t('contact.form.additional_message')}
                       </Label>
                       <Textarea
                         id="booking-message"
-                        placeholder="Tell us about your project or requirements..."
+                        placeholder={t('contact.form.additional_message_placeholder')}
                         rows={3}
                         {...registerBooking('message')}
                       />
@@ -410,12 +410,12 @@ export default function Contact() {
                       {bookingMutation.isPending ? (
                         <>
                           <i className="fas fa-spinner fa-spin mr-2"></i>
-                          Booking...
+                          {t('contact.form.booking')}
                         </>
                       ) : (
                         <>
                           <i className="fas fa-calendar mr-2"></i>
-                          Book Consultation
+                          {t('contact.form.book_consultation')}
                         </>
                       )}
                     </Button>

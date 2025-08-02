@@ -120,6 +120,17 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'validation.email_invalid': 'Введите корректный email',
     'validation.subject_min': 'Тема должна содержать минимум 5 символов',
     'validation.message_min': 'Сообщение должно содержать минимум 10 символов',
+    'validation.service_required': 'Пожалуйста, выберите услугу',
+    
+    // Booking form specific
+    'contact.form.company': 'Компания',
+    'contact.form.company_placeholder': 'Название компании',
+    'contact.form.preferred_date': 'Предпочтительная дата и время',
+    'contact.form.additional_message': 'Дополнительное сообщение',
+    'contact.form.additional_message_placeholder': 'Расскажите о вашем проекте или требованиях...',
+    'contact.form.book_consultation': 'Записаться на консультацию',
+    'contact.form.booking': 'Бронирование...',
+    'contact.form.select_service': 'Выберите услугу',
 
     // Services
     'services.email_marketing': 'Email-маркетинг',
@@ -476,6 +487,17 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'validation.email_invalid': 'Please enter a valid email',
     'validation.subject_min': 'Subject must contain at least 5 characters',
     'validation.message_min': 'Message must contain at least 10 characters',
+    'validation.service_required': 'Please select a service',
+    
+    // Booking form specific
+    'contact.form.company': 'Company',
+    'contact.form.company_placeholder': 'Company Name',
+    'contact.form.preferred_date': 'Preferred Date & Time',
+    'contact.form.additional_message': 'Additional Message',
+    'contact.form.additional_message_placeholder': 'Tell us about your project or requirements...',
+    'contact.form.book_consultation': 'Book Consultation',
+    'contact.form.booking': 'Booking...',
+    'contact.form.select_service': 'Select a service',
 
     // Services
     'services.email_marketing': 'Email Marketing',
