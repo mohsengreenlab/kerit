@@ -3,16 +3,7 @@ import { storage } from "./storage";
 export async function seedDatabase() {
   console.log("Starting database seeding...");
   
-  try {
-    // First check if data already exists to avoid duplicates
-    const existingTranslations = await storage.getTranslationsByLocale('en');
-    if (existingTranslations.length > 10) {
-      console.log("Database already seeded, skipping...");
-      return;
-    }
-  } catch (error) {
-    console.log("Unable to check existing translations, proceeding with seeding...");
-  }
+  // Proceed with seeding - no duplicate check to ensure complete data refresh
 
   try {
 
