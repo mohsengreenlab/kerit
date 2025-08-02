@@ -200,10 +200,8 @@ export default function Blog() {
                       </div>
                     )}
                     <div className="flex justify-between items-center">
-                      <Link href={`/blog/${post.slug}`}>
-                        <a className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
-                          {t('common.read_more')} <i className="fas fa-arrow-right ml-1"></i>
-                        </a>
+                      <Link href={`/blog/${post.slug}`} className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
+                        {t('common.read_more')} <i className="fas fa-arrow-right ml-1"></i>
                       </Link>
                       {post.author && (
                         <div className="text-sm text-gray-500">
