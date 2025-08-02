@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'wouter';
 import { useLanguage } from '@/hooks/useLanguage';
 import logoPath from '@assets/Logo_1753789199779.jpg';
@@ -13,6 +13,37 @@ import { AppointmentModal } from '@/components/AppointmentModal';
 export default function Landing() {
   const { t } = useLanguage();
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  
+  // Animation refs for scroll-triggered animations
+  const servicesRef = useRef(null);
+  const statsRef = useRef(null);
+  const casesRef = useRef(null);
+  const testimonialsRef = useRef(null);
+  const [visibleSections, setVisibleSections] = useState(new Set());
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const target = entry.target as HTMLElement;
+            const section = target.dataset.section;
+            if (section) {
+              setVisibleSections(prev => new Set(Array.from(prev).concat(section)));
+            }
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
+    );
+
+    const sections = [servicesRef, statsRef, casesRef, testimonialsRef];
+    sections.forEach(ref => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const services = [
     {
@@ -141,9 +172,9 @@ export default function Landing() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gray-50">
+      <section ref={servicesRef} data-section="services" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 transition-all duration-1000 ${visibleSections.has('services') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl font-bold text-kerit-dark mb-4">{t('services.title')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               {t('services.subtitle')}
@@ -152,7 +183,15 @@ export default function Landing() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-8 group">
+              <div 
+                key={index} 
+                className={`bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-1000 p-8 group ${
+                  visibleSections.has('services') 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: `${index * 200}ms` }}
+              >
                 <div className="bg-kerit-light rounded-full w-16 h-16 flex items-center justify-center mb-6 group-hover:bg-kerit-yellow transition-colors">
                   <i className={`${service.icon} text-2xl text-kerit-dark`}></i>
                 </div>
@@ -175,21 +214,23 @@ export default function Landing() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-kerit-dark">
+      <section ref={statsRef} data-section="stats" className="py-20 bg-kerit-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <StatsGrid>
-            <StatsCard value="150+" label={t('stats.projects')} />
-            <StatsCard value="98%" label={t('stats.satisfaction')} />
-            <StatsCard value="5+" label={t('stats.experience')} />
-            <StatsCard value="24/7" label={t('stats.support')} />
-          </StatsGrid>
+          <div className={`transition-all duration-1000 ${visibleSections.has('stats') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <StatsGrid>
+              <StatsCard value="150+" label={t('stats.projects')} />
+              <StatsCard value="98%" label={t('stats.satisfaction')} />
+              <StatsCard value="5+" label={t('stats.experience')} />
+              <StatsCard value="24/7" label={t('stats.support')} />
+            </StatsGrid>
+          </div>
         </div>
       </section>
 
       {/* Case Studies Preview */}
-      <section className="py-20 bg-white">
+      <section ref={casesRef} data-section="cases" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 transition-all duration-1000 ${visibleSections.has('cases') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl font-bold text-kerit-dark mb-4">{t('cases.title')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               {t('cases.subtitle')}
@@ -198,7 +239,15 @@ export default function Landing() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {caseStudies.map((caseStudy, index) => (
-              <div key={index} className="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+              <div 
+                key={index} 
+                className={`bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-1000 ${
+                  visibleSections.has('cases') 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: `${index * 200}ms` }}
+              >
                 <div className="h-48 overflow-hidden">
                   {caseStudy.thumbnail ? (
                     <img
@@ -231,16 +280,24 @@ export default function Landing() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-kerit-light bg-opacity-50">
+      <section ref={testimonialsRef} data-section="testimonials" className="py-20 bg-kerit-light bg-opacity-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 transition-all duration-1000 ${visibleSections.has('testimonials') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl font-bold text-kerit-dark mb-4">{t('testimonials.title')}</h2>
             <p className="text-xl text-gray-600">{t('testimonials.subtitle')}</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg">
+              <div 
+                key={index} 
+                className={`bg-white rounded-2xl p-8 shadow-lg transition-all duration-1000 ${
+                  visibleSections.has('testimonials') 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: `${index * 200}ms` }}
+              >
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-kerit-sage rounded-full flex items-center justify-center text-white font-bold">
                     {testimonial.avatar}
