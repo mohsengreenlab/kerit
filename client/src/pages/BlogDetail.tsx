@@ -80,7 +80,7 @@ export default function BlogDetail() {
           </p>
           <a 
             href="/blog" 
-            className="inline-flex items-center bg-gradient-to-r from-[#8B9D7C] to-[#2F3E2A] hover:from-[#2F3E2A] hover:to-[#8B9D7C] text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            className="inline-flex items-center bg-gradient-to-r from-[#F4D03F] to-[#F7DC6F] hover:from-[#F7DC6F] hover:to-[#F4D03F] text-gray-900 font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
           >
             <i className="fas fa-arrow-left mr-3 text-lg"></i>
             {t('blog.back_to_blog')}
@@ -192,7 +192,7 @@ export default function BlogDetail() {
           <div className="text-center">
             <a 
               href="/blog" 
-              className="inline-flex items-center bg-gradient-to-r from-[#8B9D7C] to-[#2F3E2A] hover:from-[#2F3E2A] hover:to-[#8B9D7C] text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="inline-flex items-center bg-gradient-to-r from-[#F4D03F] to-[#F7DC6F] hover:from-[#F7DC6F] hover:to-[#F4D03F] text-gray-900 font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
               <i className="fas fa-arrow-left mr-3 text-lg"></i>
               {t('blog.back_to_blog')}
