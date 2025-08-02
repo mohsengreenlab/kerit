@@ -35,8 +35,6 @@ export default function Blog() {
     { value: 'email-marketing', label: t('blog.filter.email'), icon: 'fas fa-envelope' },
     { value: 'chatbots', label: t('blog.filter.chatbots'), icon: 'fas fa-robot' },
     { value: 'performance', label: t('blog.filter.performance'), icon: 'fas fa-tachometer-alt' },
-    { value: 'analytics', label: t('blog.filter.analytics'), icon: 'fas fa-chart-line' },
-    { value: 'trends', label: t('blog.filter.trends'), icon: 'fas fa-trending-up' },
   ];
 
   const filteredPosts = blogPosts?.filter(post => 
@@ -187,9 +185,6 @@ export default function Blog() {
                           {categories.find(c => c.value === post.category)?.label || post.category}
                         </div>
                       )}
-                      <div className="text-sm text-gray-500">
-                        {new Date(post.publishedAt).toLocaleDateString('ru-RU')}
-                      </div>
                     </div>
                     <h2 className="text-xl font-bold text-kerit-dark mb-3 line-clamp-2">{post.title}</h2>
                     <p className="text-gray-600 mb-4 leading-relaxed line-clamp-3">
@@ -254,31 +249,6 @@ export default function Blog() {
               </div>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Newsletter CTA */}
-      <section className="py-20 bg-kerit-dark">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            {t('blog.newsletter_title')}
-          </h2>
-          <p className="text-xl text-kerit-light mb-10">
-            {t('blog.newsletter_desc')}
-          </p>
-          <div className="max-w-md mx-auto flex gap-4">
-            <Input
-              type="email"
-              placeholder={t('blog.email_placeholder')}
-              className="bg-white text-kerit-dark"
-            />
-            <Button className="bg-kerit-yellow hover:bg-yellow-400 text-kerit-dark font-semibold px-6">
-              {t('blog.subscribe')}
-            </Button>
-          </div>
-          <p className="text-kerit-light text-sm mt-4">
-            {t('blog.newsletter_note')}
-          </p>
         </div>
       </section>
     </>

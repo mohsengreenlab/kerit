@@ -122,8 +122,8 @@ export default function Contact() {
     {
       icon: 'fas fa-envelope',
       title: t('contact.info.email'),
-      value: 'hello@kerit.com',
-      link: 'mailto:hello@kerit.com'
+      value: 'info@kerit.com.ru',
+      link: 'mailto:info@kerit.com.ru'
     },
     {
       icon: 'fas fa-phone',

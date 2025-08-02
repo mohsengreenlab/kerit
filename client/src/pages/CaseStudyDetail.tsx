@@ -100,10 +100,7 @@ export default function CaseStudyDetail() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-12">
-            <div className={`inline-flex items-center px-4 py-2 rounded-full text-white font-medium mb-4 ${getServiceColor(caseStudy.serviceType)}`}>
-              <i className={`${getServiceIcon(caseStudy.serviceType)} mr-2`}></i>
-              {t(`cases.filter.${caseStudy.serviceType.replace('-', '')}`) || caseStudy.serviceType}
-            </div>
+
             <h1 className="text-4xl lg:text-5xl font-bold text-kerit-dark mb-4">
               {caseStudy.title}
             </h1>

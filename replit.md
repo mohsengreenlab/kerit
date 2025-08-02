@@ -28,6 +28,13 @@ Development admin bypass available at: /api/dev-admin-login
 ✓ **Cookie Management**: Enhanced session handling to prevent "relation sessions does not exist" errors
 ✓ **Translation Fixes**: Corrected Russian phrases appearing in English mode on Cases page
 ✓ **Date Handling**: Fixed 1970 dates display by implementing proper date validation
+✓ **Contact Email Update**: Changed contact email to info@kerit.com.ru across the website
+✓ **Case Study Pages**: Removed filter buttons from all case study detail pages
+✓ **Blog Improvements**: 
+  - Removed Analytics and Trends categories
+  - Removed date display from blog posts  
+  - Created comprehensive blog content with full articles
+  - Removed newsletter subscription section
 
 ## Previous Changes (August 1, 2025)
 
