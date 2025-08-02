@@ -228,15 +228,12 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'cases.cta_title': 'Готовы создать свой успешный кейс?',
     'cases.cta_desc': 'Обсудите ваш проект с нашими экспертами и получите персональную стратегию развития',
 
-    // Blog page
-    'blog.updating_title': 'Блог обновляется',
-    'blog.updating_desc': 'Мы работаем над добавлением новых экспертных статей. Следите за обновлениями!',
+
     'blog.newsletter_title': 'Не пропустите новые статьи',
     'blog.newsletter_desc': 'Подпишитесь на наши обновления и получайте свежие экспертные материалы первыми',
     'blog.newsletter_note': 'Никакого спама, только полезные материалы',
 
-    // Pricing FAQ
-    'pricing.faq_title': 'Часто задаваемые вопросы',
+
     'pricing.faq_subtitle': 'Ответы на популярные вопросы о наших тарифах',
     'blog.no_posts_title': 'Статьи не найдены',
     'pricing.faq_q1': 'Можно ли изменить пакет в процессе работы?',
@@ -272,8 +269,6 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'blog.email_placeholder': 'Ваш email',
     'blog.subscribe': 'Подписаться',
     'blog.no_posts_desc': 'По запросу ничего не найдено. Попробуйте изменить поисковый запрос.',
-    'blog.updating_title': 'Блог обновляется',
-    'blog.updating_desc': 'Мы работаем над добавлением новых экспертных статей. Следите за обновлениями!',
     
     // Contact FAQ
     'contact.faq.q1': 'Как быстро вы отвечаете?',
@@ -484,9 +479,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'footer.privacy_policy': 'Privacy Policy',
     'footer.terms_of_use': 'Terms of Use',
 
-    // Header/Auth
-    'auth.login': 'Login',
-    'auth.logout': 'Logout',
+
 
     // Cookie Notice
     'cookies.message': 'We use cookies to improve site performance and analyze traffic.',
@@ -692,6 +685,16 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'who_we_are.cta_title': 'Ready to Work With Us?',
     'who_we_are.cta_desc': 'If our values resonate with you, we\'d love to hear from you!',
     'who_we_are.contact_us': 'Drop Us a Message',
+
+    // Case Study Detail Page
+    'cases.client': 'Client',
+    'cases.results': 'Results',
+    'cases.not_found.title': 'Case Study Not Found',
+    'cases.not_found.desc': 'The case study you are looking for does not exist.',
+    'cases.back_to_cases': 'Back to Case Studies',
+    'cases.cta.title': 'Ready to achieve similar results?',
+    'cases.cta.desc': 'Let us help you transform your business with proven IT solutions.',
+    'cases.cta.button': 'Get Free Consultation',
 
     // Common
     'common.read_more': 'Read More',

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { useLanguage } from '@/hooks/useLanguage';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import logoPath from '@assets/Logo_1753789199779.jpg';
+import logoPath from '@assets/Small_Logo_1754119146932.jpg';
 
 export function Header() {
   const [location] = useLocation();
@@ -31,7 +31,7 @@ export function Header() {
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <img src={logoPath} alt="Kerit Logo" className="h-8 w-auto" />
+              <img src={logoPath} alt="Kerit Logo" className="h-10 w-auto" />
             </Link>
           </div>
 
