@@ -35,9 +35,11 @@ export default function Blog() {
   // Filter posts by language
   const languageFilteredPosts = blogPosts?.filter(post => {
     if (currentLanguage === 'ru') {
-      return post.slug.endsWith('-ru') || !post.slug.endsWith('-en');
+      // For Russian: only show posts that explicitly end with '-ru'
+      return post.slug.endsWith('-ru');
     } else {
-      return post.slug.endsWith('-en') || !post.slug.endsWith('-ru');
+      // For English: show posts that end with '-en' OR have no language suffix
+      return post.slug.endsWith('-en') || (!post.slug.endsWith('-ru') && !post.slug.endsWith('-en'));
     }
   }) || [];
 
