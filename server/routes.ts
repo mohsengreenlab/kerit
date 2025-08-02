@@ -151,6 +151,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Case study detail by slug  
+  app.get('/api/case-studies/detail/:slug', async (req, res) => {
+    try {
+      const caseStudy = await storage.getCaseStudyBySlug(req.params.slug);
+      if (!caseStudy || !caseStudy.isPublished) {
+        return res.status(404).json({ message: "Case study not found" });
+      }
+      res.json(caseStudy);
+    } catch (error) {
+      console.error("Error fetching case study:", error);
+      res.status(500).json({ message: "Failed to fetch case study" });
+    }
+  });
+
   app.get('/api/case-studies/:slug', async (req, res) => {
     try {
       const caseStudy = await storage.getCaseStudy(req.params.slug);

@@ -141,6 +141,17 @@ export async function seedDatabase() {
       isPublished: true,
     });
 
+    await storage.createCaseStudy({
+      title: "SpeedTech Performance Optimization",
+      slug: "speedtech-performance-optimization",
+      content: "SpeedTech Solutions had slow loading times and high infrastructure costs. We performed comprehensive system optimization including database tuning, code optimization, and infrastructure scaling, achieving remarkable results.",
+      excerpt: "How we helped SpeedTech reduce infrastructure costs and improve performance by 5x",
+      clientName: "SpeedTech Solutions",
+      results: "5x faster loading times, reduced infrastructure costs by hundreds of dollars monthly",
+      serviceType: "performance-improvement",
+      isPublished: true,
+    });
+
     // Create translations
     const translations = [
       // Navigation

@@ -21,6 +21,7 @@ import Admin from "@/pages/Admin";
 import AdminLogin from "@/pages/AdminLogin";
 import TestForms from "@/pages/TestForms";
 import NotFound from "@/pages/not-found";
+import CaseStudyDetail from "@/pages/CaseStudyDetail";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -42,6 +43,7 @@ function Router() {
         <Route path="/who-we-are" component={WhoWeAre} />
         <Route path="/services" component={Services} />
         <Route path="/case-studies" component={CaseStudies} />
+        <Route path="/case-studies/:slug" component={CaseStudyDetail} />
         <Route path="/blog" component={Blog} />
         <Route path="/contact" component={Contact} />
         <Route path="/pricing" component={Pricing} />

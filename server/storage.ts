@@ -62,6 +62,7 @@ export interface IStorage {
   
   // Case studies operations
   getCaseStudy(slug: string): Promise<CaseStudy | undefined>;
+  getCaseStudyBySlug(slug: string): Promise<CaseStudy | undefined>;
   getAllCaseStudies(published?: boolean): Promise<CaseStudy[]>;
   getCaseStudiesByService(serviceType: string): Promise<CaseStudy[]>;
   createCaseStudy(caseStudy: InsertCaseStudy): Promise<CaseStudy>;
@@ -212,6 +213,11 @@ export class DatabaseStorage implements IStorage {
 
   // Case studies operations
   async getCaseStudy(slug: string): Promise<CaseStudy | undefined> {
+    const [caseStudy] = await db.select().from(caseStudies).where(eq(caseStudies.slug, slug));
+    return caseStudy;
+  }
+
+  async getCaseStudyBySlug(slug: string): Promise<CaseStudy | undefined> {
     const [caseStudy] = await db.select().from(caseStudies).where(eq(caseStudies.slug, slug));
     return caseStudy;
   }

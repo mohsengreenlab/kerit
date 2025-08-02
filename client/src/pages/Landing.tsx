@@ -37,24 +37,27 @@ export default function Landing() {
   const caseStudies = [
     {
       category: t('landing.case_email.title'),
-      title: t('landing.case_email.result'),
-      description: t('landing.case_email.desc'),
+      title: "TechCorp Email Campaign Success",
+      description: "How we helped TechCorp achieve 300% increase in email engagement",
       icon: 'fas fa-chart-line',
       gradient: 'from-kerit-sage to-kerit-dark',
+      slug: 'techcorp-email-success',
     },
     {
       category: t('landing.case_chatbot.title'),
-      title: t('landing.case_chatbot.result'),
-      description: t('landing.case_chatbot.desc'),
+      title: "RetailMax Chatbot Implementation", 
+      description: "How we reduced RetailMax support tickets by 60% with AI chatbots",
       icon: 'fas fa-robot',
       gradient: 'from-kerit-dark to-kerit-sage',
+      slug: 'retailmax-chatbot-implementation',
     },
     {
       category: t('landing.case_performance.title'),
-      title: t('landing.case_performance.result'),
-      description: t('landing.case_performance.desc'),
+      title: "SpeedTech Performance Optimization",
+      description: "How we helped SpeedTech reduce infrastructure costs and improve performance by 5x",
       icon: 'fas fa-tachometer-alt',
       gradient: 'from-kerit-yellow to-kerit-light',
+      slug: 'speedtech-performance-optimization',
     },
   ];
 
@@ -198,7 +201,7 @@ export default function Landing() {
                   <p className="text-gray-600 mb-4">
                     {caseStudy.description}
                   </p>
-                  <Link href="/case-studies" className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
+                  <Link href={`/case-studies/${caseStudy.slug}`} className="text-kerit-sage font-semibold hover:text-kerit-dark transition-colors">
                     {t('landing.read_case')} <i className="fas fa-arrow-right ml-1"></i>
                   </Link>
                 </div>
@@ -206,11 +209,7 @@ export default function Landing() {
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <Link href="/case-studies" className="bg-kerit-sage hover:bg-opacity-90 text-white font-semibold px-8 py-4 rounded-lg transition-colors">
-              {t('cases.view_all')}
-            </Link>
-          </div>
+
         </div>
       </section>
 

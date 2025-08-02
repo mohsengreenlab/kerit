@@ -256,7 +256,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'testimonial.maria.text': 'Чат-бот от Kerit полностью автоматизировал нашу работу с клиентами. Теперь мы работаем 24/7!',
     'testimonial.dmitry.name': 'Дмитрий Козлов',
     'testimonial.dmitry.title': 'IT-директор, LogiCorp', 
-    'testimonial.dmitry.text': 'Оптимизация от Kerit сэкономила нам тысячи долларов на инфраструктуре. Рекомендую!',
+    'testimonial.dmitry.text': 'Оптимизация от Kerit сэкономила нам сотни долларов на инфраструктуре. Рекомендую!',
     
     // About page details
     'about.approach_title': 'Комплексный подход',
@@ -610,7 +610,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'testimonial.maria.text': 'Kerit\'s chatbot completely automated our customer service. Now we work 24/7!',
     'testimonial.dmitry.name': 'Dmitry Kozlov', 
     'testimonial.dmitry.title': 'IT Director, LogiCorp',
-    'testimonial.dmitry.text': 'Kerit\'s optimization saved us thousands of dollars on infrastructure. Highly recommend!',
+    'testimonial.dmitry.text': 'Kerit\'s optimization saved us hundreds of dollars on infrastructure. Highly recommend!',
     
     // About page details
     'about.approach_title': 'Comprehensive Approach',

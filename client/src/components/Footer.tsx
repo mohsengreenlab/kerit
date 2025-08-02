@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { useLanguage } from '@/hooks/useLanguage';
-import logoPath from '@assets/Logo_1753789199779.jpg';
+import smallLogoPath from '@assets/Small_Logo_1754119146932.jpg';
 
 export function Footer() {
   const { t } = useLanguage();
@@ -11,7 +11,7 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
-            <img src={logoPath} alt="Kerit Logo" className="h-6 w-auto mb-4" />
+            <img src={smallLogoPath} alt="Kerit Logo" className="h-6 w-auto mb-4" />
             <p className="text-gray-300 mb-6 max-w-md">
               {t('footer.company_desc')}
             </p>
@@ -47,11 +47,7 @@ export function Footer() {
                   {t('services.performance.title')}
                 </Link>
               </li>
-              <li>
-                <Link href="/pricing" className="hover:text-kerit-yellow transition-colors">
-                  {t('nav.pricing')}
-                </Link>
-              </li>
+
             </ul>
           </div>
 
@@ -79,22 +75,20 @@ export function Footer() {
                   {t('nav.contact')}
                 </Link>
               </li>
+              <li>
+                <Link href="/pricing" className="hover:text-kerit-yellow transition-colors">
+                  {t('nav.pricing')}
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-400 text-sm mb-4 md:mb-0">
-            © 2024 Kerit. {t('footer.rights_reserved')}
+            © 2025 Kerit. {t('footer.rights_reserved')}
           </div>
-          <div className="flex space-x-6 text-sm text-gray-400">
-            <Link href="/privacy" className="hover:text-kerit-yellow transition-colors">
-              {t('footer.privacy_policy')}
-            </Link>
-            <Link href="/terms" className="hover:text-kerit-yellow transition-colors">
-              {t('footer.terms_of_use')}
-            </Link>
-          </div>
+
         </div>
       </div>
     </footer>
