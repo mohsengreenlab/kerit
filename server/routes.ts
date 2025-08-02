@@ -25,7 +25,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const adminPassword = 'dweftr234#@$@#FERFddddd';
     
     // Simple captcha check (in production, use proper captcha service)
-    const expectedCaptcha = req.session?.captcha;
+    const expectedCaptcha = (req.session as any)?.captcha;
     
     if (username === adminUsername && password === adminPassword && captcha === expectedCaptcha) {
       // Create admin session
