@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { Link } from 'wouter';
 import { useLanguage } from '@/hooks/useLanguage';
 import logoPath from '@assets/Logo_1753789199779.jpg';
+import heroImage from '@assets/generated_images/IT_consultancy_hero_banner_d1b96b90.png';
+import emailThumbnail from '@assets/generated_images/Email_marketing_success_thumbnail_d68285c9.png';
+import chatbotThumbnail from '@assets/generated_images/Chatbot_success_thumbnail_9960a146.png';
+import performanceThumbnail from '@assets/generated_images/Performance_optimization_thumbnail_35dfc117.png';
 import { SEOHead } from '@/components/SEOHead';
 import { StatsGrid, StatsCard } from '@/components/ui/stats';
 import { AppointmentModal } from '@/components/AppointmentModal';
@@ -42,6 +46,7 @@ export default function Landing() {
       icon: 'fas fa-chart-line',
       gradient: 'from-kerit-sage to-kerit-dark',
       slug: 'techcorp-email-success',
+      thumbnail: emailThumbnail,
     },
     {
       category: t('landing.case_chatbot.title'),
@@ -50,6 +55,7 @@ export default function Landing() {
       icon: 'fas fa-robot',
       gradient: 'from-kerit-dark to-kerit-sage',
       slug: 'retailmax-chatbot-implementation',
+      thumbnail: chatbotThumbnail,
     },
     {
       category: t('landing.case_performance.title'),
@@ -58,6 +64,7 @@ export default function Landing() {
       icon: 'fas fa-tachometer-alt',
       gradient: 'from-kerit-yellow to-kerit-light',
       slug: 'speedtech-performance-optimization',
+      thumbnail: performanceThumbnail,
     },
   ];
 
@@ -121,11 +128,11 @@ export default function Landing() {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-gradient-to-br from-kerit-sage to-kerit-dark rounded-2xl p-12 shadow-2xl flex items-center justify-center">
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src={logoPath} 
-                  alt="Kerit Logo" 
-                  className="max-w-xs w-full h-auto"
+                  src={heroImage} 
+                  alt="IT Consultancy Solutions" 
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -192,8 +199,18 @@ export default function Landing() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {caseStudies.map((caseStudy, index) => (
               <div key={index} className="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                <div className={`h-48 bg-gradient-to-br ${caseStudy.gradient} flex items-center justify-center`}>
-                  <i className={`${caseStudy.icon} text-4xl ${caseStudy.gradient.includes('yellow') ? 'text-kerit-dark' : 'text-kerit-light'}`}></i>
+                <div className="h-48 overflow-hidden">
+                  {caseStudy.thumbnail ? (
+                    <img
+                      src={caseStudy.thumbnail}
+                      alt={caseStudy.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className={`h-full bg-gradient-to-br ${caseStudy.gradient} flex items-center justify-center`}>
+                      <i className={`${caseStudy.icon} text-4xl ${caseStudy.gradient.includes('yellow') ? 'text-kerit-dark' : 'text-kerit-light'}`}></i>
+                    </div>
+                  )}
                 </div>
                 <div className="p-6">
                   <div className="text-sm text-kerit-sage font-semibold mb-2">{caseStudy.category}</div>
