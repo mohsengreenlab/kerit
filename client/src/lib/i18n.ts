@@ -43,6 +43,11 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'cases.filter.email': 'Email-маркетинг',
     'cases.filter.chatbot': 'Чат-боты',
     'cases.filter.performance': 'Оптимизация',
+    'cases.service.email-marketing': 'Email-маркетинг',
+    'cases.service.customer-chatbot': 'Чат-бот',
+    'cases.service.performance-improvement': 'Оптимизация',
+    'cases.service.default': 'Проект',
+    'cases.result_label': 'Результат:',
 
     // Blog
     'blog.title': 'Блог',
@@ -268,7 +273,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'blog.suggest_topic': 'Предложить тему',
     'blog.email_placeholder': 'Ваш email',
     'blog.subscribe': 'Подписаться',
-    'blog.no_posts_desc': 'По запросу ничего не найдено. Попробуйте изменить поисковый запрос.',
+    'blog.no_posts_ru_desc': 'По запросу ничего не найдено. Попробуйте изменить поисковый запрос.',
     
     // Contact FAQ
     'contact.faq.q1': 'Как быстро вы отвечаете?',
@@ -392,6 +397,11 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'cases.filter.email': 'Email Marketing',
     'cases.filter.chatbot': 'Chatbots',
     'cases.filter.performance': 'Performance',
+    'cases.service.email-marketing': 'Email Marketing',
+    'cases.service.customer-chatbot': 'Chatbot',
+    'cases.service.performance-improvement': 'Optimization',
+    'cases.service.default': 'Project',
+    'cases.result_label': 'Result:',
 
     // Blog
     'blog.title': 'Blog',
@@ -582,9 +592,6 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'blog.newsletter_desc': 'Subscribe to our updates and get fresh expert materials first',
     'blog.newsletter_note': 'No spam, only useful materials',
 
-    // Pricing FAQ
-    'pricing.faq_title': 'Frequently Asked Questions',
-    'pricing.faq_subtitle': 'Answers to popular questions about our pricing',
     'blog.no_posts_title': 'No Articles Found',
     'pricing.faq_q1': 'Can I change the package during work?',
     'pricing.faq_a1': 'Yes, you can switch to another package at any time. We will recalculate the cost proportionally.',
@@ -618,9 +625,6 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'blog.suggest_topic': 'Suggest Topic',
     'blog.email_placeholder': 'Your email',
     'blog.subscribe': 'Subscribe',
-    'blog.no_posts_desc': 'Nothing found for your query. Try changing the search term.',
-    'blog.updating_title': 'Blog is being updated',
-    'blog.updating_desc': 'We are working on adding new expert articles. Stay tuned for updates!',
     
     // Contact FAQ
     'contact.faq.q1': 'How quickly do you respond?',

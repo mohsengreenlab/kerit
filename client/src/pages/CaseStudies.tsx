@@ -165,10 +165,7 @@ export default function CaseStudies() {
                           'fas fa-star'
                         } text-4xl text-white mb-2`}></i>
                         <div className="text-white font-semibold">
-                          {caseStudy.serviceType === 'email-marketing' ? 'Email-маркетинг' :
-                           caseStudy.serviceType === 'customer-chatbot' ? 'Чат-бот' :
-                           caseStudy.serviceType === 'performance-improvement' ? 'Оптимизация' :
-                           'Кейс'}
+                          {t(`cases.service.${caseStudy.serviceType}`) || t('cases.service.default')}
                         </div>
                       </div>
                     )}
@@ -176,10 +173,7 @@ export default function CaseStudies() {
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-3">
                       <div className={`${getServiceColor(caseStudy.serviceType)} text-white px-3 py-1 rounded-full text-sm font-semibold`}>
-                        {caseStudy.serviceType === 'email-marketing' ? 'Email-маркетинг' :
-                         caseStudy.serviceType === 'customer-chatbot' ? 'Чат-бот' :
-                         caseStudy.serviceType === 'performance-improvement' ? 'Оптимизация' :
-                         'Проект'}
+                        {t(`cases.service.${caseStudy.serviceType}`) || t('cases.service.default')}
                       </div>
                       {caseStudy.clientName && (
                         <div className="text-sm text-gray-500">{caseStudy.clientName}</div>
@@ -191,7 +185,7 @@ export default function CaseStudies() {
                     </p>
                     {caseStudy.results && (
                       <div className="bg-kerit-light bg-opacity-50 rounded-lg p-3 mb-4">
-                        <div className="text-sm font-semibold text-kerit-dark mb-1">Результат:</div>
+                        <div className="text-sm font-semibold text-kerit-dark mb-1">{t('cases.result_label')}</div>
                         <div className="text-sm text-kerit-sage">{caseStudy.results}</div>
                       </div>
                     )}
@@ -200,7 +194,9 @@ export default function CaseStudies() {
                         {t('landing.read_case')} <i className="fas fa-arrow-right ml-1"></i>
                       </Link>
                       <div className="text-sm text-gray-400">
-                        {new Date(caseStudy.publishedAt).toLocaleDateString('ru-RU')}
+                        {caseStudy.publishedAt && new Date(caseStudy.publishedAt).getTime() > new Date('1970-01-02').getTime() 
+                          ? new Date(caseStudy.publishedAt).toLocaleDateString() 
+                          : ''}
                       </div>
                     </div>
                   </div>
