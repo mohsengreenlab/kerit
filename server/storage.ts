@@ -194,13 +194,8 @@ export class DatabaseStorage implements IStorage {
         createdAt: blogPosts.createdAt,
         updatedAt: blogPosts.updatedAt,
         authorId: blogPosts.authorId,
-        author: {
-          firstName: users.firstName,
-          lastName: users.lastName,
-        }
       })
       .from(blogPosts)
-      .leftJoin(users, eq(blogPosts.authorId, users.id))
       .where(eq(blogPosts.slug, slug));
     return post;
   }

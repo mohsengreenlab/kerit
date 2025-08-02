@@ -14,10 +14,6 @@ interface BlogPost {
   category?: string;
   tags?: string[];
   publishedAt: string;
-  author?: {
-    firstName?: string;
-    lastName?: string;
-  };
 }
 
 export default function BlogDetail() {
@@ -84,8 +80,9 @@ export default function BlogDetail() {
           </p>
           <a 
             href="/blog" 
-            className="bg-kerit-sage hover:bg-opacity-90 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
+            className="inline-flex items-center bg-gradient-to-r from-kerit-sage to-kerit-dark hover:from-kerit-dark hover:to-kerit-sage text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
           >
+            <i className="fas fa-arrow-left mr-3 text-lg"></i>
             {t('blog.back_to_blog')}
           </a>
         </div>
@@ -191,20 +188,13 @@ export default function BlogDetail() {
             </div>
           </div>
 
-          {/* Author and Date */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg text-center">
-            {blogPost.author && (
-              <div className="mb-4">
-                <p className="text-gray-600">
-                  {t('blog.author')}: {blogPost.author.firstName} {blogPost.author.lastName}
-                </p>
-              </div>
-            )}
+          {/* Back to Blog Button */}
+          <div className="text-center">
             <a 
               href="/blog" 
-              className="inline-flex items-center text-kerit-sage hover:text-kerit-dark transition-colors font-semibold"
+              className="inline-flex items-center bg-gradient-to-r from-kerit-sage to-kerit-dark hover:from-kerit-dark hover:to-kerit-sage text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <i className="fas fa-arrow-left mr-2"></i>
+              <i className="fas fa-arrow-left mr-3 text-lg"></i>
               {t('blog.back_to_blog')}
             </a>
           </div>
