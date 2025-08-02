@@ -7,6 +7,7 @@ import { AppointmentModal } from './AppointmentModal';
 import { LanguageContext } from '@/hooks/useLanguage';
 import { getTranslation, defaultTranslations } from '@/lib/i18n';
 import { trackPageView } from '@/lib/analytics';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 interface LayoutProps {
   children: ReactNode;
@@ -18,6 +19,9 @@ export function Layout({ children }: LayoutProps) {
   });
   
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  
+  // Scroll to top on route changes
+  useScrollToTop();
 
   // Fetch translations from API
   const { data: apiTranslations = {} } = useQuery<Record<string, string>>({

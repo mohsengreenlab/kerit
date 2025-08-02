@@ -1,8 +1,10 @@
 import { useLanguage } from '@/hooks/useLanguage';
+import { usePageAnimation } from '@/hooks/usePageAnimation';
 import { SEOHead } from '@/components/SEOHead';
 
 export default function About() {
   const { t } = useLanguage();
+  const shouldAnimate = usePageAnimation('about');
 
   return (
     <>
@@ -12,9 +14,9 @@ export default function About() {
         keywords="о компании, команда, IT консалтинг, история компании"
       />
 
-      <div className="py-20">
+      <div className={`py-20 ${shouldAnimate ? 'page-entrance-animation' : ''}`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 ${shouldAnimate ? 'slide-up-animation animation-delay-200' : ''}`}>
             <h1 className="text-4xl lg:text-5xl font-bold text-kerit-dark mb-6">
               {t('about.title')}
             </h1>
@@ -24,7 +26,7 @@ export default function About() {
           </div>
 
           <div className="prose prose-lg max-w-none">
-            <div className="bg-gray-50 rounded-2xl p-8 mb-12">
+            <div className={`bg-gray-50 rounded-2xl p-8 mb-12 ${shouldAnimate ? 'scale-in-animation animation-delay-400' : ''}`}>
               <h2 className="text-3xl font-bold text-kerit-dark mb-6">{t('about.mission')}</h2>
               <p className="text-gray-700 text-lg leading-relaxed">
                 {t('about.mission_desc')}
@@ -32,7 +34,7 @@ export default function About() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <div className="text-center">
+              <div className={`text-center ${shouldAnimate ? 'slide-up-animation animation-delay-600' : ''}`}>
                 <div className="bg-kerit-light rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                   <i className="fas fa-lightbulb text-3xl text-kerit-dark"></i>
                 </div>
@@ -42,7 +44,7 @@ export default function About() {
                 </p>
               </div>
               
-              <div className="text-center">
+              <div className={`text-center ${shouldAnimate ? 'slide-up-animation animation-delay-700' : ''}`}>
                 <div className="bg-kerit-light rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                   <i className="fas fa-users text-3xl text-kerit-dark"></i>
                 </div>
@@ -52,7 +54,7 @@ export default function About() {
                 </p>
               </div>
               
-              <div className="text-center">
+              <div className={`text-center ${shouldAnimate ? 'slide-up-animation animation-delay-800' : ''}`}>
                 <div className="bg-kerit-light rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                   <i className="fas fa-chart-line text-3xl text-kerit-dark"></i>
                 </div>

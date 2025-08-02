@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'wouter';
 import { useLanguage } from '@/hooks/useLanguage';
+import { usePageAnimation } from '@/hooks/usePageAnimation';
 import logoPath from '@assets/Logo_1753789199779.jpg';
 import heroImage from '@assets/generated_images/Professional_business_team_meeting_166a66e9.png';
 import emailThumbnail from '@assets/generated_images/Simple_email_marketing_icon_11bd6e3f.png';
@@ -9,10 +10,12 @@ import performanceThumbnail from '@assets/generated_images/Simple_performance_op
 import { SEOHead } from '@/components/SEOHead';
 import { StatsGrid, StatsCard } from '@/components/ui/stats';
 import { AppointmentModal } from '@/components/AppointmentModal';
+import { OptimizedImage } from '@/components/OptimizedImage';
 
 export default function Landing() {
   const { t } = useLanguage();
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  const shouldAnimate = usePageAnimation('landing');
   
   // Animation refs for scroll-triggered animations
   const servicesRef = useRef(null);
@@ -129,10 +132,10 @@ export default function Landing() {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-kerit-light to-white py-20 lg:py-32">
+      <section className={`relative bg-gradient-to-br from-kerit-light to-white py-20 lg:py-32 ${shouldAnimate ? 'page-entrance-animation' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className={shouldAnimate ? 'slide-left-animation animation-delay-200' : ''}>
               <h1 className="text-4xl lg:text-6xl font-bold text-kerit-dark leading-tight mb-6">
                 {t('hero.title').split(t('hero.highlight'))[0]}
                 <span className="text-kerit-sage">{t('hero.highlight')}</span>
@@ -158,12 +161,13 @@ export default function Landing() {
                 </button>
               </div>
             </div>
-            <div className="relative">
+            <div className={`relative ${shouldAnimate ? 'slide-right-animation animation-delay-400' : ''}`}>
               <div className="rounded-2xl overflow-hidden shadow-2xl">
-                <img 
+                <OptimizedImage 
                   src={heroImage} 
                   alt="IT Consultancy Solutions" 
                   className="w-full h-auto"
+                  loading="eager"
                 />
               </div>
             </div>
@@ -250,7 +254,7 @@ export default function Landing() {
               >
                 <div className="h-48 overflow-hidden">
                   {caseStudy.thumbnail ? (
-                    <img
+                    <OptimizedImage
                       src={caseStudy.thumbnail}
                       alt={caseStudy.title}
                       className="w-full h-full object-cover"
