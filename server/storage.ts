@@ -54,6 +54,7 @@ export interface IStorage {
   
   // Blog operations
   getBlogPost(slug: string): Promise<BlogPost | undefined>;
+  getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
   getAllBlogPosts(published?: boolean): Promise<BlogPost[]>;
   getBlogPostsByCategory(category: string): Promise<BlogPost[]>;
   createBlogPost(post: InsertBlogPost): Promise<BlogPost>;
@@ -174,6 +175,33 @@ export class DatabaseStorage implements IStorage {
   // Blog operations
   async getBlogPost(slug: string): Promise<BlogPost | undefined> {
     const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug));
+    return post;
+  }
+
+  async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
+    const [post] = await db
+      .select({
+        id: blogPosts.id,
+        title: blogPosts.title,
+        slug: blogPosts.slug,
+        content: blogPosts.content,
+        excerpt: blogPosts.excerpt,
+        featuredImage: blogPosts.featuredImage,
+        category: blogPosts.category,
+        tags: blogPosts.tags,
+        publishedAt: blogPosts.publishedAt,
+        isPublished: blogPosts.isPublished,
+        createdAt: blogPosts.createdAt,
+        updatedAt: blogPosts.updatedAt,
+        authorId: blogPosts.authorId,
+        author: {
+          firstName: users.firstName,
+          lastName: users.lastName,
+        }
+      })
+      .from(blogPosts)
+      .leftJoin(users, eq(blogPosts.authorId, users.id))
+      .where(eq(blogPosts.slug, slug));
     return post;
   }
 

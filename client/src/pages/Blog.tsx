@@ -22,13 +22,24 @@ interface BlogPost {
 }
 
 export default function Blog() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-
   const { data: blogPosts, isLoading, error } = useQuery<BlogPost[]>({
     queryKey: selectedCategory !== 'all' ? [`/api/blog/${selectedCategory}`] : ['/api/blog'],
   });
+
+  // Get current language from localStorage
+  const currentLanguage = localStorage.getItem('language') || 'en';
+  
+  // Filter posts by language
+  const languageFilteredPosts = blogPosts?.filter(post => {
+    if (currentLanguage === 'ru') {
+      return post.slug.endsWith('-ru') || !post.slug.endsWith('-en');
+    } else {
+      return post.slug.endsWith('-en') || !post.slug.endsWith('-ru');
+    }
+  }) || [];
 
   const categories = [
     { value: 'all', label: t('blog.filter.all'), icon: 'fas fa-th-large' },
@@ -37,10 +48,10 @@ export default function Blog() {
     { value: 'performance', label: t('blog.filter.performance'), icon: 'fas fa-tachometer-alt' },
   ];
 
-  const filteredPosts = blogPosts?.filter(post => 
+  const filteredPosts = languageFilteredPosts.filter(post => 
     post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase())
-  ) || [];
+  );
 
   const getCategoryColor = (category: string) => {
     switch (category) {

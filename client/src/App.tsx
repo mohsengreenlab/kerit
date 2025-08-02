@@ -22,6 +22,7 @@ import AdminLogin from "@/pages/AdminLogin";
 import TestForms from "@/pages/TestForms";
 import NotFound from "@/pages/not-found";
 import CaseStudyDetail from "@/pages/CaseStudyDetail";
+import BlogDetail from "@/pages/BlogDetail";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -45,6 +46,7 @@ function Router() {
         <Route path="/case-studies" component={CaseStudies} />
         <Route path="/case-studies/:slug" component={CaseStudyDetail} />
         <Route path="/blog" component={Blog} />
+        <Route path="/blog/:slug" component={BlogDetail} />
         <Route path="/contact" component={Contact} />
         <Route path="/pricing" component={Pricing} />
         

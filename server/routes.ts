@@ -178,6 +178,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Blog post detail by slug
+  app.get('/api/blog/post/:slug', async (req, res) => {
+    try {
+      const blogPost = await storage.getBlogPostBySlug(req.params.slug);
+      if (!blogPost || !blogPost.isPublished) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      res.json(blogPost);
+    } catch (error) {
+      console.error("Error fetching blog post:", error);
+      res.status(500).json({ message: "Failed to fetch blog post" });
+    }
+  });
+
   app.get('/api/services', async (req, res) => {
     try {
       const services = await storage.getAllServices(true);
