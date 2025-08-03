@@ -1,7 +1,5 @@
-import pg from 'pg';
-import { drizzle } from 'drizzle-orm/node-postgres';
-
-const { Pool } = pg;
+import { neon } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/neon-http';
 import * as schema from "@shared/schema";
 
 if (!process.env.DATABASE_URL) {
@@ -10,10 +8,6 @@ if (!process.env.DATABASE_URL) {
   );
 }
 
-// Use standard PostgreSQL for Replit environment
-export const pool = new Pool({ 
-  connectionString: process.env.DATABASE_URL,
-  ssl: false // Replit's PostgreSQL doesn't require SSL
-});
-
-export const db = drizzle({ client: pool, schema });
+// Use Neon serverless driver for better compatibility
+export const sql = neon(process.env.DATABASE_URL);
+export const db = drizzle({ client: sql, schema });
