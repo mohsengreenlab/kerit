@@ -1,0 +1,92 @@
+# Switch to kerit user
+su - kerit
+cd /home/kerit/projects
+git@github.com:mohsengreenlab/kerit.git kerit-app
+cd kerit-app
+
+# Install dependencies
+npm install
+
+# Build the application
+npm run build
+sudo -u postgres psql
+CREATE DATABASE kerit_db;
+ALTER USER kerit_user WITH PASSWORD 'ferfgrtgSGSERGERG423423FEFERFERF';
+# Grant the necessary permissions to kerit_user
+sudo -u postgres psql kerit_db -c "GRANT ALL PRIVILEGES ON SCHEMA public TO kerit_user;"
+sudo -u postgres psql kerit_db -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO kerit_user;"
+sudo -u postgres psql kerit_db -c "GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO kerit_user;"
+sudo -u postgres psql kerit_db -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO kerit_user;"
+sudo -u postgres psql kerit_db -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO kerit_user;"
+
+
+# Clear ALL seeded data to force complete fresh seeding
+psql "postgresql://kerit_user:ferfgrtgSGSERGERG423423FEFERFERF@localhost:5432/kerit_db" -c "
+DELETE FROM page_views;
+DELETE FROM visitors;
+DELETE FROM contact_submissions;
+DELETE FROM contact_messages;
+DELETE FROM booking_consultations;
+DELETE FROM translations;
+DELETE FROM projects;
+DELETE FROM service_packages;
+DELETE FROM case_studies;
+DELETE FROM blog_posts;
+DELETE FROM services;
+DELETE FROM pages;
+DELETE FROM users WHERE id = 'admin';
+"
+
+
+# Create environment file
+cd /home/kerit/projects/kerit-app
+
+cat > .env << 'EOF'
+NODE_ENV=production
+PORT=3001
+DATABASE_URL=postgresql://kerit_user:ferfgrtgSGSERGERG423423FEFERFERF@localhost:5432/kerit_db
+SESSION_SECRET=nrsjvlsjdvfgTREHBRSGTWRGTefhewurbcfewrWCERCGWERCGwegethytjbuikUI
+REPL_ID=kerit-vps-production
+REPLIT_DOMAINS=kerit.com.ru
+ISSUER_URL=https://replit.com/oidc
+EOF
+
+
+chmod 600 .env
+npm run db:push
+cat > ecosystem.config.json << 'EOF'
+
+{
+  "apps": [{
+    "name": "kerit-app",
+    "script": "dist/index.js",
+    "cwd": "/home/kerit/projects/kerit-app",
+    "env": {
+      "NODE_ENV": "production",
+      "PORT": "3001",
+      "DATABASE_URL": "postgresql://kerit_user:ferfgrtgSGSERGERG423423FEFERFERF@localhost:5432/kerit_db",
+      "SESSION_SECRET": "nrsjvlsjdvfgTREHBRSGTWRGTefhewurbcfewrWCERCGWERCGwegethytjbuikUIKYUINKUYxfwefwexf",
+      "REPL_ID": "kerit-vps-production",
+      "REPLIT_DOMAINS": "kerit.com.ru",
+      "ISSUER_URL": "https://replit.com/oidc"
+    },
+    "instances": 2,
+    "exec_mode": "cluster",
+    "watch": false,
+    "max_memory_restart": "1G",
+    "error_file": "/home/kerit/logs/kerit-error.log",
+    "out_file": "/home/kerit/logs/kerit-out.log",
+    "log_file": "/home/kerit/logs/kerit-combined.log",
+    "time": true,
+    "restart_delay": 1000
+  }]
+}
+EOF
+
+# Create logs directory
+mkdir -p /home/kerit/logs
+
+# Start the application
+pm2 start ecosystem.config.json
+pm2 save
+pm2 startup

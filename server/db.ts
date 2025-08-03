@@ -12,19 +12,20 @@ if (!process.env.DATABASE_URL) {
 
 // Auto-detect database type and use appropriate driver
 const isNeonDatabase = process.env.DATABASE_URL.includes('neon.tech');
-const isReplitEnvironment = process.env.REPL_ID !== undefined;
+// Only use Neon for actual Neon databases, not based on REPL_ID
+const useNeonDriver = isNeonDatabase;
 
 let db: any;
 let sql: any;
 let pool: any;
 
-if (isNeonDatabase || isReplitEnvironment) {
-  // Use Neon serverless driver for Neon databases or Replit environment
+if (useNeonDriver) {
+  // Use Neon serverless driver only for actual Neon databases
   sql = neon(process.env.DATABASE_URL);
   db = drizzle({ client: sql, schema });
   console.log('Using Neon serverless driver for database connection');
 } else {
-  // Use regular PostgreSQL driver for local PostgreSQL (VPS)
+  // Use regular PostgreSQL driver for local PostgreSQL (VPS and other environments)
   const { Pool } = pg;
   pool = new Pool({ 
     connectionString: process.env.DATABASE_URL,

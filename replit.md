@@ -17,7 +17,7 @@ Development admin bypass available at: /api/dev-admin-login
 ## Recent Changes (August 3, 2025)
 
 ✓ **MIGRATION TO REPLIT COMPLETE**: Successfully migrated from Replit Agent to standard Replit environment
-✓ **Database Configuration Enhanced**: Added flexible database driver that auto-detects Neon vs PostgreSQL environments
+✓ **Database Configuration Enhanced**: Fixed database driver to use PostgreSQL for VPS deployments, only Neon for actual Neon databases
 ✓ **Blog Post Fix**: Fixed all 404 errors by creating proper English/Russian blog post pairs with matching slugs
 ✓ **Pricing Page Fix**: Removed duplicate service packages from database
 ✓ **Translation Matching**: Ensured one-to-one English-Russian blog post matching for proper internationalization
