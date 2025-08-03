@@ -1,0 +1,103 @@
+kerit@FreePaper:~/logs$ # Check the most recent error logs from both instances
+tail -50 kerit-error-0.log
+        at ssl.onhandshakedone (node:_tls_wrap:862:12) {
+      code: 'ERR_TLS_CERT_ALTNAME_INVALID',
+      reason: "Host: localhost. is not in the cert's altnames: DNS:daneshmehr.org",
+      host: 'localhost',
+      cert: [Object]
+    }
+  }
+}
+2025-08-03T10:16:59: Error fetching services: NeonDbError: Error connecting to database: fetch failed
+    at execute (file:///home/kerit/projects/kerit-app/node_modules/@neondatabase/serverless/index.mjs:1549:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (file:///home/kerit/projects/kerit-app/node_modules/drizzle-orm/neon-http/session.js:40:20)
+    at async DatabaseStorage.getAllServices (file:///home/kerit/projects/kerit-app/dist/index.js:476:14)
+    at async file:///home/kerit/projects/kerit-app/dist/index.js:1020:25 {
+  severity: undefined,
+  code: undefined,
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: undefined,
+  line: undefined,
+  routine: undefined,
+  sourceError: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async execute (file:///home/kerit/projects/kerit-app/node_modules/@neondatabase/serverless/index.mjs:1548:15)
+      at async NeonHttpPreparedQuery.execute (file:///home/kerit/projects/kerit-app/node_modules/drizzle-orm/neon-http/session.js:40:20)
+      at async DatabaseStorage.getAllServices (file:///home/kerit/projects/kerit-app/dist/index.js:476:14)
+      at async file:///home/kerit/projects/kerit-app/dist/index.js:1020:25 {
+    [cause]: Error [ERR_TLS_CERT_ALTNAME_INVALID]: Hostname/IP does not match certificate's altnames: Host: localhost. is not in the cert's altnames: DNS:daneshmehr.org
+        at Object.checkServerIdentity (node:tls:316:12)
+        at TLSSocket.onConnectSecure (node:_tls_wrap:1687:27)
+        at TLSSocket.emit (node:events:524:28)
+        at TLSSocket._finishInit (node:_tls_wrap:1076:8)
+        at ssl.onhandshakedone (node:_tls_wrap:862:12) {
+      code: 'ERR_TLS_CERT_ALTNAME_INVALID',
+      reason: "Host: localhost. is not in the cert's altnames: DNS:daneshmehr.org",
+      host: 'localhost',
+      cert: [Object]
+    }
+  }
+}
+kerit@FreePaper:~/logs$ tail -50 kerit-error-1.log
+        at ssl.onhandshakedone (node:_tls_wrap:862:12) {
+      code: 'ERR_TLS_CERT_ALTNAME_INVALID',
+      reason: "Host: localhost. is not in the cert's altnames: DNS:daneshmehr.org",
+      host: 'localhost',
+      cert: [Object]
+    }
+  }
+}
+2025-08-03T10:16:57: Error fetching blog posts: NeonDbError: Error connecting to database: fetch failed
+    at execute (file:///home/kerit/projects/kerit-app/node_modules/@neondatabase/serverless/index.mjs:1549:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonHttpPreparedQuery.execute (file:///home/kerit/projects/kerit-app/node_modules/drizzle-orm/neon-http/session.js:40:20)
+    at async DatabaseStorage.getAllBlogPosts (file:///home/kerit/projects/kerit-app/dist/index.js:420:14)
+    at async file:///home/kerit/projects/kerit-app/dist/index.js:947:17 {
+  severity: undefined,
+  code: undefined,
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: undefined,
+  line: undefined,
+  routine: undefined,
+  sourceError: TypeError: fetch failed
+      at node:internal/deps/undici/undici:13510:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async execute (file:///home/kerit/projects/kerit-app/node_modules/@neondatabase/serverless/index.mjs:1548:15)
+      at async NeonHttpPreparedQuery.execute (file:///home/kerit/projects/kerit-app/node_modules/drizzle-orm/neon-http/session.js:40:20)
+      at async DatabaseStorage.getAllBlogPosts (file:///home/kerit/projects/kerit-app/dist/index.js:420:14)
+      at async file:///home/kerit/projects/kerit-app/dist/index.js:947:17 {
+    [cause]: Error [ERR_TLS_CERT_ALTNAME_INVALID]: Hostname/IP does not match certificate's altnames: Host: localhost. is not in the cert's altnames: DNS:daneshmehr.org
+        at Object.checkServerIdentity (node:tls:316:12)
+        at TLSSocket.onConnectSecure (node:_tls_wrap:1687:27)
+        at TLSSocket.emit (node:events:524:28)
+        at TLSSocket._finishInit (node:_tls_wrap:1076:8)
+        at ssl.onhandshakedone (node:_tls_wrap:862:12) {
+      code: 'ERR_TLS_CERT_ALTNAME_INVALID',
+      reason: "Host: localhost. is not in the cert's altnames: DNS:daneshmehr.org",
+      host: 'localhost',
+      cert: [Object]
+    }
+  }
+}
