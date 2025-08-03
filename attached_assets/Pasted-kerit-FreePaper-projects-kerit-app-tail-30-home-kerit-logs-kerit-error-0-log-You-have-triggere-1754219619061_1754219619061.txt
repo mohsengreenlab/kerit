@@ -1,0 +1,31 @@
+kerit@FreePaper:~/projects/kerit-app$ tail -30 /home/kerit/logs/kerit-error-0.log 
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: "clientId" must be a non-empty string
+    at CodedTypeError (file:///home/kerit/projects/kerit-app/node_modules/openid-client/build/index.js:89:17)
+    at new Configuration (file:///home/kerit/projects/kerit-app/node_modules/openid-client/build/index.js:463:19)
+    at Module.discovery (file:///home/kerit/projects/kerit-app/node_modules/openid-client/build/index.js:244:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async memoize.maxAge (file:///home/kerit/projects/kerit-app/dist/index.js:656:12)
+    at async setupAuth (file:///home/kerit/projects/kerit-app/dist/index.js:705:18)
+    at async registerRoutes (file:///home/kerit/projects/kerit-app/dist/index.js:872:3)
+    at async file:///home/kerit/projects/kerit-app/dist/index.js:2403:18
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: "clientId" must be a non-empty string
+    at CodedTypeError (file:///home/kerit/projects/kerit-app/node_modules/openid-client/build/index.js:89:17)
+    at new Configuration (file:///home/kerit/projects/kerit-app/node_modules/openid-client/build/index.js:463:19)
+    at Module.discovery (file:///home/kerit/projects/kerit-app/node_modules/openid-client/build/index.js:244:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async memoize.maxAge (file:///home/kerit/projects/kerit-app/dist/index.js:656:12)
+    at async setupAuth (file:///home/kerit/projects/kerit-app/dist/index.js:705:18)
+    at async registerRoutes (file:///home/kerit/projects/kerit-app/dist/index.js:872:3)
+    at async file:///home/kerit/projects/kerit-app/dist/index.js:2403:18
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: "clientId" must be a non-empty string
+    at CodedTypeError (file:///home/kerit/projects/kerit-app/node_modules/openid-client/build/index.js:89:17)
+    at new Configuration (file:///home/kerit/projects/kerit-app/node_modules/openid-client/build/index.js:463:19)
+    at Module.discovery (file:///home/kerit/projects/kerit-app/node_modules/openid-client/build/index.js:244:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async memoize.maxAge (file:///home/kerit/projects/kerit-app/dist/index.js:656:12)
+    at async setupAuth (file:///home/kerit/projects/kerit-app/dist/index.js:705:18)
+    at async registerRoutes (file:///home/kerit/projects/kerit-app/dist/index.js:872:3)
+    at async file:///home/kerit/projects/kerit-app/dist/index.js:2403:18
