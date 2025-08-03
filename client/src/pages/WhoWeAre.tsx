@@ -41,11 +41,6 @@ export default function WhoWeAre() {
                   <i className="fas fa-university text-3xl text-kerit-dark"></i>
                 </div>
                 <h3 className="text-xl font-bold text-kerit-dark mb-2">{t('who_we_are.education_title')}</h3>
-                {t('who_we_are.education_desc') && (
-                  <p className="text-gray-600">
-                    {t('who_we_are.education_desc')}
-                  </p>
-                )}
               </div>
               
               <div className={`text-center ${shouldAnimate ? 'slide-up-animation animation-delay-700' : ''}`}>
@@ -53,11 +48,6 @@ export default function WhoWeAre() {
                   <i className="fas fa-globe text-3xl text-kerit-dark"></i>
                 </div>
                 <h3 className="text-xl font-bold text-kerit-dark mb-2">{t('who_we_are.international_title')}</h3>
-                {t('who_we_are.international_desc') && (
-                  <p className="text-gray-600">
-                    {t('who_we_are.international_desc')}
-                  </p>
-                )}
               </div>
               
               <div className={`text-center ${shouldAnimate ? 'slide-up-animation animation-delay-800' : ''}`}>
@@ -65,11 +55,6 @@ export default function WhoWeAre() {
                   <i className="fas fa-heart text-3xl text-kerit-dark"></i>
                 </div>
                 <h3 className="text-xl font-bold text-kerit-dark mb-2">{t('who_we_are.passion_title')}</h3>
-                {t('who_we_are.passion_desc') && (
-                  <p className="text-gray-600">
-                    {t('who_we_are.passion_desc')}
-                  </p>
-                )}
               </div>
             </div>
 
