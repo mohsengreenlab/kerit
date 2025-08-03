@@ -13,8 +13,8 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'nav.admin': 'Админ',
 
     // Hero section
-    'hero.title': 'IT-решения, которые масштабируют ваш бизнес',
-    'hero.highlight': 'масштабируют',
+    'hero.title': 'IT-решения для роста и масштабирования бизнеса',
+    'hero.highlight': 'масштабирования',
     'hero.subtitle': 'Профессиональные консалтинговые услуги в области email-маркетинга, разработки чат-ботов и оптимизации производительности систем',
     'hero.cta.audit': 'Получить бесплатный аудит',
     'hero.cta.consultation': 'Записаться на консультацию',
@@ -31,7 +31,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
 
     // Stats
     'stats.projects': 'Проектов завершено',
-    'stats.satisfaction': 'Удовлетворенность клиентов',
+    'stats.satisfaction': 'Довольных клиентов',
     'stats.experience': 'Лет опыта',
     'stats.support': 'Поддержка',
 
@@ -67,7 +67,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'cta.title': 'Готовы масштабировать свой бизнес?',
     'cta.subtitle': 'Получите бесплатную консультацию и узнайте, как IT-решения могут увеличить вашу прибыль',
     'cta.audit': 'Получить бесплатный аудит',
-    'cta.call': 'Записаться на звонок',
+    'cta.call': 'Связаться с нами',
 
     // Contact page
     'contact.title': 'Контакты',
@@ -188,7 +188,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     // About page
     'about.title': 'О нас',
     'about.mission': 'Наша миссия',
-    'about.mission_desc': 'Kerit создана для того, чтобы помочь бизнесу максимально эффективно использовать возможности современных IT-технологий. Мы верим, что правильно настроенные цифровые процессы могут кардинально изменить результативность любой компании.',
+    'about.mission_desc': 'Kerit создан для того, чтобы сделать технологии понятными и полезными для бизнеса. Мы помогаем предпринимателям наводить порядок в цифровых процессах, снижать издержки и увеличивать прибыль с помощью IT-решений, которые реально работают.',
     'about.innovation': 'Инновации',
     'about.innovation_desc': 'Используем передовые технологии для решения бизнес-задач',
     'about.team': 'Команда',
@@ -274,12 +274,12 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'testimonial.dmitry.text': 'Оптимизация от Kerit сэкономила нам сотни долларов на инфраструктуре. Рекомендую!',
     
     // About page details
-    'about.approach_title': 'Комплексный подход',
-    'about.approach_desc': 'Анализируем все аспекты вашего бизнеса для создания целостной стратегии цифровизации',
-    'about.measurable_title': 'Измеримые результаты', 
-    'about.measurable_desc': 'Каждый проект имеет четкие KPI и метрики эффективности',
-    'about.partnership_title': 'Долгосрочное партнерство',
-    'about.partnership_desc': 'Поддерживаем клиентов на всех этапах развития их цифровой экосистемы',
+    'about.approach_title': 'Индивидуальный подход',
+    'about.approach_desc': 'Мы не предлагаем шаблоны. Сначала разбираемся в вашей бизнес-модели, выявляем точки роста и только потом подбираем технологическое решение.',
+    'about.measurable_title': 'Прозрачные и измеримые результаты', 
+    'about.measurable_desc': 'Каждый проект начинается с конкретных целей и заканчивается понятными цифрами: KPI, эффективность, экономия — всё можно посчитать.',
+    'about.partnership_title': 'Партнёрство, а не разовая услуга',
+    'about.partnership_desc': 'Мы остаёмся с вами после внедрения: поддерживаем, адаптируем решения под рост и изменения, помогаем развивать цифровую экосистему',
     
     // Blog page
     'blog.clear_search': 'Очистить поиск',
@@ -380,8 +380,8 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'auth.demo_note': 'Demo account for testing features',
 
     // Hero section
-    'hero.title': 'IT solutions that scale your business',
-    'hero.highlight': 'scale',
+    'hero.title': 'IT Solutions That Drive Growth and Scale',
+    'hero.highlight': 'Growth and Scale',
     'hero.subtitle': 'Professional consulting services in email marketing, chatbot development and performance optimization',
     'hero.cta.audit': 'Get Free Audit',
     'hero.cta.consultation': 'Book Consultation',
