@@ -13,7 +13,7 @@ import { AppointmentModal } from '@/components/AppointmentModal';
 import { OptimizedImage } from '@/components/OptimizedImage';
 
 export default function Landing() {
-  const { t } = useLanguage();
+  const { t, locale: language } = useLanguage();
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
   const shouldAnimate = usePageAnimation('home');
   
@@ -137,8 +137,17 @@ export default function Landing() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className={`min-w-0 ${shouldAnimate ? 'slide-left-animation animation-delay-200' : ''}`}>
               <h1 className="text-4xl lg:text-6xl font-bold text-kerit-dark leading-tight mb-6 break-words">
-                IT-решения для роста и{' '}
-                <span className="text-kerit-sage">масштабирования бизнеса</span>
+                {language === 'ru' ? (
+                  <>
+                    IT-решения для роста и{' '}
+                    <span className="text-kerit-sage">масштабирования бизнеса</span>
+                  </>
+                ) : (
+                  <>
+                    IT solutions for business growth and{' '}
+                    <span className="text-kerit-sage">scaling</span>
+                  </>
+                )}
               </h1>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
                 {t('hero.subtitle')}
