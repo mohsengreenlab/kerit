@@ -1,0 +1,104 @@
+echo "=== Starting deployment at $(date) ==="
+
+# 1. Go to project directory
+echo "⏩ Navigating to project directory…"
+cd /home/kerit/projects/kerit-app
+
+# 2. Update from Git
+echo "⏩ Fetching latest changes from origin…"
+git fetch --prune origin
+
+echo "⏩ Checking out main branch…"
+git checkout main
+
+echo "⏩ Resetting local main to origin/main…"
+git reset --hard origin/main
+
+echo "⏩ Cleaning untracked files and directories…"
+git clean -dfx
+
+# 3. Clear all seeded data
+echo "⏩ Clearing all seeded data from the database…"
+PGURL="postgresql://kerit_user:ferfgrtgSGSERGERG423423FEFERFERF@localhost:5432/kerit_db" 
+
+
+psql "$PGURL" <<'EOSQL'
+-- build & exec one big TRUNCATE for every table in public
+DO $$
+DECLARE
+  dyn_sql TEXT;
+BEGIN
+  SELECT
+    'TRUNCATE TABLE '
+    || string_agg(format('%I.%I', schemaname, tablename), ', ')
+    || ' RESTART IDENTITY CASCADE;'
+  INTO dyn_sql
+  FROM pg_tables
+  WHERE schemaname = 'public';
+  EXECUTE dyn_sql;
+END
+$$;
+EOSQL
+# 4. Re-create .env
+echo "⏩ Writing .env file…"
+cat > .env << 'EOF'
+NODE_ENV=production
+PORT=3001
+DATABASE_URL=postgresql://kerit_user:ferfgrtgSGSERGERG423423FEFERFERF@localhost:5432/kerit_db
+SESSION_SECRET=nrsjvlsjdvfgTREHBRSGTWRGTefhewurbcfewrWCERCGWERCGwegethytjbuikUI
+REPL_ID=kerit-vps-production
+REPLIT_DOMAINS=kerit.com.ru
+ISSUER_URL=https://replit.com/oidc
+EOF
+
+echo "⏩ Securing .env permissions…"
+chmod 600 .env
+
+# 5. Write PM2 ecosystem file
+echo "⏩ Writing PM2 ecosystem.config.json…"
+cat > ecosystem.config.json << 'EOF'
+{
+  "apps": [{
+    "name": "kerit-app",
+    "script": "dist/index.js",
+    "cwd": "/home/kerit/projects/kerit-app",
+    "env": {
+      "NODE_ENV": "production",
+      "PORT": "3001",
+      "DATABASE_URL": "postgresql://kerit_user:ferfgrtgSGSERGERG423423FEFERFERF@localhost:5432/kerit_db",
+      "SESSION_SECRET": "nrsjvlsjdvfgTREHBRSGTWRGTefhewurbcfewrWCERCGWERCGwegethytjbuikUIKYUINKUYxfwefwexf",
+      "REPL_ID": "kerit-vps-production",
+      "REPLIT_DOMAINS": "kerit.com.ru",
+      "ISSUER_URL": "https://replit.com/oidc"
+    },
+    "instances": 2,
+    "exec_mode": "cluster",
+    "watch": false,
+    "max_memory_restart": "1G",
+    "error_file": "/home/kerit/logs/kerit-error.log",
+    "out_file": "/home/kerit/logs/kerit-out.log",
+    "log_file": "/home/kerit/logs/kerit-combined.log",
+    "time": true,
+    "restart_delay": 1000
+  }]
+}
+EOF
+
+# 6. Install dependencies, build, migrate, and reload PM2
+echo "⏩ Installing npm dependencies…"
+npm install
+
+echo "⏩ Building project…"
+npm run build
+
+echo "⏩ Applying database migrations (db:push)…"
+npm run db:push
+
+echo "⏩ Reloading PM2 from ecosystem file…"
+pm2 reload ecosystem.config.json
+
+echo "⏩ Reloading all PM2 processes…"
+pm2 reload all
+
+echo "✅ Deployment completed at $(date)"
+
