@@ -135,8 +135,8 @@ export default function Landing() {
       <section className={`relative bg-gradient-to-br from-kerit-light to-white py-20 lg:py-32 ${shouldAnimate ? 'page-entrance-animation' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className={shouldAnimate ? 'slide-left-animation animation-delay-200' : ''}>
-              <h1 className="text-4xl lg:text-6xl font-bold text-kerit-dark leading-tight mb-6">
+            <div className={`min-w-0 ${shouldAnimate ? 'slide-left-animation animation-delay-200' : ''}`}>
+              <h1 className="text-4xl lg:text-6xl font-bold text-kerit-dark leading-tight mb-6 break-words">
                 {t('hero.title').split(t('hero.highlight'))[0]}
                 <span className="text-kerit-sage">{t('hero.highlight')}</span>
                 {t('hero.title').split(t('hero.highlight'))[1]}
@@ -161,12 +161,12 @@ export default function Landing() {
                 </button>
               </div>
             </div>
-            <div className={`relative ${shouldAnimate ? 'slide-right-animation animation-delay-400' : ''}`}>
+            <div className={`relative flex-shrink-0 ${shouldAnimate ? 'slide-right-animation animation-delay-400' : ''}`}>
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <OptimizedImage 
                   src={heroImage} 
                   alt="IT Consultancy Solutions" 
-                  className="w-full h-auto"
+                  className="w-full h-auto max-w-lg mx-auto"
                   loading="eager"
                 />
               </div>
