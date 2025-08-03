@@ -1,0 +1,29 @@
+kerit@FreePaper:~/projects/kerit-app$ netstat -tulpn | grep 3001
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+kerit@FreePaper:~/projects/kerit-app$ curl -I http://localhost:3001~pm2 env 0 | grep REPLIT_DOMAINS
+
+# Test if the app is now running
+netstat -tulpn | grep 3001
+curl -I http://localhost:3001
+curl: (3) URL rejected: Port number was not a decimal number between 0 and 65535
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: env
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0   615    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+curl: (7) Failed to connect to localhost port 3001 after 0 ms: Couldn't connect to server
+kerit@FreePaper:~/projects/kerit-app$ tail -10 /home/kerit/logs/kerit-error-0.log
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: "clientId" must be a non-empty string
+    at CodedTypeError (file:///home/kerit/projects/kerit-app/node_modules/openid-client/build/index.js:89:17)
+    at new Configuration (file:///home/kerit/projects/kerit-app/node_modules/openid-client/build/index.js:463:19)
+    at Module.discovery (file:///home/kerit/projects/kerit-app/node_modules/openid-client/build/index.js:244:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async memoize.maxAge (file:///home/kerit/projects/kerit-app/dist/index.js:656:12)
+    at async setupAuth (file:///home/kerit/projects/kerit-app/dist/index.js:705:18)
+    at async registerRoutes (file:///home/kerit/projects/kerit-app/dist/index.js:872:3)
+    at async file:///home/kerit/projects/kerit-app/dist/index.js:2403:18

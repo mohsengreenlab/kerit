@@ -1,0 +1,45 @@
+kerit@FreePaper:~/projects/kerit-app$ pm2 restart kerit-app
+Use --update-env to update environment variables
+[PM2] Applying action restartProcessId on app [kerit-app](ids: [ 0, 1 ])
+[PM2] [kerit-app](0) ✓
+[PM2] [kerit-app](1) ✓
+┌────┬──────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name         │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼──────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0  │ kerit-app    │ default     │ 1.0.0   │ cluster │ 3040564  │ 0s     │ 2    │ online    │ 0%       │ 52.9mb   │ kerit    │ disabled │
+│ 1  │ kerit-app    │ default     │ 1.0.0   │ cluster │ 3040572  │ 0s     │ 2    │ online    │ 0%       │ 40.0mb   │ kerit    │ disabled │
+└────┴──────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+kerit@FreePaper:~/projects/kerit-app$ pm2 env 0 | grep REPLIT_DOMAINS
+kerit@FreePaper:~/projects/kerit-app$ netstat -tulpn | grep 3001
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+kerit@FreePaper:~/projects/kerit-app$ curl -I http://localhost:3001
+curl: (7) Failed to connect to localhost port 3001 after 0 ms: Couldn't connect to server
+kerit@FreePaper:~/projects/kerit-app$ pm2 restart kerit-app --update-env
+[PM2] Applying action restartProcessId on app [kerit-app](ids: [ 0, 1 ])
+[PM2] [kerit-app](0) ✓
+[PM2] [kerit-app](1) ✓
+┌────┬──────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name         │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼──────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0  │ kerit-app    │ default     │ 1.0.0   │ cluster │ 3040610  │ 0s     │ 3    │ online    │ 0%       │ 53.8mb   │ kerit    │ disabled │
+│ 1  │ kerit-app    │ default     │ 1.0.0   │ cluster │ 3040618  │ 0s     │ 3    │ online    │ 0%       │ 39.9mb   │ kerit    │ disabled │
+└────┴──────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+kerit@FreePaper:~/projects/kerit-app$ pm2 delete kerit-app
+[PM2] Applying action deleteProcessId on app [kerit-app](ids: [ 0, 1 ])
+[PM2] [kerit-app](0) ✓
+[PM2] [kerit-app](1) ✓
+┌────┬───────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name      │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+└────┴───────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+kerit@FreePaper:~/projects/kerit-app$ pm2 start ecosystem.config.json
+[PM2][WARN] Applications kerit-app not running, starting...
+[PM2] App [kerit-app] launched (2 instances)
+┌────┬──────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name         │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼──────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0  │ kerit-app    │ default     │ 1.0.0   │ cluster │ 3040650  │ 0s     │ 0    │ online    │ 0%       │ 47.2mb   │ kerit    │ disabled │
+│ 1  │ kerit-app    │ default     │ 1.0.0   │ cluster │ 3040657  │ 0s     │ 0    │ online    │ 0%       │ 40.0mb   │ kerit    │ disabled │
+└────┴──────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+kerit@FreePaper:~/projects/kerit-app$ pm2 env 0 | grep REPLIT_DOMAINS
+REPLIT_DOMAINS: kerit.com.ru
