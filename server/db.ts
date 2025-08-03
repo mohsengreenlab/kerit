@@ -1,5 +1,7 @@
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
+import { drizzle as drizzlePg } from 'drizzle-orm/node-postgres';
+import pg from 'pg';
 import * as schema from "@shared/schema";
 
 if (!process.env.DATABASE_URL) {
@@ -8,6 +10,28 @@ if (!process.env.DATABASE_URL) {
   );
 }
 
-// Use Neon serverless driver for better compatibility
-export const sql = neon(process.env.DATABASE_URL);
-export const db = drizzle({ client: sql, schema });
+// Auto-detect database type and use appropriate driver
+const isNeonDatabase = process.env.DATABASE_URL.includes('neon.tech');
+const isReplitEnvironment = process.env.REPL_ID !== undefined;
+
+let db: any;
+let sql: any;
+let pool: any;
+
+if (isNeonDatabase || isReplitEnvironment) {
+  // Use Neon serverless driver for Neon databases or Replit environment
+  sql = neon(process.env.DATABASE_URL);
+  db = drizzle({ client: sql, schema });
+  console.log('Using Neon serverless driver for database connection');
+} else {
+  // Use regular PostgreSQL driver for local PostgreSQL (VPS)
+  const { Pool } = pg;
+  pool = new Pool({ 
+    connectionString: process.env.DATABASE_URL,
+    ssl: false // Local PostgreSQL doesn't require SSL
+  });
+  db = drizzlePg({ client: pool, schema });
+  console.log('Using PostgreSQL driver for database connection');
+}
+
+export { db, sql, pool };
