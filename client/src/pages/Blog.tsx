@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'wouter';
 import { useLanguage } from '@/hooks/useLanguage';
+import { usePageAnimation } from '@/hooks/usePageAnimation';
 import { SEOHead } from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -25,6 +26,7 @@ export default function Blog() {
   const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const shouldAnimate = usePageAnimation('blog');
   const { data: blogPosts, isLoading, error } = useQuery<BlogPost[]>({
     queryKey: selectedCategory !== 'all' ? [`/api/blog/${selectedCategory}`] : ['/api/blog'],
   });

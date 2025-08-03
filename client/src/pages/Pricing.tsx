@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useLanguage } from '@/hooks/useLanguage';
+import { usePageAnimation } from '@/hooks/usePageAnimation';
 import { SEOHead } from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { AppointmentModal } from '@/components/AppointmentModal';
@@ -24,6 +25,7 @@ interface ServiceWithPackages {
 export default function Pricing() {
   const { t } = useLanguage();
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  const shouldAnimate = usePageAnimation('pricing');
 
   const { data: servicesWithPackages, isLoading, error } = useQuery<ServiceWithPackages[]>({
     queryKey: ['/api/pricing'],
@@ -121,12 +123,12 @@ export default function Pricing() {
       />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-kerit-light to-white py-20">
+      <section className={`bg-gradient-to-br from-kerit-light to-white py-20 ${shouldAnimate ? 'page-entrance-animation' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-6xl font-bold text-kerit-dark mb-6">
+          <h1 className={`text-4xl lg:text-6xl font-bold text-kerit-dark mb-6 ${shouldAnimate ? 'slide-up-animation animation-delay-200' : ''}`}>
             {t('nav.pricing')}
           </h1>
-          <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className={`text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed ${shouldAnimate ? 'slide-up-animation animation-delay-400' : ''}`}>
             {t('pricing.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

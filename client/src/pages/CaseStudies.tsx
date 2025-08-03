@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'wouter';
 import { useLanguage } from '@/hooks/useLanguage';
+import { usePageAnimation } from '@/hooks/usePageAnimation';
 import { SEOHead } from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 
@@ -20,6 +21,7 @@ interface CaseStudy {
 export default function CaseStudies() {
   const { t } = useLanguage();
   const [selectedService, setSelectedService] = useState<string>('all');
+  const shouldAnimate = usePageAnimation('case-studies');
 
   const { data: caseStudies, isLoading, error } = useQuery<CaseStudy[]>({
     queryKey: selectedService !== 'all' ? [`/api/case-studies/${selectedService}`] : ['/api/case-studies'],

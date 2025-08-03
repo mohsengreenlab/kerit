@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@/hooks/useAuth';
 import { useLanguage } from '@/hooks/useLanguage';
+import { usePageAnimation } from '@/hooks/usePageAnimation';
 import { useToast } from '@/hooks/use-toast';
 import { SEOHead } from '@/components/SEOHead';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -30,6 +31,7 @@ export default function Dashboard() {
   const { isAuthenticated, isLoading: authLoading, user } = useAuth();
   const { t } = useLanguage();
   const { toast } = useToast();
+  const shouldAnimate = usePageAnimation('dashboard');
 
   const { data: projects, isLoading, error } = useQuery<Project[]>({
     queryKey: ['/api/dashboard/projects'],

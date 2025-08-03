@@ -1,11 +1,13 @@
 import { useAuth } from '@/hooks/useAuth';
 import { useLanguage } from '@/hooks/useLanguage';
+import { usePageAnimation } from '@/hooks/usePageAnimation';
 import { SEOHead } from '@/components/SEOHead';
 import { Link } from 'wouter';
 
 export default function Home() {
   const { user } = useAuth();
   const { t } = useLanguage();
+  const shouldAnimate = usePageAnimation('dashboard');
 
   return (
     <>
@@ -14,9 +16,9 @@ export default function Home() {
         description="Добро пожаловать в панель управления Kerit"
       />
 
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className={`min-h-screen bg-gray-50 py-12 ${shouldAnimate ? 'page-entrance-animation' : ''}`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className={`text-center mb-12 ${shouldAnimate ? 'slide-up-animation animation-delay-200' : ''}`}>
             <h1 className="text-4xl font-bold text-kerit-dark mb-4">
               {t('home.welcome')}, {user?.firstName || user?.email}!
             </h1>
@@ -25,7 +27,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className={`grid md:grid-cols-2 gap-8 ${shouldAnimate ? 'slide-up-animation animation-delay-400' : ''}`}>
             {user?.role === 'admin' && (
               <Link href="/admin">
                 <a className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border-2 border-transparent hover:border-kerit-yellow">

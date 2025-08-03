@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'wouter';
 import { useLanguage } from '@/hooks/useLanguage';
+import { usePageAnimation } from '@/hooks/usePageAnimation';
 import { SEOHead } from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { AppointmentModal } from '@/components/AppointmentModal';
@@ -17,6 +18,7 @@ interface Service {
 export default function Services() {
   const { t } = useLanguage();
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  const shouldAnimate = usePageAnimation('services');
 
   const { data: services, isLoading, error } = useQuery<Service[]>({
     queryKey: ['/api/services'],
@@ -87,12 +89,12 @@ export default function Services() {
       />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-kerit-light to-white py-20">
+      <section className={`bg-gradient-to-br from-kerit-light to-white py-20 ${shouldAnimate ? 'page-entrance-animation' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-6xl font-bold text-kerit-dark mb-6">
+          <h1 className={`text-4xl lg:text-6xl font-bold text-kerit-dark mb-6 ${shouldAnimate ? 'slide-up-animation animation-delay-200' : ''}`}>
             {t('services.title')}
           </h1>
-          <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className={`text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed ${shouldAnimate ? 'slide-up-animation animation-delay-400' : ''}`}>
             {t('services.subtitle')}
           </p>
           <Button
@@ -109,7 +111,7 @@ export default function Services() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {services && services.length > 0 ? (
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className={`grid md:grid-cols-3 gap-8 ${shouldAnimate ? 'slide-up-animation animation-delay-600' : ''}`}>
               {services.map((service) => (
                 <div key={service.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow p-8 group kerit-card-hover">
                   <div className="bg-kerit-light rounded-full w-16 h-16 flex items-center justify-center mb-6 group-hover:bg-kerit-yellow transition-colors">

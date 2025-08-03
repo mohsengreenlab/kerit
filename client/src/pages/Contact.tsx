@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useLanguage } from '@/hooks/useLanguage';
+import { usePageAnimation } from '@/hooks/usePageAnimation';
 import { SEOHead } from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -36,6 +37,7 @@ const getBookingSchema = (t: (key: string) => string) => z.object({
 export default function Contact() {
   const { t } = useLanguage();
   const { toast } = useToast();
+  const shouldAnimate = usePageAnimation('contact');
   const [isContactSubmitted, setIsContactSubmitted] = useState(false);
   const [isBookingSubmitted, setIsBookingSubmitted] = useState(false);
 
@@ -162,12 +164,12 @@ export default function Contact() {
       />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-kerit-light to-white py-20">
+      <section className={`bg-gradient-to-br from-kerit-light to-white py-20 ${shouldAnimate ? 'page-entrance-animation' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-6xl font-bold text-kerit-dark mb-6">
+          <h1 className={`text-4xl lg:text-6xl font-bold text-kerit-dark mb-6 ${shouldAnimate ? 'slide-up-animation animation-delay-200' : ''}`}>
             {t('contact.title')}
           </h1>
-          <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className={`text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed ${shouldAnimate ? 'slide-up-animation animation-delay-400' : ''}`}>
             {t('contact.subtitle')}
           </p>
         </div>
@@ -175,7 +177,7 @@ export default function Contact() {
 
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className={`grid lg:grid-cols-2 gap-12 ${shouldAnimate ? 'slide-up-animation animation-delay-600' : ''}`}>
             {/* Contact & Booking Forms */}
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <Tabs defaultValue="contact" className="w-full">

@@ -15,7 +15,7 @@ import { OptimizedImage } from '@/components/OptimizedImage';
 export default function Landing() {
   const { t } = useLanguage();
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
-  const shouldAnimate = usePageAnimation('landing');
+  const shouldAnimate = usePageAnimation('home');
   
   // Animation refs for scroll-triggered animations
   const servicesRef = useRef(null);
