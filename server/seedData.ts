@@ -64,66 +64,80 @@ export async function seedDatabase() {
       console.log("Performance service already exists or error occurred");
     }
 
-    // Create service packages (only if services exist)
+    // Create service packages (only if services exist and packages don't already exist)
     if (emailMarketingService) {
       try {
-        await storage.createServicePackage({
-          serviceId: emailMarketingService.id,
-          name: "Starter",
-          type: "basic",
-          description: "Perfect for small businesses starting with email marketing",
-          price: 29900, // in cents
-          currency: "USD",
-          features: ["Up to 5,000 contacts", "Basic templates", "Email support"],
-          isActive: true,
-        });
+        // Check if packages already exist for this service
+        const existingPackages = await storage.getServicePackages(emailMarketingService.id);
+        if (existingPackages.length === 0) {
+          await storage.createServicePackage({
+            serviceId: emailMarketingService.id,
+            name: "Starter",
+            type: "basic",
+            description: "Perfect for small businesses starting with email marketing",
+            price: 29900, // in cents
+            currency: "USD",
+            features: ["Up to 5,000 contacts", "Basic templates", "Email support"],
+            isActive: true,
+          });
 
-        await storage.createServicePackage({
-          serviceId: emailMarketingService.id,
-          name: "Professional",
-          type: "pro",
-          description: "Advanced features for growing businesses",
-          price: 59900, // in cents
-          currency: "USD",
-          features: ["Up to 25,000 contacts", "Advanced automation", "A/B testing", "Priority support"],
-          isActive: true,
-        });
+          await storage.createServicePackage({
+            serviceId: emailMarketingService.id,
+            name: "Professional",
+            type: "pro",
+            description: "Advanced features for growing businesses",
+            price: 59900, // in cents
+            currency: "USD",
+            features: ["Up to 25,000 contacts", "Advanced automation", "A/B testing", "Priority support"],
+            isActive: true,
+          });
+        }
       } catch (error) {
-        console.log("Service packages may already exist");
+        console.log("Email marketing service packages may already exist or error occurred");
       }
     }
 
     if (chatbotService) {
       try {
-        await storage.createServicePackage({
-          serviceId: chatbotService.id,
-          name: "Basic Bot",
-          type: "basic",
-          description: "Simple chatbot for basic customer support",
-          price: 19900, // in cents
-          currency: "USD",
-          features: ["FAQ responses", "Basic lead capture", "Email integration"],
-          isActive: true,
-        });
+        // Check if packages already exist for this service
+        const existingPackages = await storage.getServicePackages(chatbotService.id);
+        const hasBasicBot = existingPackages.some(pkg => pkg.name === "Basic Bot");
+        if (!hasBasicBot) {
+          await storage.createServicePackage({
+            serviceId: chatbotService.id,
+            name: "Basic Bot",
+            type: "basic",
+            description: "Simple chatbot for basic customer support",
+            price: 19900, // in cents
+            currency: "USD",
+            features: ["FAQ responses", "Basic lead capture", "Email integration"],
+            isActive: true,
+          });
+        }
       } catch (error) {
-        console.log("Chatbot service package may already exist");
+        console.log("Chatbot service package may already exist or error occurred");
       }
     }
 
     if (performanceService) {
       try {
-        await storage.createServicePackage({
-          serviceId: performanceService.id,
-          name: "Performance Audit",
-          type: "enterprise",
-          description: "Comprehensive system performance analysis",
-          price: 99900, // in cents
-          currency: "USD",
-          features: ["Full system audit", "Performance report", "Optimization recommendations"],
-          isActive: true,
-        });
+        // Check if packages already exist for this service
+        const existingPackages = await storage.getServicePackages(performanceService.id);
+        const hasPerformanceAudit = existingPackages.some(pkg => pkg.name === "Performance Audit");
+        if (!hasPerformanceAudit) {
+          await storage.createServicePackage({
+            serviceId: performanceService.id,
+            name: "Performance Audit",
+            type: "enterprise",
+            description: "Comprehensive system performance analysis",
+            price: 99900, // in cents
+            currency: "USD",
+            features: ["Full system audit", "Performance report", "Optimization recommendations"],
+            isActive: true,
+          });
+        }
       } catch (error) {
-        console.log("Performance service package may already exist");
+        console.log("Performance service package may already exist or error occurred");
       }
     }
 
@@ -403,87 +417,7 @@ export async function seedDatabase() {
     } catch (error) {
       console.log("Performance blog post may already exist");
     }
-    try {
-      await storage.createBlogPost({
-        title: "Email Marketing Trends in 2024",
-        slug: "email-marketing-trends-2024-en",
-        excerpt: "Stay ahead of the curve with the latest email marketing trends set to dominate 2024. Discover innovative strategies and technologies to boost your campaigns.",
-        content: `The email marketing landscape is constantly evolving, and staying informed about the latest trends is crucial for success in 2024. Here are some key trends to watch:
 
-**1. AI-Powered Personalization:**
-   - Artificial intelligence (AI) is revolutionizing email personalization. AI algorithms analyze vast amounts of data to deliver highly targeted and relevant content to individual subscribers, resulting in increased engagement and conversions.
-
-**2. Interactive Email Content:**
-   - Interactive elements like quizzes, polls, and embedded videos are becoming increasingly popular in email marketing. These features encourage subscriber interaction, providing a more engaging and memorable experience.
-
-**3. Privacy-Focused Marketing:**
-   - With growing concerns about data privacy, email marketers are adopting privacy-focused strategies. This includes obtaining explicit consent from subscribers, being transparent about data usage, and providing easy opt-out options.
-
-**4. Mobile Optimization:**
-   - Mobile devices continue to dominate email consumption, making mobile optimization essential. Ensure your emails are responsive, load quickly on mobile devices, and offer a seamless user experience.
-
-**5. Automation and Segmentation:**
-   - Automation and segmentation remain fundamental to effective email marketing. Utilize marketing automation tools to create personalized email sequences based on subscriber behavior and preferences.
-
-**6. Data Analytics and Insights:**
-   - Data analytics is essential for measuring the success of email campaigns and identifying areas for improvement. Track key metrics like open rates, click-through rates, and conversion rates to optimize your strategy.
-
-**7. Email Deliverability:**
-   - Email deliverability is critical for ensuring your emails reach the intended recipients. Implement best practices like sender authentication, list hygiene, and monitoring your sender reputation.
-
-**8. Enhanced Security:**
-   - Email security is paramount for protecting your subscribers' data and maintaining trust. Implement security measures like encryption and two-factor authentication to safeguard sensitive information.
-
-By embracing these email marketing trends, businesses can enhance their campaigns, engage subscribers, and drive measurable results in 2024.`,
-        category: "email-marketing",
-        tags: ["Email Marketing", "Trends", "2024"],
-        authorId: adminUser.id,
-        isPublished: true,
-      });
-    } catch (error) {
-      console.log("Email Marketing Trends in 2024 blog post may already exist");
-    }
-
-    try {
-      await storage.createBlogPost({
-        title: "Тренды Email-маркетинга в 2024",
-        slug: "email-marketing-trends-2024-ru",
-        excerpt: "Будьте в курсе последних тенденций email-маркетинга, которые будут доминировать в 2024 году. Откройте для себя инновационные стратегии и технологии для улучшения ваших кампаний.",
-        content: `Ландшафт email-маркетинга постоянно развивается, и осведомленность о последних тенденциях имеет решающее значение для успеха в 2024 году. Вот несколько ключевых тенденций, на которые стоит обратить внимание:
-
-**1. Персонализация на основе ИИ:**
-   - Искусственный интеллект (ИИ) революционизирует персонализацию email-маркетинга. Алгоритмы ИИ анализируют огромные объемы данных, чтобы доставлять высокоцелевой и релевантный контент отдельным подписчикам, что приводит к увеличению вовлеченности и конверсий.
-
-**2. Интерактивный контент в email-рассылках:**
-   - Интерактивные элементы, такие как викторины, опросы и встроенные видео, становятся все более популярными в email-маркетинге. Эти функции стимулируют взаимодействие с подписчиками, обеспечивая более привлекательный и запоминающийся опыт.
-
-**3. Маркетинг, ориентированный на конфиденциальность:**
-   - В связи с растущей обеспокоенностью по поводу конфиденциальности данных, email-маркетологи переходят к стратегиям, ориентированным на конфиденциальность. Это включает в себя получение явного согласия от подписчиков, прозрачность в отношении использования данных и предоставление простых вариантов отказа.
-
-**4. Мобильная оптимизация:**
-   - Мобильные устройства продолжают доминировать в потреблении email-рассылок, что делает мобильную оптимизацию необходимой. Убедитесь, что ваши электронные письма адаптивны, быстро загружаются на мобильных устройствах и предлагают удобный пользовательский интерфейс.
-
-**5. Автоматизация и сегментация:**
-   - Автоматизация и сегментация остаются основой эффективного email-маркетинга. Используйте инструменты автоматизации маркетинга для создания персонализированных последовательностей электронных писем на основе поведения и предпочтений подписчиков.
-
-**6. Аналитика данных и аналитические выводы:**
-   - Аналитика данных необходима для измерения успеха email-кампаний и выявления областей для улучшения. Отслеживайте ключевые показатели, такие как показатели открытия, показатели кликабельности и показатели конверсии, чтобы оптимизировать свою стратегию.
-
-**7. Доставляемость email-рассылок:**
-   - Доставляемость email-рассылок имеет решающее значение для обеспечения того, чтобы ваши электронные письма достигали предполагаемых получателей. Внедрите передовые методы, такие как аутентификация отправителя, гигиена списка и мониторинг репутации отправителя.
-
-**8. Повышенная безопасность:**
-   - Безопасность email-рассылок имеет первостепенное значение для защиты данных ваших подписчиков и поддержания доверия. Внедрите меры безопасности, такие как шифрование и двухфакторная аутентификация, для защиты конфиденциальной информации.
-
-Приняв эти тенденции email-маркетинга, компании могут улучшить свои кампании, привлечь подписчиков и добиться измеримых результатов в 2024 году.`,
-        category: "email-marketing",
-        tags: ["Email Marketing", "Trends", "2024"],
-        authorId: adminUser.id,
-        isPublished: true,
-      });
-    } catch (error) {
-      console.log("Russian Email Marketing Trends in 2024 blog post may already exist");
-    }
 
     // Add Russian version of Customer Service Chatbots post
     try {
