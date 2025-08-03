@@ -1,0 +1,34 @@
+kerit@FreePaper:~/projects/kerit-app$ nano ecosystem.config.json
+kerit@FreePaper:~/projects/kerit-app$ pm2 delete kerit-app
+[PM2] Applying action deleteProcessId on app [kerit-app](ids: [ 0, 1 ])
+[PM2] [kerit-app](0) ✓
+[PM2] [kerit-app](1) ✓
+┌────┬───────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name      │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+└────┴───────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+kerit@FreePaper:~/projects/kerit-app$ pm2 start ecosystem.config.json
+[PM2][WARN] Applications kerit-app not running, starting...
+[PM2] App [kerit-app] launched (2 instances)
+┌────┬──────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name         │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼──────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0  │ kerit-app    │ default     │ 1.0.0   │ cluster │ 3040356  │ 0s     │ 0    │ online    │ 0%       │ 47.4mb   │ kerit    │ disabled │
+│ 1  │ kerit-app    │ default     │ 1.0.0   │ cluster │ 3040363  │ 0s     │ 0    │ online    │ 0%       │ 40.0mb   │ kerit    │ disabled │
+└────┴──────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+kerit@FreePaper:~/projects/kerit-app$ sleep 10
+kerit@FreePaper:~/projects/kerit-app$ netstat -tulpn | grep 3001
+curl -I http://localhost:3001
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+curl: (7) Failed to connect to localhost port 3001 after 0 ms: Couldn't connect to server
+kerit@FreePaper:~/projects/kerit-app$ tail -10 /home/kerit/logs/kerit-error-0.log
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async memoize.maxAge (file:///home/kerit/projects/kerit-app/dist/index.js:656:12)
+    at async setupAuth (file:///home/kerit/projects/kerit-app/dist/index.js:705:18)
+    at async registerRoutes (file:///home/kerit/projects/kerit-app/dist/index.js:872:3)
+    at async file:///home/kerit/projects/kerit-app/dist/index.js:2403:18
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+Error: Environment variable REPLIT_DOMAINS not provided
+    at file:///home/kerit/projects/kerit-app/dist/index.js:652:9
+    at ModuleJob.run (node:internal/modules/esm/module_job:263:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:540:24)
