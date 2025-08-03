@@ -14,7 +14,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
 
     // Hero section
     'hero.title': 'IT-решения для роста и масштабирования бизнеса',
-    'hero.highlight': 'масштабирования',
+    'hero.highlight': 'масштабирования бизнеса',
     'hero.subtitle': 'Профессиональные консалтинговые услуги в области email-маркетинга, разработки чат-ботов и оптимизации производительности систем',
     'hero.cta.audit': 'Получить бесплатный аудит',
     'hero.cta.consultation': 'Записаться на консультацию',
@@ -261,7 +261,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'pricing.faq_q3': 'Предоставляете ли скидки?',
     'pricing.faq_a3': 'Мы предоставляем скидки при заказе нескольких услуг и долгосрочном сотрудничестве. Обсудите это с менеджером.',
     'pricing.faq_q4': 'Какие способы оплаты доступны?',
-    'pricing.faq_a4': 'Мы принимаем оплату банковским переводом, картой и электронными кошельками. Возможна рассрочка.',
+    'pricing.faq_a4': 'Мы принимаем оплату банковским переводом, картой и электронными кошельками.',
     'pricing.custom_title': 'Нужен индивидуальный расчет?',
     'pricing.custom_desc': 'Получите персональное предложение с учетом специфики вашего проекта и бюджета',
     
@@ -274,7 +274,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'testimonial.dmitry.text': 'Оптимизация от Kerit сэкономила нам сотни долларов на инфраструктуре. Рекомендую!',
     
     // About page details
-    'about.approach_title': 'Индивидуальный подход',
+    'about.approach_title': 'Глубокое погружение в бизнес',
     'about.approach_desc': 'Мы не предлагаем шаблоны. Сначала разбираемся в вашей бизнес-модели, выявляем точки роста и только потом подбираем технологическое решение.',
     'about.measurable_title': 'Прозрачные и измеримые результаты', 
     'about.measurable_desc': 'Каждый проект начинается с конкретных целей и заканчивается понятными цифрами: KPI, эффективность, экономия — всё можно посчитать.',
@@ -339,15 +339,15 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
 
     // Who We Are page
     'who_we_are.title': 'Кто мы',
-    'who_we_are.intro': 'Мы — энергичная команда IT-профессионалов с корнями в Санкт-Петербургском государственном университете (СПбГУ) в прекрасном городе Санкт-Петербурге! Что нас объединило? Общая любовь к технологиям, стремление к качеству и радость от создания вещей, которые работают — вместе.',
-    'who_we_are.mission': 'Сейчас мы с гордостью международная команда, состоящая из любознательных умов из разных стран, работающих бок о бок с энергией, творчеством и целеустремленностью.',
-    'who_we_are.values': 'Если наши ценности находят отклик у вас, мы будем рады услышать от вас — просто напишите нам!',
+    'who_we_are.intro': 'Мы — команда IT-специалистов, которых объединяет страсть к технологиям и стремление делать цифровые инструменты действительно полезными для бизнеса. Мы выросли из академической среды Санкт-Петербургского государственного университета, а сегодня работаем с компаниями по всему миру — из разных стран, но как единая команда.',
+    'who_we_are.mission': 'В работе мы придерживаемся простого принципа: каждая задача должна решаться с учётом бизнес-целей, а не просто ради технологии. Мы предлагаем решения, которые дают измеримый результат и действительно облегчают жизнь команде.',
+    'who_we_are.values': 'Хотите навести порядок в цифровых процессах и сосредоточиться на росте бизнеса? Напишите нам — обсудим, какие задачи Kerit может решить для вас.',
     'who_we_are.education_title': 'Образование СПбГУ',
-    'who_we_are.education_desc': 'Наши корни в одном из ведущих университетов России дают нам прочную теоретическую базу',
+    'who_we_are.education_desc': '',
     'who_we_are.international_title': 'Международная команда',
-    'who_we_are.international_desc': 'Разнообразие опыта и подходов делает наши решения более эффективными',
+    'who_we_are.international_desc': '',
     'who_we_are.passion_title': 'Страсть к технологиям',
-    'who_we_are.passion_desc': 'Мы любим то, что делаем, и это отражается в качестве наших решений',
+    'who_we_are.passion_desc': '',
     'who_we_are.cta_title': 'Готовы работать с нами?',
     'who_we_are.cta_desc': 'Если наши ценности резонируют с вами, мы будем рады услышать от вас!',
     'who_we_are.contact_us': 'Написать нам',
@@ -381,7 +381,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
 
     // Hero section
     'hero.title': 'IT Solutions That Drive Growth and Scale',
-    'hero.highlight': 'Growth and Scale',
+    'hero.highlight': 'Scale',
     'hero.subtitle': 'Professional consulting services in email marketing, chatbot development and performance optimization',
     'hero.cta.audit': 'Get Free Audit',
     'hero.cta.consultation': 'Book Consultation',
@@ -626,7 +626,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'pricing.faq_q3': 'Do you provide discounts?',
     'pricing.faq_a3': 'We provide discounts for ordering multiple services and long-term cooperation. Discuss this with the manager.',
     'pricing.faq_q4': 'What payment methods are available?',
-    'pricing.faq_a4': 'We accept payment by bank transfer, card and electronic wallets. Installment plans are possible.',
+    'pricing.faq_a4': 'We accept payment by bank transfer, card and electronic wallets.',
     'pricing.custom_title': 'Need a custom quote?',
     'pricing.custom_desc': 'Get a personalized offer considering your project specifics and budget',
     
@@ -703,15 +703,15 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
 
     // Who We Are page
     'who_we_are.title': 'Who We Are',
-    'who_we_are.intro': 'We\'re a vibrant team of IT professionals with roots at Saint Petersburg State University (SPbU) in the beautiful city of Saint Petersburg! What brought us together? A shared love for technology, a drive for quality, and the joy of building things that work—together.',
-    'who_we_are.mission': 'Now proudly international, our team is made up of curious minds from different backgrounds, working side by side with energy, creativity, and purpose.',
-    'who_we_are.values': 'If our values resonate with you, we\'d love to hear from you—just drop us a message!',
+    'who_we_are.intro': 'We are a team of IT specialists united by a passion for technology and a desire to make digital tools truly useful for business. We grew out of the academic environment of Saint Petersburg State University, and today we work with companies around the world — from different countries, but as a unified team.',
+    'who_we_are.mission': 'In our work, we adhere to a simple principle: every task should be solved with business goals in mind, not just for the sake of technology. We offer solutions that deliver measurable results and truly make life easier for teams.',
+    'who_we_are.values': 'Want to streamline your digital processes and focus on business growth? Write to us — let\'s discuss what tasks Kerit can solve for you.',
     'who_we_are.education_title': 'SPbU Education',
-    'who_we_are.education_desc': 'Our roots in one of Russia\'s leading universities give us a solid theoretical foundation',
+    'who_we_are.education_desc': '',
     'who_we_are.international_title': 'International Team',
-    'who_we_are.international_desc': 'Diversity of experience and approaches makes our solutions more effective',
+    'who_we_are.international_desc': '',
     'who_we_are.passion_title': 'Passion for Technology',
-    'who_we_are.passion_desc': 'We love what we do, and it shows in the quality of our solutions',
+    'who_we_are.passion_desc': '',
     'who_we_are.cta_title': 'Ready to Work With Us?',
     'who_we_are.cta_desc': 'If our values resonate with you, we\'d love to hear from you!',
     'who_we_are.contact_us': 'Drop Us a Message',
