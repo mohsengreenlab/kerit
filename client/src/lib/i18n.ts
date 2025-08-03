@@ -553,7 +553,7 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     // About page
     'about.title': 'About Us',
     'about.mission': 'Our Mission',
-    'about.mission_desc': 'Kerit was created to help businesses maximize the potential of modern IT technologies. We believe that properly configured digital processes can dramatically change the effectiveness of any company.',
+    'about.mission_desc': 'Kerit was created to make technology clear and useful for businesses. We help entrepreneurs streamline their digital processes, reduce costs, and increase profits with IT solutions that actually work.',
     'about.innovation': 'Innovation',
     'about.innovation_desc': 'We use cutting-edge technologies to solve business challenges',
     'about.team': 'Team',
@@ -639,12 +639,12 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
     'testimonial.dmitry.text': 'Kerit\'s optimization saved us hundreds of dollars on infrastructure. Highly recommend!',
     
     // About page details
-    'about.approach_title': 'Comprehensive Approach',
-    'about.approach_desc': 'We analyze all aspects of your business to create a holistic digitalization strategy',
-    'about.measurable_title': 'Measurable Results',
-    'about.measurable_desc': 'Every project has clear KPIs and efficiency metrics',
-    'about.partnership_title': 'Long-term Partnership',
-    'about.partnership_desc': 'We support clients at every stage of their digital ecosystem development',
+    'about.approach_title': 'In-Depth Business Understanding',
+    'about.approach_desc': 'We don\'t offer generic solutions. We start by analyzing your business model, identifying growth points, and only then selecting the right technology.',
+    'about.measurable_title': 'Transparent, Measurable Results',
+    'about.measurable_desc': 'Every project begins with clear goals and ends with tangible numbers: KPIs, efficiency gains, cost savings — all tracked and measurable.',
+    'about.partnership_title': 'A Long-Term Partnership, Not a One-Off Service',
+    'about.partnership_desc': 'We stay with you beyond implementation — supporting, adjusting solutions as your business grows, and helping to evolve your digital ecosystem.',
     
     // Blog page
     'blog.clear_search': 'Clear Search',
@@ -703,9 +703,9 @@ export const defaultTranslations: Record<string, Record<string, string>> = {
 
     // Who We Are page
     'who_we_are.title': 'Who We Are',
-    'who_we_are.intro': 'We are a team of IT specialists united by a passion for technology and a desire to make digital tools truly useful for business. We grew out of the academic environment of Saint Petersburg State University, and today we work with companies around the world — from different countries, but as a unified team.',
-    'who_we_are.mission': 'In our work, we adhere to a simple principle: every task should be solved with business goals in mind, not just for the sake of technology. We offer solutions that deliver measurable results and truly make life easier for teams.',
-    'who_we_are.values': 'Want to streamline your digital processes and focus on business growth? Write to us — let\'s discuss what tasks Kerit can solve for you.',
+    'who_we_are.intro': 'We are a team of IT professionals united by a passion for technology and a commitment to making digital tools truly useful for business. We grew out of the academic environment of Saint Petersburg State University, and today we work with companies around the world — from different countries, but as one team.',
+    'who_we_are.mission': 'Our approach is simple: every task should be solved with business goals in mind, not just for the sake of technology. We offer solutions that deliver measurable results and genuinely make life easier for your team.',
+    'who_we_are.values': 'Looking to streamline your digital processes and focus on business growth? Get in touch — let\'s discuss which challenges Kerit can solve for you.',
     'who_we_are.education_title': 'SPbU Education',
     'who_we_are.education_desc': '',
     'who_we_are.international_title': 'International Team',

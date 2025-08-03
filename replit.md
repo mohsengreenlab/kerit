@@ -18,6 +18,15 @@ Development admin bypass available at: /api/dev-admin-login
 
 ✓ **MIGRATION TO REPLIT COMPLETE**: Successfully migrated from Replit Agent to standard Replit environment
 ✓ **Database Configuration Enhanced**: Fixed database driver to use PostgreSQL for VPS deployments, only Neon for actual Neon databases
+✓ **Homepage Hero Titles Updated**: Fixed Russian and English hero titles with dynamic language switching
+  - Russian: "IT-решения для роста и масштабирования бизнеса" (with highlighted "масштабирования бизнеса")
+  - English: "IT solutions for business growth and scaling" (with highlighted "scaling")
+  - Added responsive layout improvements to prevent text hiding behind images
+✓ **About Page Content Refresh**: Updated English translations for About and Who We Are pages
+  - New "Our Mission" text emphasizing clear, useful technology for businesses
+  - Updated "Why Choose Us" section with specific business-focused approach
+  - Enhanced "Who We Are" content highlighting SPbU background and international team
+  - Maintained exact Russian translations as requested
 ✓ **Blog Post Fix**: Fixed all 404 errors by creating proper English/Russian blog post pairs with matching slugs
 ✓ **Pricing Page Fix**: Removed duplicate service packages from database
 ✓ **Translation Matching**: Ensured one-to-one English-Russian blog post matching for proper internationalization
