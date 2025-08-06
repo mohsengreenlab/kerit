@@ -14,7 +14,17 @@ Admin password for /admin24: admin123 (default fallback when ADMIN_PASSWORD not 
 Development admin bypass available at: /api/dev-admin-login
 ```
 
-## Recent Changes (August 3, 2025)
+## Recent Changes (August 6, 2025)
+
+✓ **ADMIN MESSAGE CONTROL FEATURE**: Added toggle in admin panel (/admin24) to control message/booking acceptance
+  - New admin setting "accept_messages" controls whether forms accept new submissions
+  - When disabled, shows localized message directing users to email info@kerit.com.ru
+  - Russian translation: "Спасибо за ваше сообщение. В настоящее время мы не можем обрабатывать новые запросы. Если вам нужно связаться с нами, пожалуйста, напишите нам на info@kerit.com.ru"
+  - English translation: "Thanks for your message. At this time, we are unable to process new requests. If you need to contact us, please email us at info@kerit.com.ru"
+  - Toggle button with clear visual indicators in admin dashboard
+  - Database schema updated with adminSettings table for persistent configuration
+
+## Previous Changes (August 3, 2025)
 
 ✓ **MIGRATION TO REPLIT COMPLETE**: Successfully migrated from Replit Agent to standard Replit environment
 ✓ **Database Configuration Enhanced**: Fixed database driver to use PostgreSQL for VPS deployments, only Neon for actual Neon databases

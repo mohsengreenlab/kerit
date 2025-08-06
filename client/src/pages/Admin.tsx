@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 import { isUnauthorizedError } from '@/lib/authUtils';
 import { apiRequest } from '@/lib/queryClient';
 
@@ -43,6 +44,7 @@ export default function Admin() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState('messages');
+  const [acceptMessages, setAcceptMessages] = useState(true);
   
   // Login form state
   const [username, setUsername] = useState('');
@@ -177,6 +179,19 @@ export default function Admin() {
     enabled: user?.role === 'admin',
   });
 
+  // Fetch admin settings
+  const { data: acceptMessagesSetting } = useQuery({
+    queryKey: ['/api/admin/settings/accept_messages'],
+    enabled: user?.role === 'admin',
+  });
+
+  // Update acceptMessages state when setting is loaded
+  useEffect(() => {
+    if (acceptMessagesSetting?.value !== undefined) {
+      setAcceptMessages(acceptMessagesSetting.value === 'true');
+    }
+  }, [acceptMessagesSetting]);
+
   const markAsReadMutation = useMutation({
     mutationFn: async ({ id, type }: { id: string; type: 'message' | 'booking' }) => {
       await apiRequest('PATCH', `/api/admin/${type === 'message' ? 'contact-messages' : 'booking-consultations'}/${id}/mark-read`);
@@ -232,6 +247,45 @@ export default function Admin() {
     },
   });
 
+  const updateAcceptMessagesMutation = useMutation({
+    mutationFn: async (accept: boolean) => {
+      await apiRequest('POST', '/api/admin/settings', {
+        key: 'accept_messages',
+        value: accept.toString(),
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/settings/accept_messages'] });
+      toast({
+        title: "Settings Updated",
+        description: `Messages and bookings are now ${acceptMessages ? 'accepted' : 'not accepted'}`,
+      });
+    },
+    onError: (error) => {
+      if (isUnauthorizedError(error as Error)) {
+        toast({
+          title: "Unauthorized",
+          description: "You are logged out. Logging in again...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/admin-login";
+        }, 500);
+        return;
+      }
+      toast({
+        title: "Error",
+        description: "Failed to update settings",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleAcceptMessagesToggle = (checked: boolean) => {
+    setAcceptMessages(checked);
+    updateAcceptMessagesMutation.mutate(checked);
+  };
+
   if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -259,12 +313,48 @@ export default function Admin() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-kerit-dark mb-2">
-              Admin Dashboard
-            </h1>
-            <p className="text-gray-600">
-              Manage visitor messages and consultation bookings
-            </p>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h1 className="text-3xl font-bold text-kerit-dark mb-2">
+                  Admin Dashboard
+                </h1>
+                <p className="text-gray-600">
+                  Manage visitor messages and consultation bookings
+                </p>
+              </div>
+              
+              {/* Admin Settings Toggle */}
+              <div className="mt-4 sm:mt-0">
+                <Card className="w-fit">
+                  <CardContent className="p-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="flex flex-col">
+                        <Label htmlFor="accept-messages" className="text-sm font-medium">
+                          Accept New Messages/Bookings
+                        </Label>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Toggle to stop accepting new requests
+                        </p>
+                      </div>
+                      <Switch
+                        id="accept-messages"
+                        checked={acceptMessages}
+                        onCheckedChange={handleAcceptMessagesToggle}
+                        disabled={updateAcceptMessagesMutation.isPending}
+                      />
+                    </div>
+                    {!acceptMessages && (
+                      <div className="mt-3 p-2 bg-red-50 border border-red-200 rounded-md">
+                        <p className="text-xs text-red-600">
+                          <i className="fas fa-exclamation-triangle mr-1"></i>
+                          New messages and bookings are currently disabled
+                        </p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </div>
 
           {/* Statistics Cards */}

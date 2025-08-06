@@ -10,6 +10,7 @@ import {
   contactSubmissions,
   contactMessages,
   bookingConsultations,
+  adminSettings,
   visitors,
   pageViews,
   type User,
@@ -34,6 +35,8 @@ import {
   type InsertContactMessage,
   type BookingConsultation,
   type InsertBookingConsultation,
+  type AdminSetting,
+  type InsertAdminSetting,
   type Visitor,
   type PageView,
 } from "@shared/schema";
@@ -114,6 +117,10 @@ export interface IStorage {
   getAllBookingConsultations(): Promise<BookingConsultation[]>;
   markBookingConsultationAsRead(id: string): Promise<void>;
   updateBookingConsultationStatus(id: string, status: string): Promise<void>;
+  
+  // Admin settings operations
+  getAdminSetting(key: string): Promise<AdminSetting | undefined>;
+  upsertAdminSetting(setting: InsertAdminSetting): Promise<AdminSetting>;
   
   // Analytics operations
   trackVisitor(sessionId: string, ipAddress?: string, userAgent?: string, referrer?: string): Promise<Visitor>;
@@ -549,6 +556,27 @@ export class DatabaseStorage implements IStorage {
       .limit(limit);
 
     return results.map(r => ({ path: r.path, views: r.views }));
+  }
+
+  // Admin settings operations
+  async getAdminSetting(key: string): Promise<AdminSetting | undefined> {
+    const [setting] = await db.select().from(adminSettings).where(eq(adminSettings.key, key));
+    return setting;
+  }
+
+  async upsertAdminSetting(settingData: InsertAdminSetting): Promise<AdminSetting> {
+    const [setting] = await db
+      .insert(adminSettings)
+      .values(settingData)
+      .onConflictDoUpdate({
+        target: adminSettings.key,
+        set: {
+          value: settingData.value,
+          updatedAt: new Date(),
+        },
+      })
+      .returning();
+    return setting;
   }
 }
 

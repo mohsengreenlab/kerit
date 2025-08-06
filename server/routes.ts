@@ -370,6 +370,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission (public)
   app.post('/api/contact-message', async (req, res) => {
     try {
+      // Check if messages are accepted
+      const acceptMessagesSetting = await storage.getAdminSetting('accept_messages');
+      if (acceptMessagesSetting && acceptMessagesSetting.value === 'false') {
+        const { lang } = req.query;
+        const isRussian = lang === 'ru';
+        const errorMessage = isRussian 
+          ? "Спасибо за ваше сообщение. В настоящее время мы не можем обрабатывать новые запросы. Если вам нужно связаться с нами, пожалуйста, напишите нам на info@kerit.com.ru"
+          : "Thanks for your message. At this time, we are unable to process new requests. If you need to contact us, please email us at info@kerit.com.ru";
+        
+        return res.status(423).json({ message: errorMessage });
+      }
+
       const validatedData = insertContactMessageSchema.parse(req.body);
       const message = await storage.createContactMessage(validatedData);
       
@@ -398,6 +410,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Booking consultation submission (public)
   app.post('/api/booking-consultation', async (req, res) => {
     try {
+      // Check if bookings are accepted
+      const acceptBookingsSetting = await storage.getAdminSetting('accept_messages');
+      if (acceptBookingsSetting && acceptBookingsSetting.value === 'false') {
+        const { lang } = req.query;
+        const isRussian = lang === 'ru';
+        const errorMessage = isRussian 
+          ? "Спасибо за ваше сообщение. В настоящее время мы не можем обрабатывать новые запросы. Если вам нужно связаться с нами, пожалуйста, напишите нам на info@kerit.com.ru"
+          : "Thanks for your message. At this time, we are unable to process new requests. If you need to contact us, please email us at info@kerit.com.ru";
+        
+        return res.status(423).json({ message: errorMessage });
+      }
+
       const validatedData = insertBookingConsultationSchema.parse(req.body);
       const booking = await storage.createBookingConsultation(validatedData);
       
@@ -505,6 +529,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching projects:", error);
       res.status(500).json({ message: "Failed to fetch projects" });
+    }
+  });
+
+  // Admin settings routes
+  app.get('/api/admin/settings/:key', adminAuth, async (req, res) => {
+    try {
+      const setting = await storage.getAdminSetting(req.params.key);
+      res.json(setting);
+    } catch (error) {
+      console.error("Error fetching admin setting:", error);
+      res.status(500).json({ message: "Failed to fetch setting" });
+    }
+  });
+
+  app.post('/api/admin/settings', adminAuth, async (req, res) => {
+    try {
+      const { key, value } = req.body;
+      const setting = await storage.upsertAdminSetting({ key, value });
+      res.json(setting);
+    } catch (error) {
+      console.error("Error updating admin setting:", error);
+      res.status(500).json({ message: "Failed to update setting" });
     }
   });
 
