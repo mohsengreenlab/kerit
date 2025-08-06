@@ -35,7 +35,7 @@ const getBookingSchema = (t: (key: string) => string) => z.object({
 });
 
 export default function Contact() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { toast } = useToast();
   const shouldAnimate = usePageAnimation('contact');
   const [isContactSubmitted, setIsContactSubmitted] = useState(false);
@@ -68,7 +68,7 @@ export default function Contact() {
 
   const contactMutation = useMutation({
     mutationFn: async (data: ContactForm) => {
-      await apiRequest('POST', '/api/contact-message', data);
+      await apiRequest('POST', `/api/contact-message?lang=${language}`, data);
     },
     onSuccess: () => {
       setIsContactSubmitted(true);
@@ -78,12 +78,21 @@ export default function Contact() {
         description: t('contact.success.description'),
       });
     },
-    onError: (error) => {
-      toast({
-        title: t('contact.error.title'),
-        description: t('contact.error.description'),
-        variant: 'destructive',
-      });
+    onError: (error: any) => {
+      // Check if this is a 423 status (messages disabled) with custom message
+      if (error?.response?.status === 423 && error?.response?.data?.message) {
+        toast({
+          title: "Notice",
+          description: error.response.data.message,
+          variant: 'default',
+        });
+      } else {
+        toast({
+          title: t('contact.error.title'),
+          description: t('contact.error.description'),
+          variant: 'destructive',
+        });
+      }
     },
   });
 
@@ -93,7 +102,7 @@ export default function Contact() {
         ...data,
         preferredDate: data.preferredDate ? new Date(data.preferredDate).toISOString() : null
       };
-      await apiRequest('POST', '/api/booking-consultation', submissionData);
+      await apiRequest('POST', `/api/booking-consultation?lang=${language}`, submissionData);
     },
     onSuccess: () => {
       setIsBookingSubmitted(true);
@@ -103,12 +112,21 @@ export default function Contact() {
         description: t('appointment.success.description'),
       });
     },
-    onError: (error) => {
-      toast({
-        title: t('appointment.error.title'), 
-        description: t('appointment.error.description'),
-        variant: 'destructive',
-      });
+    onError: (error: any) => {
+      // Check if this is a 423 status (messages disabled) with custom message
+      if (error?.response?.status === 423 && error?.response?.data?.message) {
+        toast({
+          title: "Notice",
+          description: error.response.data.message,
+          variant: 'default',
+        });
+      } else {
+        toast({
+          title: t('appointment.error.title'), 
+          description: t('appointment.error.description'),
+          variant: 'destructive',
+        });
+      }
     },
   });
 

@@ -27,7 +27,7 @@ interface AppointmentModalProps {
 }
 
 export function AppointmentModal({ onClose }: AppointmentModalProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { toast } = useToast();
   
   const appointmentSchema = getAppointmentSchema(t);
@@ -54,7 +54,7 @@ export function AppointmentModal({ onClose }: AppointmentModalProps) {
         preferredDate: data.preferredDate ? new Date(data.preferredDate).toISOString() : null,
         message: data.message || 'Consultation request from appointment modal',
       };
-      await apiRequest('POST', '/api/booking-consultation', submissionData);
+      await apiRequest('POST', `/api/booking-consultation?lang=${language}`, submissionData);
     },
     onSuccess: () => {
       toast({
@@ -63,12 +63,21 @@ export function AppointmentModal({ onClose }: AppointmentModalProps) {
       });
       onClose();
     },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: "Failed to book consultation. Please try again.",
-        variant: 'destructive',
-      });
+    onError: (error: any) => {
+      // Check if this is a 423 status (messages disabled) with custom message
+      if (error?.response?.status === 423 && error?.response?.data?.message) {
+        toast({
+          title: "Notice",
+          description: error.response.data.message,
+          variant: 'default',
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to book consultation. Please try again.",
+          variant: 'destructive',
+        });
+      }
     },
   });
 
